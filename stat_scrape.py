@@ -58,6 +58,12 @@ def parseGameData(gameData):
             data = response.json()
 
             print(data['homeTeam'])
+
+            homeTeam = data['homeTeam']
+            awayTean = data['awayTeam']
+
+            
+
 def main():
     gameData = matchnumbers()
     parseGameData(gameData)
