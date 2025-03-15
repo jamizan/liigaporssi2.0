@@ -50,7 +50,6 @@ def parseGameData(gameData):
         gameId = game['gameId']
         #url = 'https://liiga.fi/api/v2/games/stats/2025/93' # VAIN DEV KÄYTTÖÖN
         url = f'https://liiga.fi/api/v2/games/stats/2025/{gameId}' 
-        print(url)
 
         response = requests.get(url)
 
@@ -70,12 +69,6 @@ def parseGameData(gameData):
 
         else:
             print(response.status_code)
-
-  #  for i in allGStats:
- #       print(i)
-
-    for i in allPStats:
-        print(i)
 
 def goalieStats(team):            
     data = {}
@@ -143,10 +136,47 @@ def playerStats(team):
 
     return data
 
+def penaltyPlayerData(gameData):
+    penaltyData = []
+    for i in gameData:
+        gameid = i['gameId']
+        url = f"https://www.liiga.fi/api/v2/games/2025/{gameid}"
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            data = response.json()
+
+            HTPenalty = data['game']['homeTeam']['penaltyEvents']
+            ATPenalty = data['game']['awayTeam']['penaltyEvents']
+
+            for i in HTPenalty:
+                playerId = i['playerId']
+                if playerId == '0':
+                    continue
+                else:
+                    usedPlayerId = playerId
+
+                minutes = i['penaltyMinutes']
+                row = {'playerId' : playerId, 'minutes' : minutes}
+                penaltyData.append(row)
+
+            for i in ATPenalty:
+                playerId = i['playerId']
+                if playerId == '0':
+                    continue
+                else:
+                    usedPlayerId = playerId
+
+                minutes = i['penaltyMinutes']
+                row = {'playerId' : playerId, 'minutes' : minutes}
+                penaltyData.append(row)
+
+    return penaltyData
 
 def main():
     gameData = matchnumbers()
     parseGameData(gameData)
+    penaltyPlayerData(gameData)
 
 if __name__ == '__main__':
     main()
