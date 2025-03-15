@@ -2,6 +2,12 @@ import requests
 import json
 from datetime import datetime
 
+def readJson():
+    with open('playerData.json', 'r', encoding='utf-8') as file:
+        data = json.load(file)
+
+    return data
+
 def matchnumbers():
     url = 'https://www.liiga.fi/api/v2/games?tournament=runkosarja&season=2025'
 
@@ -69,6 +75,9 @@ def parseGameData(gameData):
 
         else:
             print(response.status_code)
+
+    return allGStats, allPStats
+
 
 def goalieStats(team):            
     data = {}
@@ -173,10 +182,16 @@ def penaltyPlayerData(gameData):
 
     return penaltyData
 
+def mergeData(playerStats, goalieStats, JsonData, penaltyData):
+    print(playerStats)
+
 def main():
     gameData = matchnumbers()
-    parseGameData(gameData)
-    penaltyPlayerData(gameData)
+    goalieStats, playerStats = parseGameData(gameData)
+    penaltyData = penaltyPlayerData(gameData)
+    JsonData = readJson()
+    mergeData(playerStats, goalieStats, JsonData, penaltyData)
+
 
 if __name__ == '__main__':
     main()
