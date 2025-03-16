@@ -183,7 +183,24 @@ def penaltyPlayerData(gameData):
     return penaltyData
 
 def mergeData(playerStats, goalieStats, JsonData, penaltyData):
-    print(playerStats)
+
+    data = []
+
+    jKeys = JsonData.keys()
+
+
+    for i in playerStats:
+        pKeys = i.keys()
+        for id in pKeys:
+            if str(id) in jKeys:
+                data.append([id, JsonData[str(id)], i[id]])
+
+
+    #print(f'{data}\n')
+    for b in data:
+        print(f'{b}\n')
+
+
 
 def main():
     gameData = matchnumbers()
