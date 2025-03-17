@@ -176,9 +176,9 @@ def penaltyPlayerData(gameData):
                 else:
                     usedPlayerId = playerId
 
-                minutes = i['penaltyMinutes']
-                row = {'playerId' : playerId, 'minutes' : minutes}
-                penaltyData.append(row)
+                    minutes = i['penaltyMinutes']
+                    row = {'playerId' : playerId, 'minutes' : minutes}
+                    penaltyData.append(row)
 
     return penaltyData
 
@@ -194,6 +194,13 @@ def mergeData(playerStats, goalieStats, JsonData, penaltyData):
         for id in pKeys:
             if str(id) in jKeys:
                 data.append([id, JsonData[str(id)], i[id]])
+
+    for x in goalieStats:
+        gKeys = x.keys()
+        for id in gKeys:
+            if str(id) in jKeys:
+                data.append([id, JsonData[str(id)], x[id]])
+
 
 
     #print(f'{data}\n')
