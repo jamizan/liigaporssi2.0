@@ -193,20 +193,65 @@ def mergeData(playerStats, goalieStats, JsonData, penaltyData):
         pKeys = i.keys()
         for id in pKeys:
             if str(id) in jKeys:
+                position = JsonData[str(id)]['role']
+                countLPP(i[id], penaltyData, position, id)
                 data.append([id, JsonData[str(id)], i[id]])
 
     for x in goalieStats:
         gKeys = x.keys()
         for id in gKeys:
             if str(id) in jKeys:
+                position = JsonData[str(id)]['role']
+                countLPP(x[id], penaltyData, position, id)
                 data.append([id, JsonData[str(id)], x[id]])
 
 
+    return data
 
-    #print(f'{data}\n')
-    for b in data:
-        print(f'{b}\n')
 
+def countLPP(playerStats, penaltyData, position, id):
+    
+    if position == 'LEFT_WING' or position == 'CENTER' or position == 'RIGHT_WING':
+        pos = 'A'
+        Goals = playerStats['goals'] * 7
+        Assists = playerStats['assists'] * 4
+        if playerStats['plus'] > 0:
+            Plus = playerStats['plus'] * 2
+        else:
+            Plus = 0
+
+        if playerStats['minus'] >= 0:
+            Minus = playerStats['minus']
+        else:
+            Minus = 0
+
+        penalty = 0
+
+        for i in penaltyData:
+            penID = i['playerId']
+            if penID == id:
+                if i['minutes'] == 0:
+                    penalty += 0
+                if i['minutes'] == 2:
+                    penalty += 1
+                    print(i['minutes'])
+                if i['minutes'] == 5:
+                    penalty -= 2
+                if i['minutes'] == 10:
+                    penalty -= 5
+                if i['minutes'] == 20:
+                    penalty -= 8
+
+        Blocks = playerStats['blocks']
+
+
+
+    elif position == 'LEFT_DEFENSEMAN' or position == 'RIGHT_DEFENSEMAN':
+        pos = 'D'
+        
+    else:
+        pos = 'G'
+        
 
 
 def main():
@@ -214,7 +259,7 @@ def main():
     goalieStats, playerStats = parseGameData(gameData)
     penaltyData = penaltyPlayerData(gameData)
     JsonData = readJson()
-    mergeData(playerStats, goalieStats, JsonData, penaltyData)
+    mergedData = mergeData(playerStats, goalieStats, JsonData, penaltyData)
 
 
 if __name__ == '__main__':
