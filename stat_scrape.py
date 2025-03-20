@@ -119,7 +119,7 @@ def playerStats(team):
     
     # Goes through once for each player
     while i < len(team[0]['periodPlayerStats']):
-        assists, goals, plus, minus, penaltyminutes, voittomaali, alivoimaMaali, alivoimaSyotto, blocks,  faceoffsTotal, faceoffsWon = 0,0,0,0,0,0,0,0,0,0,0
+        assists, goals, plus, minus, penaltyminutes, voittomaali, alivoimaMaali, alivoimaSyotto, blocks, shots,  faceoffsTotal, faceoffsWon = 0,0,0,0,0,0,0,0,0,0,0,0
         # Loops through for every period on each player in a match
         for period in team:
             playerStats = period['periodPlayerStats']
@@ -135,11 +135,12 @@ def playerStats(team):
             alivoimaMaali += scoreStats['shortHandedGoals']
             alivoimaSyotto += scoreStats['penaltykillAssists']
             blocks += scoreStats['blockedShots']
+            shots += scoreStats['shots']
             faceoffsTotal += scoreStats['faceoffsTotal']
             faceoffsWon += scoreStats['faceoffsWon']
 
 
-        data[playerId] = {'assists' : assists, 'goals' : goals, 'plus' : plus, 'minus' : minus, 'penaltyminutes' : penaltyminutes, 'voittomaali' : voittomaali, 'alivoimaMaali' : alivoimaMaali, 'alivoimaSyotto' : alivoimaSyotto, 'blocks' : blocks, 'faceoffsWon' : faceoffsWon, 'faceoffsTotal' : faceoffsTotal}
+        data[playerId] = {'assists' : assists, 'goals' : goals, 'plus' : plus, 'minus' : minus, 'penaltyminutes' : penaltyminutes, 'voittomaali' : voittomaali, 'alivoimaMaali' : alivoimaMaali, 'alivoimaSyotto' : alivoimaSyotto, 'blocks' : blocks, 'shots' : shots, 'faceoffsWon' : faceoffsWon, 'faceoffsTotal' : faceoffsTotal}
 
         i += 1
 
@@ -194,7 +195,8 @@ def mergeData(playerStats, goalieStats, JsonData, penaltyData):
         for id in pKeys:
             if str(id) in jKeys:
                 position = JsonData[str(id)]['role']
-                countLPP(i[id], penaltyData, position, id)
+                LPP = countLPP(i[id], penaltyData, position, id)
+                i[id]['LPP'] = LPP
                 data.append([id, JsonData[str(id)], i[id]])
 
     for x in goalieStats:
@@ -202,7 +204,8 @@ def mergeData(playerStats, goalieStats, JsonData, penaltyData):
         for id in gKeys:
             if str(id) in jKeys:
                 position = JsonData[str(id)]['role']
-                countLPP(x[id], penaltyData, position, id)
+                LPP = countLPP(x[id], penaltyData, position, id)
+                x[id]['LPP'] = LPP
                 data.append([id, JsonData[str(id)], x[id]])
 
 
@@ -215,6 +218,7 @@ def countLPP(playerStats, penaltyData, position, id):
         pos = 'A'
         Goals = playerStats['goals'] * 7
         Assists = playerStats['assists'] * 4
+
         if playerStats['plus'] > 0:
             Plus = playerStats['plus'] * 2
         else:
@@ -226,7 +230,6 @@ def countLPP(playerStats, penaltyData, position, id):
             Minus = 0
 
         penalty = 0
-
         for i in penaltyData:
             penID = i['playerId']
             if penID == id:
@@ -234,7 +237,70 @@ def countLPP(playerStats, penaltyData, position, id):
                     penalty += 0
                 if i['minutes'] == 2:
                     penalty += 1
-                    print(i['minutes'])
+                if i['minutes'] == 5:
+                    penalty -= 2
+                if i['minutes'] == 10:
+                    penalty -= 5
+                if i['minutes'] == 20:
+                    penalty -= 8
+
+        Blocks = playerStats['blocks']
+        if playerStats['shots'] != 0:
+            if playerStats['shots'] % 2 == 0:
+                Shots = playerStats['shots'] / 2
+            else:
+                Shots = (playerStats['shots'] / 2) + 0.5
+        else:
+            Shots = 0
+
+        previousBorder = 1
+        c = 1
+        foLPP = 1
+        check = 0
+        faceoffsBalance = playerStats['faceoffsWon'] - playerStats['faceoffsTotal']
+
+        if faceoffsBalance > 0:
+            faceoffsBalance = faceoffsBalance * -1
+            check = -1
+        if faceoffsBalance != 0:
+            if faceoffsBalance > 0:
+                while c < faceoffsBalance:
+                    if c == previousBorder:
+                        foLPP += 1
+                        previousBorder = c + 1
+                    c += 1
+            if check < 0:
+                foLPP = foLPP * -1
+        else:
+            foLPP = 0
+
+        LPP = Goals + Assists + (Plus - Minus) + penalty + Blocks + Shots + foLPP
+
+
+    elif position == 'LEFT_DEFENSEMAN' or position == 'RIGHT_DEFENSEMAN':
+        pos = 'D'
+
+        Goals = playerStats['goals'] * 9
+        Assists = playerStats['assists'] * 6
+
+        if playerStats['plus'] > 0:
+            Plus = playerStats['plus'] * 3
+        else:
+            Plus = 0
+
+        if playerStats['minus'] >= 0:
+            Minus = playerStats['minus'] * 2
+        else:
+            Minus = 0
+
+        penalty = 0
+        for i in penaltyData:
+            penID = i['playerId']
+            if penID == id:
+                if i['minutes'] == 0:
+                    penalty += 0
+                if i['minutes'] == 2:
+                    penalty += 1
                 if i['minutes'] == 5:
                     penalty -= 2
                 if i['minutes'] == 10:
@@ -244,14 +310,90 @@ def countLPP(playerStats, penaltyData, position, id):
 
         Blocks = playerStats['blocks']
 
+        if playerStats['shots'] != 0:
+            if playerStats['shots'] % 2 == 0:
+                Shots = playerStats['shots'] / 2
+            else:
+                Shots = (playerStats['shots'] / 2) + 0.5
+        else:
+            Shots = 0
 
+        previousBorder = 1
+        c = 1
+        foLPP = 1
+        check = 0
+        faceoffsBalance = playerStats['faceoffsWon'] - playerStats['faceoffsTotal']
 
-    elif position == 'LEFT_DEFENSEMAN' or position == 'RIGHT_DEFENSEMAN':
-        pos = 'D'
+        if faceoffsBalance > 0:
+            faceoffsBalance = faceoffsBalance * -1
+            check = -1
+        if faceoffsBalance != 0:
+            if faceoffsBalance > 0:
+                while c < faceoffsBalance:
+                    if c == previousBorder:
+                        foLPP += 1
+                        previousBorder = c + 1
+                    c += 1
+            if check < 0:
+                foLPP = foLPP * -1
+        else:
+            foLPP = 0
+
+        LPP = Goals + Assists + (Plus - Minus) + penalty + Blocks + Shots + foLPP
         
+
     else:
         pos = 'G'
+
+        Goals = playerStats['goals'] * 25
+        Assists = playerStats['assists'] + 10
+
+        x = 1
+        savePoints = 1
+
+        while x < playerStats['saves'] and playerStats['saves'] != 0:
+            if x % 5 == 0 and x >= 35:
+                savePoints = savePoints + 3
+            else:
+                if x % 5 == 0:
+                    savePoints = savePoints + 2
+            x += 1
+
+        if playerStats['saves'] != 0:
+            LPPSaves = savePoints
+        else:
+            LPPSaves = 0
+
+        penalty = 0
+        for i in penaltyData:
+            penID = i['playerId']
+            if penID == id:
+                if i['minutes'] == 0:
+                    penalty += 0
+                if i['minutes'] == 2:
+                    penalty -= 1
+                if i['minutes'] == 5:
+                    penalty -= 2
+                if i['minutes'] == 10:
+                    penalty -= 5
+                if i['minutes'] == 20:
+                    penalty -= 8
+
+        if playerStats['goalsAllowed'] < 5:
+            goalsAllowed = playerStats['goalsAllowed']
+        elif playerStats['goalsAllowed'] > 4:
+            x = 5
+            lastPoints = 4
+            while x <= playerStats['goalsAllowed']:
+                goalsAllowed = lastPoints + 2
+                lastPoints = goalsAllowed
+                x += 1
+        else:
+            goalsAllowed = 0
+
+        LPP = Goals + Assists + LPPSaves + penalty - goalsAllowed
         
+    return LPP
 
 
 def main():
