@@ -415,6 +415,12 @@ def countLPP(playerStats, penaltyData, position, id):
     return LPP
 
 
+def createJSON(mergedData):
+    with open('playerStats.json', 'w', encoding='utf-8') as json_file:
+        json.dump(mergedData, json_file, ensure_ascii=False, indent=4)
+
+    print('file created!')
+
 def main():
     # Parsing matchnumbers
     gameData = matchnumbers()
@@ -426,9 +432,9 @@ def main():
     JsonData = readJson()
     # Merging all data
     mergedData = mergeData(playerStats, goalieStats, JsonData, penaltyData)
+    # Creating output JSON file
+    createJSON(mergedData)
 
-    for i in mergedData:
-        print(f'{i}\n')
 
 
 if __name__ == '__main__':
