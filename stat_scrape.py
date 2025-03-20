@@ -2,17 +2,20 @@ import requests
 import json
 from datetime import datetime
 
+# Reading data from JSON file created by playerParse.py
 def readJson():
     with open('playerData.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
 
     return data
 
+# Parsing matchnumbers from Liiga
 def matchnumbers():
     url = 'https://www.liiga.fi/api/v2/games?tournament=runkosarja&season=2025'
 
     response = requests.get(url)
     
+    # If connection is successful
     if response.status_code == 200:
         data = response.json()
         gameData = []
@@ -20,10 +23,11 @@ def matchnumbers():
         for game in data:
             beginTime = game['start'].split('T')
             
+    # Compare game dates to todays date
             dateNow = datetime.now()
             #dateNow = dateNow.strftime("%Y-%m-%d")
             dateNow = '2024-09-10' # VAIN DEV KÄYTTÖÖN
-            
+    # If game date is today => save team data
             if beginTime[0] == dateNow:
                 gameId = game['id']
                 homeTeamId = game['homeTeam']['teamId']
@@ -38,15 +42,15 @@ def matchnumbers():
                     'awayName' : awayTeamName
                 }
                 gameData.append(d)
-                
+    # If matches today => return team data
     if gameData != '':
         return(gameData)
     else:
         print('an error occured')
 
+# Parsing player stats from Liiga
 def parseGameData(gameData):
 
-    allGameData = []
     allGStats = []
     allPStats = []
 
@@ -59,6 +63,7 @@ def parseGameData(gameData):
 
         response = requests.get(url)
 
+    # If connection is successful format matchdata
         if response.status_code == 200:
             data = response.json()
 
@@ -78,7 +83,7 @@ def parseGameData(gameData):
 
     return allGStats, allPStats
 
-
+# Formatting goalie stats
 def goalieStats(team):            
     data = {}
 
@@ -86,7 +91,7 @@ def goalieStats(team):
     # Goes through once for each goalie
     while i < len(team[0]['goaliePeriodStats']):
         assists, goals, plus, minus, penaltyminutes, voittomaali, alivoimaMaali, alivoimaSyotto, blocks, saves, goalsAllowed, faceoffsTotal, faceoffsWon = 0,0,0,0,0,0,0,0,0,0,0,0,0
-        # Loops through for every period on each goalie in a match
+    # Loops through for every period on each goalie in a match
         for period in team:
             goalieStats = period['goaliePeriodStats']
             scoreStats = goalieStats[i]['period']
@@ -106,13 +111,14 @@ def goalieStats(team):
             faceoffsTotal += scoreStats['faceoffsTotal']
             faceoffsWon += scoreStats['faceoffsWon']
 
-
+    # Format data to dictionary
         data[playerId] = {'assists' : assists, 'goals' : goals, 'plus' : plus, 'minus' : minus, 'penaltyminutes' : penaltyminutes, 'voittomaali' : voittomaali, 'alivoimaMaali' : alivoimaMaali, 'alivoimaSyotto' : alivoimaSyotto, 'blocks' : blocks, 'saves' : saves, 'goalsAllowed' : goalsAllowed, 'faceoffsWon' : faceoffsWon, 'faceoffsTotal' : faceoffsTotal}
 
         i += 1
 
     return data
 
+# Formatting player stats
 def playerStats(team):
     data = {}
     i = 0
@@ -120,7 +126,7 @@ def playerStats(team):
     # Goes through once for each player
     while i < len(team[0]['periodPlayerStats']):
         assists, goals, plus, minus, penaltyminutes, voittomaali, alivoimaMaali, alivoimaSyotto, blocks, shots,  faceoffsTotal, faceoffsWon = 0,0,0,0,0,0,0,0,0,0,0,0
-        # Loops through for every period on each player in a match
+    # Loops through for every period on each player in a match
         for period in team:
             playerStats = period['periodPlayerStats']
             scoreStats = playerStats[i]['period']
@@ -139,13 +145,14 @@ def playerStats(team):
             faceoffsTotal += scoreStats['faceoffsTotal']
             faceoffsWon += scoreStats['faceoffsWon']
 
-
+    # Format to dictionary
         data[playerId] = {'assists' : assists, 'goals' : goals, 'plus' : plus, 'minus' : minus, 'penaltyminutes' : penaltyminutes, 'voittomaali' : voittomaali, 'alivoimaMaali' : alivoimaMaali, 'alivoimaSyotto' : alivoimaSyotto, 'blocks' : blocks, 'shots' : shots, 'faceoffsWon' : faceoffsWon, 'faceoffsTotal' : faceoffsTotal}
 
         i += 1
 
     return data
 
+# Parsing separate penalty instances
 def penaltyPlayerData(gameData):
     penaltyData = []
     for i in gameData:
@@ -183,37 +190,43 @@ def penaltyPlayerData(gameData):
 
     return penaltyData
 
+# Merging stats and penalties with player names using playerid
 def mergeData(playerStats, goalieStats, JsonData, penaltyData):
 
     data = []
 
     jKeys = JsonData.keys()
 
-
+    # For every line in playerstats
     for i in playerStats:
         pKeys = i.keys()
         for id in pKeys:
             if str(id) in jKeys:
                 position = JsonData[str(id)]['role']
+    # Count individual points
                 LPP = countLPP(i[id], penaltyData, position, id)
                 i[id]['LPP'] = LPP
                 data.append([id, JsonData[str(id)], i[id]])
 
+    # For every line in goaliestats
     for x in goalieStats:
         gKeys = x.keys()
         for id in gKeys:
             if str(id) in jKeys:
                 position = JsonData[str(id)]['role']
+    # Count individual points
                 LPP = countLPP(x[id], penaltyData, position, id)
                 x[id]['LPP'] = LPP
                 data.append([id, JsonData[str(id)], x[id]])
 
-
     return data
 
-
+# Counting individual player stats
 def countLPP(playerStats, penaltyData, position, id):
-    
+    # Sorting players for position => different position is different points
+    # Calculating points according to https://liigaporssi.fi/ohjeet/ohjeet#pisteet
+
+    # Calculating points for attackers
     if position == 'LEFT_WING' or position == 'CENTER' or position == 'RIGHT_WING':
         pos = 'A'
         Goals = playerStats['goals'] * 7
@@ -276,7 +289,10 @@ def countLPP(playerStats, penaltyData, position, id):
 
         LPP = Goals + Assists + (Plus - Minus) + penalty + Blocks + Shots + foLPP
 
+    # Sorting players for position => different position is different points
+    # Calculating points according to https://liigaporssi.fi/ohjeet/ohjeet#pisteet
 
+    # Calculating points for defenders
     elif position == 'LEFT_DEFENSEMAN' or position == 'RIGHT_DEFENSEMAN':
         pos = 'D'
 
@@ -341,7 +357,10 @@ def countLPP(playerStats, penaltyData, position, id):
 
         LPP = Goals + Assists + (Plus - Minus) + penalty + Blocks + Shots + foLPP
         
+    # Sorting players for position => different position is different points
+    # Calculating points according to https://liigaporssi.fi/ohjeet/ohjeet#pisteet
 
+    # Calculating points for goalies
     else:
         pos = 'G'
 
@@ -397,11 +416,19 @@ def countLPP(playerStats, penaltyData, position, id):
 
 
 def main():
+    # Parsing matchnumbers
     gameData = matchnumbers()
+    # Parsing individual player stats
     goalieStats, playerStats = parseGameData(gameData)
+    # Parsing penalty instances
     penaltyData = penaltyPlayerData(gameData)
+    # Reading data from json to get player names
     JsonData = readJson()
+    # Merging all data
     mergedData = mergeData(playerStats, goalieStats, JsonData, penaltyData)
+
+    for i in mergedData:
+        print(f'{i}\n')
 
 
 if __name__ == '__main__':
