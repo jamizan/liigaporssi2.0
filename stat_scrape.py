@@ -365,7 +365,7 @@ def countLPP(playerStats, penaltyData, position, id):
         pos = 'G'
 
         Goals = playerStats['goals'] * 25
-        Assists = playerStats['assists'] + 10
+        Assists = playerStats['assists'] * 10
 
         x = 1
         savePoints = 1
