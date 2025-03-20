@@ -414,7 +414,7 @@ def countLPP(playerStats, penaltyData, position, id):
         
     return LPP
 
-
+# Creating JSON file for player data
 def createJSON(mergedData):
     with open('playerStats.json', 'w', encoding='utf-8') as json_file:
         json.dump(mergedData, json_file, ensure_ascii=False, indent=4)
