@@ -2,13 +2,16 @@ import React from 'react';
 
 function App() {
     return (
-        <div className="App">
-            <h1 style={
-                { textAlign: 'center' }
-            }>
-                Hello, World!
-            </h1>
+        <>
+        <div className='content' id='content'>
+            <table>
+                <thead>
+                    
+                </thead>
+            </table>
         </div>
+        
+        </>
     );
 }
 
