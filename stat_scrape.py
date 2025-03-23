@@ -131,7 +131,7 @@ def playerStats(team):
             playerStats = period['periodPlayerStats']
             scoreStats = playerStats[i]['period']
 
-            playerId = playerStats[i]['playerId']
+            playerId = str(playerStats[i]['playerId'])
             assists += scoreStats['assists']
             goals += scoreStats['goals']
             plus += scoreStats['plus']
@@ -192,7 +192,7 @@ def penaltyPlayerData(gameData):
 
 # Merging stats and penalties with player names using playerid
 def mergeData(playerStats, goalieStats, JsonData, penaltyData):
-
+    
     data = []
 
     jKeys = JsonData.keys()
@@ -203,21 +203,33 @@ def mergeData(playerStats, goalieStats, JsonData, penaltyData):
         for id in pKeys:
             if str(id) in jKeys:
                 position = JsonData[str(id)]['role']
+                firstname = JsonData[str(id)]['firstname']
+                lastname = JsonData[str(id)]['lastname']
+                team = JsonData[str(id)]['teamid']
+                personalData = {'position' : position, 'firstname' : firstname, 'lastname' : lastname, 'team' : team}
     # Count individual points
                 LPP = countLPP(i[id], penaltyData, position, id)
-                i[id]['LPP'] = LPP
-                data.append([id, JsonData[str(id)], i[id]])
+                returnData = {'goals' : i[id]['goals'], 'assists' : i[id]['assists'], 'plusminus' : i[id]['plus'] - i[id]['minus'], 'penaltyminutes' : i[id]['penaltyminutes'], 'blocks' : i[id]['blocks'], 'shots' : i[id]['shots'], 'faceoffs' : i[id]['faceoffsTotal'] - i[id]['faceoffsWon'], 'LPP' : LPP}
+                personalData.update(returnData)
 
+                data.append(personalData)
+                
     # For every line in goaliestats
     for x in goalieStats:
         gKeys = x.keys()
         for id in gKeys:
             if str(id) in jKeys:
                 position = JsonData[str(id)]['role']
+                firstname = JsonData[str(id)]['firstname']
+                lastname = JsonData[str(id)]['lastname']
+                team = JsonData[str(id)]['teamid']
+                personalData = {'position' : position, 'firstname' : firstname, 'lastname' : lastname, 'team' : team}
     # Count individual points
                 LPP = countLPP(x[id], penaltyData, position, id)
-                x[id]['LPP'] = LPP
-                data.append([id, JsonData[str(id)], x[id]])
+                returnData = {'goals' : x[id]['goals'], 'assists' : x[id]['assists'], 'penaltyminutes' : x[id]['penaltyminutes'], 'saves' : x[id]['saves'], 'goalsallowed' : x[id]['goalsAllowed'], 'LPP' : LPP}
+                personalData.update(returnData)
+
+                data.append(personalData)
 
     return data
 
@@ -416,7 +428,7 @@ def countLPP(playerStats, penaltyData, position, id):
 
 # Creating JSON file for player data
 def createJSON(mergedData):
-    with open('playerStats.json', 'w', encoding='utf-8') as json_file:
+    with open('liiga/public/playerStats.json', 'w', encoding='utf-8') as json_file:
         json.dump(mergedData, json_file, ensure_ascii=False, indent=4)
 
     print('file created!')
@@ -433,7 +445,7 @@ def main():
     # Merging all data
     mergedData = mergeData(playerStats, goalieStats, JsonData, penaltyData)
     # Creating output JSON file
-    createJSON(mergedData)
+    createJSON(mergedData)    
 
 
 
