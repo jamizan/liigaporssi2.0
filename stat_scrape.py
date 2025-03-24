@@ -11,7 +11,7 @@ def readJson():
 
 # Parsing matchnumbers from Liiga
 def matchnumbers():
-    url = 'https://www.liiga.fi/api/v2/games?tournament=runkosarja&season=2025'
+    url = 'https://www.liiga.fi/api/v2/games?tournament=playoffs&season=2025'
 
     response = requests.get(url)
     
@@ -25,8 +25,8 @@ def matchnumbers():
             
     # Compare game dates to todays date
             dateNow = datetime.now()
-            #dateNow = dateNow.strftime("%Y-%m-%d")
-            dateNow = '2024-09-10' # VAIN DEV KÄYTTÖÖN
+            dateNow = dateNow.strftime("%Y-%m-%d")
+            #dateNow = '2024-09-10' # VAIN DEV KÄYTTÖÖN
     # If game date is today => save team data
             if beginTime[0] == dateNow:
                 gameId = game['id']
