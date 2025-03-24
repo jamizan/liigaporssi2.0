@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import toolBar from './components/toolBar';
+import toolBar from './components/toolBar.jsx';
+
 
 export default function Home() {
 
