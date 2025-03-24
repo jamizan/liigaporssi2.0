@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import toolBar from './components/toolBar';
 
 export default function Home() {
 
@@ -17,7 +18,11 @@ export default function Home() {
     <div className="header">
       <h1 className="text-gray-300 text-6xl text-center mt-10">LPP-Laskuri</h1>
     </div>
-    <div className="mt-10 w-full flex justify-center">
+    <div className='w-full flex justify-center' id='toolBar'>
+        {toolBar()}
+      </div>
+    <div className=" w-full flex justify-center">
+
       <table className="w-[60%] table-auto">
         <thead className="text-gray-300 text-s border-collapse text-center">
           <tr className="table-row">

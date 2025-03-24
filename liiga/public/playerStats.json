@@ -6,12 +6,12 @@
         "team": "933686567:saipa",
         "goals": 0,
         "assists": 0,
-        "plusminus": -1,
+        "plusminus": 0,
         "penaltyminutes": 0,
         "blocks": 0,
         "shots": 2,
         "faceoffs": 0,
-        "LPP": 0.0
+        "LPP": 2.0
     },
     {
         "position": "RIGHT_WING",
@@ -21,7 +21,7 @@
         "goals": 0,
         "assists": 1,
         "plusminus": 1,
-        "penaltyminutes": 0,
+        "penaltyminutes": 2,
         "blocks": 0,
         "shots": 0,
         "faceoffs": 0,
@@ -51,9 +51,9 @@
         "plusminus": 0,
         "penaltyminutes": 0,
         "blocks": 0,
-        "shots": 2,
+        "shots": 5,
         "faceoffs": 0,
-        "LPP": 1.0
+        "LPP": 3.0
     },
     {
         "position": "RIGHT_WING",
@@ -63,11 +63,11 @@
         "goals": 1,
         "assists": 0,
         "plusminus": 1,
-        "penaltyminutes": 0,
+        "penaltyminutes": 2,
         "blocks": 0,
-        "shots": 1,
+        "shots": 4,
         "faceoffs": 0,
-        "LPP": 10.0
+        "LPP": 11.0
     },
     {
         "position": "RIGHT_WING",
@@ -77,9 +77,9 @@
         "goals": 0,
         "assists": 0,
         "plusminus": 0,
-        "penaltyminutes": 0,
+        "penaltyminutes": 2,
         "blocks": 0,
-        "shots": 1,
+        "shots": 2,
         "faceoffs": 0,
         "LPP": 1.0
     },
@@ -93,7 +93,7 @@
         "plusminus": -1,
         "penaltyminutes": 0,
         "blocks": 0,
-        "shots": 3,
+        "shots": 4,
         "faceoffs": 0,
         "LPP": 0.0
     },
@@ -106,10 +106,10 @@
         "assists": 1,
         "plusminus": 1,
         "penaltyminutes": 0,
-        "blocks": 0,
-        "shots": 0,
+        "blocks": 1,
+        "shots": 1,
         "faceoffs": 0,
-        "LPP": 9
+        "LPP": 11.0
     },
     {
         "position": "LEFT_DEFENSEMAN",
@@ -120,10 +120,10 @@
         "assists": 0,
         "plusminus": 1,
         "penaltyminutes": 0,
-        "blocks": 1,
-        "shots": 0,
+        "blocks": 3,
+        "shots": 1,
         "faceoffs": 0,
-        "LPP": 4
+        "LPP": 7.0
     },
     {
         "position": "LEFT_WING",
@@ -135,9 +135,9 @@
         "plusminus": 0,
         "penaltyminutes": 0,
         "blocks": 0,
-        "shots": 0,
+        "shots": 4,
         "faceoffs": 0,
-        "LPP": 0
+        "LPP": 2.0
     },
     {
         "position": "RIGHT_DEFENSEMAN",
@@ -146,12 +146,12 @@
         "team": "933686567:saipa",
         "goals": 0,
         "assists": 0,
-        "plusminus": 0,
+        "plusminus": 1,
         "penaltyminutes": 0,
         "blocks": 0,
         "shots": 0,
         "faceoffs": 0,
-        "LPP": 0
+        "LPP": 3
     },
     {
         "position": "CENTER",
@@ -162,10 +162,10 @@
         "assists": 0,
         "plusminus": 0,
         "penaltyminutes": 0,
-        "blocks": 0,
-        "shots": 0,
+        "blocks": 1,
+        "shots": 2,
         "faceoffs": 0,
-        "LPP": 0
+        "LPP": 2.0
     },
     {
         "position": "RIGHT_DEFENSEMAN",
@@ -177,7 +177,7 @@
         "plusminus": 0,
         "penaltyminutes": 0,
         "blocks": 0,
-        "shots": 1,
+        "shots": 2,
         "faceoffs": 0,
         "LPP": 1.0
     },
@@ -188,12 +188,12 @@
         "team": "933686567:saipa",
         "goals": 0,
         "assists": 0,
-        "plusminus": -1,
+        "plusminus": 0,
         "penaltyminutes": 0,
         "blocks": 0,
-        "shots": 3,
+        "shots": 11,
         "faceoffs": 0,
-        "LPP": 0.0
+        "LPP": 7.0
     },
     {
         "position": "RIGHT_WING",
@@ -204,10 +204,10 @@
         "assists": 0,
         "plusminus": 1,
         "penaltyminutes": 0,
-        "blocks": 0,
-        "shots": 0,
-        "faceoffs": 2,
-        "LPP": 3
+        "blocks": 1,
+        "shots": 1,
+        "faceoffs": 5,
+        "LPP": 5.0
     },
     {
         "position": "RIGHT_WING",
@@ -219,9 +219,9 @@
         "plusminus": 0,
         "penaltyminutes": 0,
         "blocks": 0,
-        "shots": 1,
-        "faceoffs": 5,
-        "LPP": 2.0
+        "shots": 3,
+        "faceoffs": 9,
+        "LPP": 3.0
     },
     {
         "position": "CENTER",
@@ -232,10 +232,10 @@
         "assists": 0,
         "plusminus": 0,
         "penaltyminutes": 0,
-        "blocks": 0,
-        "shots": 1,
-        "faceoffs": 0,
-        "LPP": 1.0
+        "blocks": 1,
+        "shots": 3,
+        "faceoffs": 2,
+        "LPP": 4.0
     },
     {
         "position": "CENTER",
@@ -244,26 +244,26 @@
         "team": "933686567:saipa",
         "goals": 0,
         "assists": 0,
-        "plusminus": -1,
+        "plusminus": 0,
         "penaltyminutes": 0,
         "blocks": 0,
-        "shots": 2,
-        "faceoffs": 3,
-        "LPP": 1.0
+        "shots": 3,
+        "faceoffs": 9,
+        "LPP": 4.0
     },
     {
         "position": "RIGHT_WING",
         "firstname": "Mikko",
         "lastname": "Petman",
         "team": "933686567:saipa",
-        "goals": 0,
+        "goals": 1,
         "assists": 0,
-        "plusminus": -1,
+        "plusminus": 0,
         "penaltyminutes": 0,
         "blocks": 1,
-        "shots": 0,
-        "faceoffs": 0,
-        "LPP": 0
+        "shots": 5,
+        "faceoffs": 1,
+        "LPP": 13.0
     },
     {
         "position": "CENTER",
@@ -274,10 +274,10 @@
         "assists": 0,
         "plusminus": 0,
         "penaltyminutes": 4,
-        "blocks": 0,
-        "shots": 0,
-        "faceoffs": 3,
-        "LPP": 1
+        "blocks": 3,
+        "shots": 3,
+        "faceoffs": 8,
+        "LPP": 6.0
     },
     {
         "position": "RIGHT_DEFENSEMAN",
@@ -288,10 +288,10 @@
         "assists": 0,
         "plusminus": 0,
         "penaltyminutes": 0,
-        "blocks": 1,
-        "shots": 0,
+        "blocks": 2,
+        "shots": 2,
         "faceoffs": 0,
-        "LPP": 1
+        "LPP": 3.0
     },
     {
         "position": "LEFT_WING",
@@ -313,13 +313,13 @@
         "lastname": "Lindroth",
         "team": "651304385:tps",
         "goals": 0,
-        "assists": 0,
-        "plusminus": -1,
+        "assists": 1,
+        "plusminus": -2,
         "penaltyminutes": 0,
-        "blocks": 0,
-        "shots": 0,
+        "blocks": 1,
+        "shots": 1,
         "faceoffs": 0,
-        "LPP": -2
+        "LPP": 4.0
     },
     {
         "position": "LEFT_WING",
@@ -331,9 +331,9 @@
         "plusminus": 0,
         "penaltyminutes": 0,
         "blocks": 0,
-        "shots": 0,
+        "shots": 2,
         "faceoffs": 0,
-        "LPP": 0
+        "LPP": 1.0
     },
     {
         "position": "LEFT_WING",
@@ -342,10 +342,10 @@
         "team": "651304385:tps",
         "goals": 0,
         "assists": 1,
-        "plusminus": 1,
-        "penaltyminutes": 0,
-        "blocks": 0,
-        "shots": 1,
+        "plusminus": 0,
+        "penaltyminutes": 2,
+        "blocks": 1,
+        "shots": 2,
         "faceoffs": 0,
         "LPP": 7.0
     },
@@ -359,7 +359,7 @@
         "plusminus": 0,
         "penaltyminutes": 0,
         "blocks": 0,
-        "shots": 1,
+        "shots": 2,
         "faceoffs": 0,
         "LPP": 1.0
     },
@@ -370,12 +370,12 @@
         "team": "651304385:tps",
         "goals": 0,
         "assists": 0,
-        "plusminus": -1,
-        "penaltyminutes": 0,
+        "plusminus": -2,
+        "penaltyminutes": 2,
         "blocks": 0,
-        "shots": 0,
+        "shots": 2,
         "faceoffs": 0,
-        "LPP": -2
+        "LPP": -3.0
     },
     {
         "position": "LEFT_WING",
@@ -398,10 +398,10 @@
         "team": "651304385:tps",
         "goals": 0,
         "assists": 1,
-        "plusminus": 1,
+        "plusminus": 0,
         "penaltyminutes": 0,
         "blocks": 1,
-        "shots": 2,
+        "shots": 4,
         "faceoffs": 0,
         "LPP": 8.0
     },
@@ -410,14 +410,14 @@
         "firstname": "Viljami",
         "lastname": "Marjala",
         "team": "651304385:tps",
-        "goals": 1,
+        "goals": 2,
         "assists": 0,
         "plusminus": 1,
         "penaltyminutes": 0,
         "blocks": 0,
-        "shots": 3,
-        "faceoffs": 0,
-        "LPP": 11.0
+        "shots": 5,
+        "faceoffs": 4,
+        "LPP": 20.0
     },
     {
         "position": "RIGHT_DEFENSEMAN",
@@ -428,10 +428,10 @@
         "assists": 0,
         "plusminus": 1,
         "penaltyminutes": 0,
-        "blocks": 0,
-        "shots": 0,
+        "blocks": 1,
+        "shots": 1,
         "faceoffs": 0,
-        "LPP": 3
+        "LPP": 5.0
     },
     {
         "position": "CENTER",
@@ -442,10 +442,10 @@
         "assists": 0,
         "plusminus": 0,
         "penaltyminutes": 0,
-        "blocks": 0,
-        "shots": 1,
-        "faceoffs": 1,
-        "LPP": 2.0
+        "blocks": 2,
+        "shots": 3,
+        "faceoffs": 7,
+        "LPP": 5.0
     },
     {
         "position": "LEFT_WING",
@@ -456,10 +456,10 @@
         "assists": 0,
         "plusminus": -1,
         "penaltyminutes": 0,
-        "blocks": 1,
+        "blocks": 2,
         "shots": 0,
         "faceoffs": 0,
-        "LPP": 0
+        "LPP": 1
     },
     {
         "position": "RIGHT_DEFENSEMAN",
@@ -471,9 +471,9 @@
         "plusminus": 0,
         "penaltyminutes": 0,
         "blocks": 0,
-        "shots": 0,
+        "shots": 1,
         "faceoffs": 0,
-        "LPP": 0
+        "LPP": 1.0
     },
     {
         "position": "CENTER",
@@ -524,12 +524,12 @@
         "team": "651304385:tps",
         "goals": 0,
         "assists": 0,
-        "plusminus": -1,
+        "plusminus": -2,
         "penaltyminutes": 0,
-        "blocks": 0,
+        "blocks": 3,
         "shots": 0,
-        "faceoffs": 2,
-        "LPP": 0
+        "faceoffs": 7,
+        "LPP": 2
     },
     {
         "position": "RIGHT_WING",
@@ -554,10 +554,10 @@
         "assists": 0,
         "plusminus": -1,
         "penaltyminutes": 0,
-        "blocks": 0,
+        "blocks": 4,
         "shots": 2,
         "faceoffs": 0,
-        "LPP": -1.0
+        "LPP": 3.0
     },
     {
         "position": "LEFT_DEFENSEMAN",
@@ -580,12 +580,12 @@
         "team": "1368624751:k-espoo",
         "goals": 0,
         "assists": 1,
-        "plusminus": 0,
+        "plusminus": -1,
         "penaltyminutes": 0,
         "blocks": 0,
-        "shots": 1,
-        "faceoffs": 1,
-        "LPP": 7.0
+        "shots": 2,
+        "faceoffs": 3,
+        "LPP": 6.0
     },
     {
         "position": "RIGHT_DEFENSEMAN",
@@ -593,13 +593,13 @@
         "lastname": "Kulonummi",
         "team": "1368624751:k-espoo",
         "goals": 0,
-        "assists": 0,
+        "assists": 1,
         "plusminus": 1,
         "penaltyminutes": 0,
         "blocks": 0,
-        "shots": 0,
+        "shots": 5,
         "faceoffs": 0,
-        "LPP": 3
+        "LPP": 12.0
     },
     {
         "position": "LEFT_DEFENSEMAN",
@@ -608,12 +608,12 @@
         "team": "1368624751:k-espoo",
         "goals": 0,
         "assists": 0,
-        "plusminus": 0,
+        "plusminus": -1,
         "penaltyminutes": 0,
-        "blocks": 1,
-        "shots": 1,
+        "blocks": 6,
+        "shots": 3,
         "faceoffs": 0,
-        "LPP": 2.0
+        "LPP": 6.0
     },
     {
         "position": "CENTER",
@@ -626,8 +626,8 @@
         "penaltyminutes": 2,
         "blocks": 0,
         "shots": 0,
-        "faceoffs": 0,
-        "LPP": -1
+        "faceoffs": 2,
+        "LPP": 0
     },
     {
         "position": "CENTER",
@@ -639,9 +639,9 @@
         "plusminus": 0,
         "penaltyminutes": 0,
         "blocks": 0,
-        "shots": 2,
-        "faceoffs": 4,
-        "LPP": 2.0
+        "shots": 3,
+        "faceoffs": 13,
+        "LPP": 3.0
     },
     {
         "position": "LEFT_WING",
@@ -651,25 +651,25 @@
         "goals": 1,
         "assists": 0,
         "plusminus": 1,
-        "penaltyminutes": 0,
-        "blocks": 0,
+        "penaltyminutes": 2,
+        "blocks": 1,
         "shots": 1,
-        "faceoffs": 0,
-        "LPP": 10.0
+        "faceoffs": 4,
+        "LPP": 12.0
     },
     {
         "position": "CENTER",
         "firstname": "Peter",
         "lastname": "Quenneville",
         "team": "1368624751:k-espoo",
-        "goals": 0,
+        "goals": 1,
         "assists": 1,
-        "plusminus": 0,
+        "plusminus": -1,
         "penaltyminutes": 0,
-        "blocks": 0,
-        "shots": 1,
+        "blocks": 1,
+        "shots": 6,
         "faceoffs": 0,
-        "LPP": 6.0
+        "LPP": 15.0
     },
     {
         "position": "LEFT_WING",
@@ -693,9 +693,9 @@
         "goals": 0,
         "assists": 0,
         "plusminus": 0,
-        "penaltyminutes": 0,
+        "penaltyminutes": 2,
         "blocks": 0,
-        "shots": 1,
+        "shots": 2,
         "faceoffs": 0,
         "LPP": 1.0
     },
@@ -721,9 +721,9 @@
         "goals": 0,
         "assists": 1,
         "plusminus": 0,
-        "penaltyminutes": 0,
+        "penaltyminutes": 2,
         "blocks": 0,
-        "shots": 1,
+        "shots": 2,
         "faceoffs": 0,
         "LPP": 5.0
     },
@@ -750,10 +750,10 @@
         "assists": 1,
         "plusminus": 0,
         "penaltyminutes": 0,
-        "blocks": 0,
+        "blocks": 5,
         "shots": 2,
         "faceoffs": 0,
-        "LPP": 7.0
+        "LPP": 12.0
     },
     {
         "position": "LEFT_WING",
@@ -766,8 +766,8 @@
         "penaltyminutes": 0,
         "blocks": 0,
         "shots": 2,
-        "faceoffs": 0,
-        "LPP": 8.0
+        "faceoffs": 1,
+        "LPP": 9.0
     },
     {
         "position": "CENTER",
@@ -775,13 +775,13 @@
         "lastname": "Tuomaala",
         "team": "1368624751:k-espoo",
         "goals": 0,
-        "assists": 0,
-        "plusminus": 0,
+        "assists": 1,
+        "plusminus": -1,
         "penaltyminutes": 0,
-        "blocks": 0,
-        "shots": 1,
-        "faceoffs": 1,
-        "LPP": 2.0
+        "blocks": 1,
+        "shots": 2,
+        "faceoffs": 3,
+        "LPP": 6.0
     },
     {
         "position": "LEFT_DEFENSEMAN",
@@ -790,26 +790,26 @@
         "team": "1368624751:k-espoo",
         "goals": 0,
         "assists": 0,
-        "plusminus": 0,
-        "penaltyminutes": 0,
-        "blocks": 1,
-        "shots": 0,
+        "plusminus": -1,
+        "penaltyminutes": 2,
+        "blocks": 2,
+        "shots": 1,
         "faceoffs": 0,
-        "LPP": 2
+        "LPP": 2.0
     },
     {
         "position": "LEFT_DEFENSEMAN",
         "firstname": "Jonathan",
         "lastname": "Andersson",
         "team": "362185137:tappara",
-        "goals": 0,
+        "goals": 1,
         "assists": 0,
-        "plusminus": 0,
+        "plusminus": 1,
         "penaltyminutes": 0,
-        "blocks": 1,
-        "shots": 0,
+        "blocks": 2,
+        "shots": 1,
         "faceoffs": 0,
-        "LPP": 1
+        "LPP": 15.0
     },
     {
         "position": "LEFT_DEFENSEMAN",
@@ -817,13 +817,13 @@
         "lastname": "Brickley",
         "team": "362185137:tappara",
         "goals": 0,
-        "assists": 0,
-        "plusminus": 0,
-        "penaltyminutes": 2,
-        "blocks": 0,
-        "shots": 3,
+        "assists": 2,
+        "plusminus": 1,
+        "penaltyminutes": 4,
+        "blocks": 1,
+        "shots": 6,
         "faceoffs": 0,
-        "LPP": 2.0
+        "LPP": 19.0
     },
     {
         "position": "RIGHT_DEFENSEMAN",
@@ -834,10 +834,10 @@
         "assists": 0,
         "plusminus": 0,
         "penaltyminutes": 0,
-        "blocks": 0,
-        "shots": 2,
+        "blocks": 1,
+        "shots": 7,
         "faceoffs": 0,
-        "LPP": 1.0
+        "LPP": 5.0
     },
     {
         "position": "RIGHT_WING",
@@ -847,11 +847,11 @@
         "goals": 0,
         "assists": 0,
         "plusminus": 0,
-        "penaltyminutes": 0,
-        "blocks": 0,
-        "shots": 1,
+        "penaltyminutes": 2,
+        "blocks": 1,
+        "shots": 2,
         "faceoffs": 0,
-        "LPP": 1.0
+        "LPP": 2.0
     },
     {
         "position": "LEFT_DEFENSEMAN",
@@ -863,70 +863,14 @@
         "plusminus": 0,
         "penaltyminutes": 0,
         "blocks": 0,
-        "shots": 0,
+        "shots": 3,
         "faceoffs": 0,
-        "LPP": 1
+        "LPP": 3.0
     },
     {
         "position": "LEFT_WING",
         "firstname": "Kristian",
         "lastname": "Tanus",
-        "team": "362185137:tappara",
-        "goals": 0,
-        "assists": 0,
-        "plusminus": 0,
-        "penaltyminutes": 0,
-        "blocks": 0,
-        "shots": 1,
-        "faceoffs": 0,
-        "LPP": 1.0
-    },
-    {
-        "position": "CENTER",
-        "firstname": "Aleksi",
-        "lastname": "Mustonen",
-        "team": "362185137:tappara",
-        "goals": 0,
-        "assists": 0,
-        "plusminus": -1,
-        "penaltyminutes": 0,
-        "blocks": 0,
-        "shots": 0,
-        "faceoffs": 1,
-        "LPP": 0
-    },
-    {
-        "position": "RIGHT_WING",
-        "firstname": "Philip",
-        "lastname": "Granath",
-        "team": "362185137:tappara",
-        "goals": 0,
-        "assists": 1,
-        "plusminus": 1,
-        "penaltyminutes": 0,
-        "blocks": 0,
-        "shots": 0,
-        "faceoffs": 0,
-        "LPP": 6
-    },
-    {
-        "position": "CENTER",
-        "firstname": "Julius",
-        "lastname": "Mattila",
-        "team": "362185137:tappara",
-        "goals": 0,
-        "assists": 0,
-        "plusminus": 0,
-        "penaltyminutes": 0,
-        "blocks": 0,
-        "shots": 1,
-        "faceoffs": 6,
-        "LPP": 2.0
-    },
-    {
-        "position": "LEFT_WING",
-        "firstname": "Mario",
-        "lastname": "Kempe",
         "team": "362185137:tappara",
         "goals": 0,
         "assists": 1,
@@ -939,6 +883,62 @@
     },
     {
         "position": "CENTER",
+        "firstname": "Aleksi",
+        "lastname": "Mustonen",
+        "team": "362185137:tappara",
+        "goals": 0,
+        "assists": 0,
+        "plusminus": -1,
+        "penaltyminutes": 0,
+        "blocks": 0,
+        "shots": 5,
+        "faceoffs": 2,
+        "LPP": 3.0
+    },
+    {
+        "position": "RIGHT_WING",
+        "firstname": "Philip",
+        "lastname": "Granath",
+        "team": "362185137:tappara",
+        "goals": 0,
+        "assists": 1,
+        "plusminus": 1,
+        "penaltyminutes": 0,
+        "blocks": 0,
+        "shots": 2,
+        "faceoffs": 0,
+        "LPP": 7.0
+    },
+    {
+        "position": "CENTER",
+        "firstname": "Julius",
+        "lastname": "Mattila",
+        "team": "362185137:tappara",
+        "goals": 1,
+        "assists": 1,
+        "plusminus": 1,
+        "penaltyminutes": 0,
+        "blocks": 0,
+        "shots": 6,
+        "faceoffs": 18,
+        "LPP": 17.0
+    },
+    {
+        "position": "LEFT_WING",
+        "firstname": "Mario",
+        "lastname": "Kempe",
+        "team": "362185137:tappara",
+        "goals": 0,
+        "assists": 1,
+        "plusminus": 1,
+        "penaltyminutes": 0,
+        "blocks": 0,
+        "shots": 5,
+        "faceoffs": 0,
+        "LPP": 9.0
+    },
+    {
+        "position": "CENTER",
         "firstname": "Otto",
         "lastname": "Rauhala",
         "team": "362185137:tappara",
@@ -947,9 +947,9 @@
         "plusminus": -1,
         "penaltyminutes": 0,
         "blocks": 0,
-        "shots": 1,
-        "faceoffs": 0,
-        "LPP": 0.0
+        "shots": 2,
+        "faceoffs": 2,
+        "LPP": 1.0
     },
     {
         "position": "LEFT_WING",
@@ -961,9 +961,9 @@
         "plusminus": 0,
         "penaltyminutes": 0,
         "blocks": 0,
-        "shots": 2,
+        "shots": 5,
         "faceoffs": 0,
-        "LPP": 1.0
+        "LPP": 3.0
     },
     {
         "position": "LEFT_WING",
@@ -972,12 +972,12 @@
         "team": "362185137:tappara",
         "goals": 0,
         "assists": 0,
-        "plusminus": -1,
+        "plusminus": 0,
         "penaltyminutes": 0,
         "blocks": 0,
-        "shots": 1,
+        "shots": 3,
         "faceoffs": 0,
-        "LPP": 0.0
+        "LPP": 3.0
     },
     {
         "position": "CENTER",
@@ -988,10 +988,10 @@
         "assists": 0,
         "plusminus": 0,
         "penaltyminutes": 0,
-        "blocks": 0,
-        "shots": 0,
-        "faceoffs": 2,
-        "LPP": 1
+        "blocks": 1,
+        "shots": 7,
+        "faceoffs": 5,
+        "LPP": 6.0
     },
     {
         "position": "CENTER",
@@ -1004,7 +1004,7 @@
         "penaltyminutes": 0,
         "blocks": 0,
         "shots": 0,
-        "faceoffs": 3,
+        "faceoffs": 5,
         "LPP": 3
     },
     {
@@ -1015,11 +1015,11 @@
         "goals": 1,
         "assists": 0,
         "plusminus": 0,
-        "penaltyminutes": 2,
+        "penaltyminutes": 4,
         "blocks": 0,
-        "shots": 3,
+        "shots": 15,
         "faceoffs": 0,
-        "LPP": 12.0
+        "LPP": 18.0
     },
     {
         "position": "RIGHT_WING",
@@ -1044,10 +1044,10 @@
         "assists": 0,
         "plusminus": 0,
         "penaltyminutes": 0,
-        "blocks": 0,
-        "shots": 0,
+        "blocks": 1,
+        "shots": 1,
         "faceoffs": 0,
-        "LPP": 0
+        "LPP": 2.0
     },
     {
         "position": "LEFT_DEFENSEMAN",
@@ -1058,10 +1058,10 @@
         "assists": 0,
         "plusminus": 0,
         "penaltyminutes": 0,
-        "blocks": 0,
-        "shots": 0,
+        "blocks": 1,
+        "shots": 5,
         "faceoffs": 0,
-        "LPP": 0
+        "LPP": 4.0
     },
     {
         "position": "GOALIE",
@@ -1071,9 +1071,9 @@
         "goals": 0,
         "assists": 0,
         "penaltyminutes": 0,
-        "saves": 2,
-        "goalsallowed": 1,
-        "LPP": 0
+        "saves": 9,
+        "goalsallowed": 2,
+        "LPP": 1
     },
     {
         "position": "GOALIE",
@@ -1093,11 +1093,11 @@
         "lastname": "Vali",
         "team": "651304385:tps",
         "goals": 0,
-        "assists": 0,
+        "assists": 1,
         "penaltyminutes": 0,
-        "saves": 12,
-        "goalsallowed": 1,
-        "LPP": 4
+        "saves": 24,
+        "goalsallowed": 2,
+        "LPP": 17
     },
     {
         "position": "GOALIE",
@@ -1119,9 +1119,9 @@
         "goals": 0,
         "assists": 0,
         "penaltyminutes": 0,
-        "saves": 10,
-        "goalsallowed": 1,
-        "LPP": 2
+        "saves": 36,
+        "goalsallowed": 3,
+        "LPP": 13
     },
     {
         "position": "GOALIE",
@@ -1143,9 +1143,9 @@
         "goals": 0,
         "assists": 0,
         "penaltyminutes": 0,
-        "saves": 9,
-        "goalsallowed": 2,
-        "LPP": 1
+        "saves": 15,
+        "goalsallowed": 3,
+        "LPP": 2
     },
     {
         "position": "GOALIE",
