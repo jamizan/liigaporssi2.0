@@ -1,6 +1,7 @@
 "use client";
 import {  } from "react";
 import React, { useEffect, useState } from 'react';
+import SelectedTable from "./SelectedTable";
 
 export function TableVisibilty(position) {
   const attackerHeader = document.getElementById('attacker-header');
@@ -62,7 +63,7 @@ export function TeamSelect(team) {
   }  
 }
 export function addRemove(){
-  console.log();
+  SelectedTable()
   
 }
 

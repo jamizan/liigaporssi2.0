@@ -14,7 +14,7 @@ export default function Home() {
     <div className="header">
       <h1 className="text-gray-300 text-6xl text-center mt-10">LPP-Laskuri</h1>
     </div>
-    <div className='flex flex-col justify-center w-[60%] h-[100px] ml-[20%] bg-sky-900'>
+    <div className='flex flex-col justify-center w-[60%] h-[200px] ml-[20%] bg-sky-900'>
       <SelectedTable />
     </div>
     <div className='w-full flex flex-col justify-center ml-[20%]' id='toolBar'>
