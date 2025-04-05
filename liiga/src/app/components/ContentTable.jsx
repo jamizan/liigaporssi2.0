@@ -61,6 +61,10 @@ export function TeamSelect(team) {
     }
   }  
 }
+export function addRemove(){
+  console.log();
+  
+}
 
 export default function ContentTable() {
   const [players, setPlayers] = useState([]);
@@ -110,6 +114,7 @@ export default function ContentTable() {
                 <button
                   title="Valitse"
                   className="group cursor-pointer outline-none hover:rotate-90 duration-300"
+                  onClick={addRemove}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
