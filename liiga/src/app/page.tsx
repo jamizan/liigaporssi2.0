@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import ToolBar from './components/ToolBar.jsx';
 import ContentTable from '@/app/components/ContentTable.jsx';
 import SelectedTable from '@/app/components/SelectedTable.jsx'
