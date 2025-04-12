@@ -2,6 +2,7 @@
 import {  } from "react";
 import React, { useEffect, useState } from 'react';
 import SelectedTable from "./SelectedTable";
+import DefaultDisplay from "./DefaultDisplay";
 
 export function TableVisibilty(position) {
   const attackerHeader = document.getElementById('attacker-header');
@@ -62,11 +63,6 @@ export function TeamSelect(team) {
     }
   }  
 }
-export function addRemove(player){
-  //SelectedTable(player);
-  console.log(player);
-  
-}
 
 export default function ContentTable() {
   const [players, setPlayers] = useState([]);
@@ -116,9 +112,7 @@ export default function ContentTable() {
                 <button
                   title="Valitse"
                   className="group cursor-pointer outline-none hover:rotate-90 duration-300"
-                  onChange={(e) => {
-                    addRemove(e.target.player.LPP)
-                  } }
+                  onClick={(e) => SelectedTable(player, player.team.split(':')[1].toUpperCase())}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -174,9 +168,10 @@ export default function ContentTable() {
               <td className="table-cell">{player.plusminus}</td>
               <td className="table-cell">{player.LPP}</td>
               <td className="pt-2">
-                <button
+              <button
                   title="Valitse"
                   className="group cursor-pointer outline-none hover:rotate-90 duration-300"
+                  onClick={(e) => SelectedTable(player)}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -230,9 +225,10 @@ export default function ContentTable() {
               <td></td>
               <td></td>
               <td className="pt-2">
-                <button
+              <button
                   title="Valitse"
                   className="group cursor-pointer outline-none hover:rotate-90 duration-300"
+                  onClick={(e) => SelectedTable(player)}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

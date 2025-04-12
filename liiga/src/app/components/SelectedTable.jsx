@@ -18,15 +18,17 @@ import tappara from "@/app/logos/tappara.png"
 import tps from "@/app/logos/tps.png"
 import question from "@/app/logos/question.png"
 
-export default function SelectedTable(player){
-    console.log(player);
+export default function SelectedTable(player, team){
+    console.log((team));
     
+    
+
+
     return(
         <table className="text-center h-full p-px">
             <tbody>
                 <tr>
                     <td className="border-2 h-full">
-                        <DefaultDisplay position={'Hyökkääjä'} team={question} info={player}/>
                     </td>
                     <td className="border-2 h-full">
                         <DefaultDisplay position={'Hyökkääjä'} team={question}/>
