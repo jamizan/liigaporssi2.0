@@ -4,6 +4,23 @@ import React, { useEffect, useState } from 'react';
 import SelectedTable from "./SelectedTable";
 import DefaultDisplay from "./DefaultDisplay";
 
+import ifk from "@/app/logos/ifk.png"
+import hpk from "@/app/logos/hpk.png"
+import ilves from '@/app/logos/ilves.jpg'
+import jukurit from "@/app/logos/jukurit.png"
+import jyp from "@/app/logos/jyp.png"
+import kalpa from "@/app/logos/kalpa.png"
+import karpat from "@/app/logos/karpat.png"
+import espoo from "@/app/logos/k-espoo.png"
+import kookoo from "@/app/logos/kookoo.png"
+import lukko from "@/app/logos/lukko.png"
+import pelicans from "@/app/logos/pelicans.png"
+import saipa from "@/app/logos/saipa.png"
+import sport from "@/app/logos/sport.png"
+import tappara from "@/app/logos/tappara.png"
+import tps from "@/app/logos/tps.png"
+import question from "@/app/logos/question.png"
+
 export function TableVisibilty(position) {
   const attackerHeader = document.getElementById('attacker-header');
   const attackerBody = document.getElementById('attacker-body');
@@ -112,7 +129,7 @@ export default function ContentTable() {
                 <button
                   title="Valitse"
                   className="group cursor-pointer outline-none hover:rotate-90 duration-300"
-                  onClick={(e) => SelectedTable(player, player.team.split(':')[1].toUpperCase())}
+                  onClick={() => SelectedTable(player, player.team.split(':')[1].toUpperCase())}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -171,7 +188,7 @@ export default function ContentTable() {
               <button
                   title="Valitse"
                   className="group cursor-pointer outline-none hover:rotate-90 duration-300"
-                  onClick={(e) => SelectedTable(player)}
+                  onClick={() => SelectedTable(player, player.team.split(':')[1].toUpperCase())}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -228,7 +245,7 @@ export default function ContentTable() {
               <button
                   title="Valitse"
                   className="group cursor-pointer outline-none hover:rotate-90 duration-300"
-                  onClick={(e) => SelectedTable(player)}
+                  onClick={() => SelectedTable(player, player.team.split(':')[1].toUpperCase())}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

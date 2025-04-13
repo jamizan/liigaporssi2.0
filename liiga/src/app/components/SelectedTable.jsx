@@ -17,18 +17,18 @@ import sport from "@/app/logos/sport.png"
 import tappara from "@/app/logos/tappara.png"
 import tps from "@/app/logos/tps.png"
 import question from "@/app/logos/question.png"
+import { useState } from "react";
 
 export default function SelectedTable(player, team){
-    console.log((team));
     
+    console.log(team);
     
-
 
     return(
         <table className="text-center h-full p-px">
             <tbody>
                 <tr>
-                    <td className="border-2 h-full">
+                    <td className="border-2 h-full" id="player-1">
                     </td>
                     <td className="border-2 h-full">
                         <DefaultDisplay position={'Hyökkääjä'} team={question}/>
