@@ -2,7 +2,6 @@
 import {  } from "react";
 import React, { useEffect, useState } from 'react';
 import SelectedTable from "./SelectedTable";
-import DefaultDisplay from "./DefaultDisplay";
 
 import ifk from "@/app/logos/ifk.png"
 import hpk from "@/app/logos/hpk.png"
@@ -90,10 +89,61 @@ export default function ContentTable({setImageSrc}) {
     .then((data) => setPlayers(data));
   }, []);
 
-  const handleClick = () => {
-    console.log('klasdj');
+  const handleClick = (player, team) => {
+
+    switch (team) {
+      case 'IFK':
+        var value = ifk;
+        break;
+      case 'HPK':
+        var value = hpk;
+        break;
+      case 'ILVES':
+        var value = ilves;
+        break;
+      case 'JUKURIT':
+        var value = jukurit;
+        break;
+      case 'JYP':
+        var value = jyp;
+        break;
+      case 'KALPA':
+        var value = kalpa;
+        break;
+      case 'KARPAT':
+        var value = karpat;
+        break;
+      case 'ESPOO':
+        var value = espoo;
+        break;
+      case 'KOOKOO':
+        var value = kookoo;
+        break;
+      case 'LUKKO':
+        var value = lukko;
+        break;
+      case 'PELICANS':
+        var value = pelicans;
+        break;
+      case 'SAIPA':
+        var value = saipa;
+        break;
+      case 'SPORT':
+        var value = sport;
+        break;
+      case 'TAPPARA':
+        var value = tappara;
+        break;
+      case 'TPS':
+        var value = tps;
+        break;      
     
-    setImageSrc(ilves);    
+      default:
+        var value = question;
+        break;
+    }
+    
+    setImageSrc(value);
     
   };
 
@@ -136,7 +186,7 @@ export default function ContentTable({setImageSrc}) {
                 <button
                   title="Valitse"
                   className="group cursor-pointer outline-none hover:rotate-90 duration-300"
-                  onClick={() => handleClick()}
+                  onClick={() => handleClick(player, player.team.split(':')[1].toUpperCase())}
                   id="selectPlayer"
                 >
                   <svg
