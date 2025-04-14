@@ -1,53 +1,51 @@
 "use client"
 
 import DefaultDisplay from "@/app/components/DefaultDisplay";
-import ifk from "@/app/logos/ifk.png"
-import hpk from "@/app/logos/hpk.png"
-import ilves from '@/app/logos/ilves.jpg'
-import jukurit from "@/app/logos/jukurit.png"
-import jyp from "@/app/logos/jyp.png"
-import kalpa from "@/app/logos/kalpa.png"
-import karpat from "@/app/logos/karpat.png"
-import espoo from "@/app/logos/k-espoo.png"
-import kookoo from "@/app/logos/kookoo.png"
-import lukko from "@/app/logos/lukko.png"
-import pelicans from "@/app/logos/pelicans.png"
-import saipa from "@/app/logos/saipa.png"
-import sport from "@/app/logos/sport.png"
-import tappara from "@/app/logos/tappara.png"
-import tps from "@/app/logos/tps.png"
 import question from "@/app/logos/question.png"
-import { useState } from "react";
 
-export default function SelectedTable({imageSrc}){
+export default function SelectedTable({
+    imageSrc1,
+    imageSrc2,
+    imageSrc3,
+    imageSrc4,
+    imageSrc5,
+    imageSrc6
+}){
     
+
     return(
         <table className="text-center h-full p-px">
             <tbody>
                 <tr>
+
                     <td className="border-2 h-full" id="player-1">
-                        <DefaultDisplay position={'Hyökkääjä'} team={imageSrc}/>
+                        <DefaultDisplay position={'Hyökkääjä'} team={imageSrc1.src} name={imageSrc1.nam} LPP={imageSrc1.LPP}/>
 
                     </td>
-                    <td className="border-2 h-full">
-                        <DefaultDisplay position={'Hyökkääjä'} team={question}/>
+                    <td className="border-2 h-full" id="player-2">
+                        <DefaultDisplay position={'Hyökkääjä'} team={imageSrc2.src} name={imageSrc2.nam} LPP={imageSrc2.LPP}/>
 
                     </td>
-                    <td className="border-2 h-full">
-                        <DefaultDisplay position={'Hyökkääjä'} team={question}/>
+                    <td className="border-2 h-full" id="player-3">
+                        <DefaultDisplay position={'Hyökkääjä'} team={imageSrc3.src} name={imageSrc3.nam} LPP={imageSrc3.LPP}/>
 
                     </td>
-                    <td className="border-2 h-full">
-                        <DefaultDisplay position={'Puolustaja'} team={question}/>
+                    <td className="border-2 h-full" id="player-4">
+                        <DefaultDisplay position={'Puolustaja'} team={imageSrc4.src} name={imageSrc4.nam} LPP={imageSrc4.LPP}/>
 
                     </td>
-                    <td className="border-2 h-full">
-                        <DefaultDisplay position={'Puolustaja'} team={question}/>
+                    <td className="border-2 h-full" id="player-5">
+                        <DefaultDisplay position={'Puolustaja'} team={imageSrc5.src} name={imageSrc5.nam} LPP={imageSrc5.LPP}/>
 
                     </td>
-                    <td className="border-2 h-full">
-                        <DefaultDisplay position={'Maalivahti'} team={question}/>
+                    <td className="border-2 h-full" id="player-6">
+                        <DefaultDisplay position={'Maalivahti'} team={imageSrc6.src} name={imageSrc6.nam} LPP={imageSrc6.LPP}/>
 
+                    </td>
+                </tr>
+                <tr className="p-[50px]">
+                    <td colSpan={6} className="text-center">
+                        LPP: {imageSrc1.LPP + imageSrc2.LPP + imageSrc3.LPP + imageSrc4.LPP + imageSrc5.LPP + imageSrc6.LPP}
                     </td>
                 </tr>
             </tbody>

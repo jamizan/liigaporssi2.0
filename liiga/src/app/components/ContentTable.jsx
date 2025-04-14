@@ -1,7 +1,6 @@
 "use client";
 import {  } from "react";
 import React, { useEffect, useState } from 'react';
-import SelectedTable from "./SelectedTable";
 
 import ifk from "@/app/logos/ifk.png"
 import hpk from "@/app/logos/hpk.png"
@@ -80,7 +79,15 @@ export function TeamSelect(team) {
   }  
 }
 
-export default function ContentTable({setImageSrc}) {
+export default function ContentTable({
+  setImageSrc1, imageSrc1, 
+  setImageSrc2, imageSrc2,
+  setImageSrc3, imageSrc3,
+  setImageSrc4, imageSrc4,
+  setImageSrc5, imageSrc5,
+  setImageSrc6, imageSrc6
+
+}) {
   const [players, setPlayers] = useState([]);
 
   useEffect(() => {
@@ -89,8 +96,10 @@ export default function ContentTable({setImageSrc}) {
     .then((data) => setPlayers(data));
   }, []);
 
-  const handleClick = (player, team) => {
 
+  const moveSelected = (player, team) => {
+
+    // Handles player details for display
     switch (team) {
       case 'IFK':
         var value = ifk;
@@ -142,9 +151,50 @@ export default function ContentTable({setImageSrc}) {
         var value = question;
         break;
     }
+    var nameStr = player.lastname+' '+ player.firstname;
     
-    setImageSrc(value);
-    
+
+    if (imageSrc1.p == '' && player.position == 'ATTACKER' &&
+      imageSrc1.nam != nameStr && imageSrc2.nam != nameStr && imageSrc3.nam != nameStr
+    ) {
+      setImageSrc1({ ...imageSrc1, src: value, nam: nameStr, p:'t', LPP: player.LPP });
+      
+    }
+    else{
+      if (imageSrc2.p == '' && player.position == 'ATTACKER' &&
+        imageSrc1.nam != nameStr && imageSrc2.nam != nameStr && imageSrc3.nam != nameStr
+      ) {
+        setImageSrc2({ ...imageSrc2, src: value, nam: nameStr, p:'t', LPP: player.LPP });
+      }
+      else{
+        if (imageSrc3.p == '' && player.position == 'ATTACKER' &&
+          imageSrc1.nam != nameStr && imageSrc2.nam != nameStr && imageSrc3.nam != nameStr
+        ) {
+          setImageSrc3({ ...imageSrc3, src: value, nam: nameStr, p:'t', LPP: player.LPP });
+        }
+        else{
+          if (imageSrc4.p == '' && player.position == 'DEFENDER' &&
+            imageSrc4.nam != nameStr && imageSrc5.nam != nameStr
+          ) {
+            setImageSrc4({ ...imageSrc4, src: value, nam: nameStr, p:'t', LPP: player.LPP });
+          }
+          else{
+            if (imageSrc5.p == '' && player.position == 'DEFENDER' &&
+              imageSrc4.nam != nameStr && imageSrc5.nam != nameStr
+            ) {
+              setImageSrc5({ ...imageSrc5, src: value, nam: nameStr, p:'t', LPP: player.LPP });
+            }
+            else{
+              if (imageSrc6.p == '' && player.position == 'GOALIE' &&
+                imageSrc6 != nameStr
+              ) {
+                setImageSrc6({ ...imageSrc6, src: value, nam: nameStr, p:'t', LPP: player.LPP });
+              }
+            }
+          }
+        }
+      }
+    }
   };
 
   return (
@@ -186,8 +236,9 @@ export default function ContentTable({setImageSrc}) {
                 <button
                   title="Valitse"
                   className="group cursor-pointer outline-none hover:rotate-90 duration-300"
-                  onClick={() => handleClick(player, player.team.split(':')[1].toUpperCase())}
+                  onClick={() => moveSelected(player, player.team.split(':')[1].toUpperCase())}
                   id="selectPlayer"
+                  disabled={false}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -246,7 +297,8 @@ export default function ContentTable({setImageSrc}) {
               <button
                   title="Valitse"
                   className="group cursor-pointer outline-none hover:rotate-90 duration-300"
-                  onClick={() => SelectedTable(player, player.team.split(':')[1].toUpperCase())}
+                  onClick={() => moveSelected(player, player.team.split(':')[1].toUpperCase())}
+                  id="selectPlayer"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -303,7 +355,8 @@ export default function ContentTable({setImageSrc}) {
               <button
                   title="Valitse"
                   className="group cursor-pointer outline-none hover:rotate-90 duration-300"
-                  onClick={() => SelectedTable(player, player.team.split(':')[1].toUpperCase())}
+                  onClick={() => moveSelected(player, player.team.split(':')[1].toUpperCase())}
+                  id="selectPlayer"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
