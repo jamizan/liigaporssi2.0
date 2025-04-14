@@ -1,7 +1,6 @@
 "use client"
 
-import React from "react";
-import Image from "next/image";
+import DefaultDisplay from "@/app/components/DefaultDisplay";
 import ifk from "@/app/logos/ifk.png"
 import hpk from "@/app/logos/hpk.png"
 import ilves from '@/app/logos/ilves.jpg'
@@ -17,91 +16,39 @@ import saipa from "@/app/logos/saipa.png"
 import sport from "@/app/logos/sport.png"
 import tappara from "@/app/logos/tappara.png"
 import tps from "@/app/logos/tps.png"
+import question from "@/app/logos/question.png"
+import { useState } from "react";
 
 export default function SelectedTable(player, team){
     
-    if (team == 'ILVES') {
-        console.log(team);
-        
-    }
-
+    console.log(team);
+    
 
     return(
         <table className="text-center h-full p-px">
             <tbody>
                 <tr>
-                    <td className="border-2 h-full">
-                        <div>
-                        <Image src={ilves} alt="react" width={140} height={100} />
-                            
-
-                        </div>
-                        <div id="player-name">
-                            name
-                        </div>
-                        <div id="player-captain">
-                            kapteeniksi
-                        </div>
+                    <td className="border-2 h-full" id="player-1">
                     </td>
                     <td className="border-2 h-full">
-                    <div>
-                        <Image src={ilves} alt="react" width={140} height={100} />
+                        <DefaultDisplay position={'Hyökkääjä'} team={question}/>
 
-                        </div>
-                        <div id="player-name">
-                            name
-                        </div>
-                        <div id="player-captain">
-                            kapteeniksi
-                        </div>
                     </td>
                     <td className="border-2 h-full">
-                    <div>
-                        <Image src={ilves} alt="react" width={140} height={100} />
+                        <DefaultDisplay position={'Hyökkääjä'} team={question}/>
 
-                        </div>
-                        <div id="player-name">
-                            name
-                        </div>
-                        <div id="player-captain">
-                            kapteeniksi
-                        </div>
                     </td>
                     <td className="border-2 h-full">
-                    <div>
-                        <Image src={ilves} alt="react" width={140} height={100} />
+                        <DefaultDisplay position={'Puolustaja'} team={question}/>
 
-                        </div>
-                        <div id="player-name">
-                            name
-                        </div>
-                        <div id="player-captain">
-                            kapteeniksi
-                        </div>
                     </td>
                     <td className="border-2 h-full">
-                    <div>
-                        <Image src={kookoo} alt="react" width={140} height={100} />
+                        <DefaultDisplay position={'Puolustaja'} team={question}/>
 
-                        </div>
-                        <div id="player-name">
-                            name
-                        </div>
-                        <div id="player-captain">
-                            kapteeniksi
-                        </div>
                     </td>
                     <td className="border-2 h-full">
-                    <div>
-                        <Image src={ifk} alt="react" width={120} height={100} />
+                        <DefaultDisplay position={'Maalivahti'} team={question}/>
 
-                        </div>
-                        <div id="player-name">
-                            name
-                        </div>
-                        <div id="player-captain">
-                            kapteeniksi
-                        </div>
                     </td>
                 </tr>
             </tbody>
