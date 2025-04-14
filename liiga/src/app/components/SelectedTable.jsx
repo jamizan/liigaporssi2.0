@@ -19,16 +19,15 @@ import tps from "@/app/logos/tps.png"
 import question from "@/app/logos/question.png"
 import { useState } from "react";
 
-export default function SelectedTable(player, team){
+export default function SelectedTable({imageSrc}){
     
-    console.log(team);
-    
-
     return(
         <table className="text-center h-full p-px">
             <tbody>
                 <tr>
                     <td className="border-2 h-full" id="player-1">
+                        <DefaultDisplay position={'Hyökkääjä'} team={imageSrc}/>
+
                     </td>
                     <td className="border-2 h-full">
                         <DefaultDisplay position={'Hyökkääjä'} team={question}/>

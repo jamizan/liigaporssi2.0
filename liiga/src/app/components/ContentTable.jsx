@@ -81,7 +81,7 @@ export function TeamSelect(team) {
   }  
 }
 
-export default function ContentTable() {
+export default function ContentTable({setImageSrc}) {
   const [players, setPlayers] = useState([]);
 
   useEffect(() => {
@@ -89,6 +89,13 @@ export default function ContentTable() {
     .then((res) => res.json())
     .then((data) => setPlayers(data));
   }, []);
+
+  const handleClick = () => {
+    console.log('klasdj');
+    
+    setImageSrc(ilves);    
+    
+  };
 
   return (
 
@@ -129,7 +136,8 @@ export default function ContentTable() {
                 <button
                   title="Valitse"
                   className="group cursor-pointer outline-none hover:rotate-90 duration-300"
-                  onClick={() => SelectedTable(player, player.team.split(':')[1].toUpperCase())}
+                  onClick={() => handleClick()}
+                  id="selectPlayer"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
