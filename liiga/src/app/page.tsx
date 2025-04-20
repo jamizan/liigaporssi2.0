@@ -61,12 +61,12 @@ export default function Home() {
     </div>
     <div className='flex flex-col justify-center w-[60%] h-[250px] ml-[20%] bg-sky-900'>
       <SelectedTable
-        imageSrc1={imageSrc1}
-        imageSrc2={imageSrc2}
-        imageSrc3={imageSrc3}
-        imageSrc4={imageSrc4}
-        imageSrc5={imageSrc5}
-        imageSrc6={imageSrc6}
+       setImageSrc1={setImageSrc1} imageSrc1={imageSrc1}
+       setImageSrc2={setImageSrc2} imageSrc2={imageSrc2}
+       setImageSrc3={setImageSrc3} imageSrc3={imageSrc3}
+       setImageSrc4={setImageSrc4} imageSrc4={imageSrc4}
+       setImageSrc5={setImageSrc5} imageSrc5={imageSrc5}
+       setImageSrc6={setImageSrc6} imageSrc6={imageSrc6}
         />
     </div>
     <div className='w-full flex flex-col justify-center ml-[20%]' id='toolBar'>

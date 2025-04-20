@@ -1,15 +1,14 @@
 "use client"
 
 import DefaultDisplay from "@/app/components/DefaultDisplay";
-import question from "@/app/logos/question.png"
 
 export default function SelectedTable({
-    imageSrc1,
-    imageSrc2,
-    imageSrc3,
-    imageSrc4,
-    imageSrc5,
-    imageSrc6
+    setImageSrc1, imageSrc1, 
+    setImageSrc2, imageSrc2,
+    setImageSrc3, imageSrc3,
+    setImageSrc4, imageSrc4,
+    setImageSrc5, imageSrc5,
+    setImageSrc6, imageSrc6
 }){
     
 
@@ -19,27 +18,27 @@ export default function SelectedTable({
                 <tr>
 
                     <td className="border-2 h-full" id="player-1">
-                        <DefaultDisplay position={'Hyökkääjä'} team={imageSrc1.src} name={imageSrc1.nam} LPP={imageSrc1.LPP}/>
+                        <DefaultDisplay setImageSrc1={setImageSrc1} imageSrc1={imageSrc1} position={'Hyökkääjä'} team={imageSrc1.src} name={imageSrc1.nam} LPP={imageSrc1.LPP} value={'1'}/>
 
                     </td>
                     <td className="border-2 h-full" id="player-2">
-                        <DefaultDisplay position={'Hyökkääjä'} team={imageSrc2.src} name={imageSrc2.nam} LPP={imageSrc2.LPP}/>
+                        <DefaultDisplay setImageSrc2={setImageSrc2} imageSrc2={imageSrc2} position={'Hyökkääjä'} team={imageSrc2.src} name={imageSrc2.nam} LPP={imageSrc2.LPP} value={'2'}/>
 
                     </td>
                     <td className="border-2 h-full" id="player-3">
-                        <DefaultDisplay position={'Hyökkääjä'} team={imageSrc3.src} name={imageSrc3.nam} LPP={imageSrc3.LPP}/>
+                        <DefaultDisplay setImageSrc3={setImageSrc3} imageSrc3={imageSrc3} position={'Hyökkääjä'} team={imageSrc3.src} name={imageSrc3.nam} LPP={imageSrc3.LPP} value={'3'}/>
 
                     </td>
                     <td className="border-2 h-full" id="player-4">
-                        <DefaultDisplay position={'Puolustaja'} team={imageSrc4.src} name={imageSrc4.nam} LPP={imageSrc4.LPP}/>
+                        <DefaultDisplay setImageSrc4={setImageSrc4} imageSrc4={imageSrc4} position={'Puolustaja'} team={imageSrc4.src} name={imageSrc4.nam} LPP={imageSrc4.LPP} value={'4'}/>
 
                     </td>
                     <td className="border-2 h-full" id="player-5">
-                        <DefaultDisplay position={'Puolustaja'} team={imageSrc5.src} name={imageSrc5.nam} LPP={imageSrc5.LPP}/>
+                        <DefaultDisplay setImageSrc5={setImageSrc5} imageSrc5={imageSrc5} position={'Puolustaja'} team={imageSrc5.src} name={imageSrc5.nam} LPP={imageSrc5.LPP} value={'5'}/>
 
                     </td>
                     <td className="border-2 h-full" id="player-6">
-                        <DefaultDisplay position={'Maalivahti'} team={imageSrc6.src} name={imageSrc6.nam} LPP={imageSrc6.LPP}/>
+                        <DefaultDisplay setImageSrc6={setImageSrc6} imageSrc6={imageSrc6} position={'Maalivahti'} team={imageSrc6.src} name={imageSrc6.nam} LPP={imageSrc6.LPP} value={'6'}/>
 
                     </td>
                 </tr>
