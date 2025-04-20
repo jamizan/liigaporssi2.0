@@ -47,34 +47,33 @@ export default function DefaultDisplay({team, name, LPP, value,
         
     }
 
+
     return(
 
         <>
+        <div className="w-[100%] border-2">
+            <button
+                title="Vaihda"
+                className="cursor-pointer"
+                onClick={ () => deleteSelected(value) }
+            >
+                Vaihda
+            </button>
+        </div>
         <div id="player-name">
             {name}
         </div>
         <div className="text-center ml-[10%]">
-            <Image id="playerImage" src={team} alt="react" width={140} height={100} />
+            <Image height={''} width={80} id="playerImage" src={team} alt="react"/>
         </div>
 
         <div>
             {LPP}
         </div>
-
-        <div className="flex">
-            <div className="w-[50%]" id="player-captain">
-                Kapteeniksi
-            </div>
-            <div className="w-[50%]">
-                <button
-                    title="Vaihda"
-                    className="cursor-pointer"
-                    onClick={ () => deleteSelected(value) }
-                >
-                    Vaihda
-                </button>
-            </div>
+        <div className="w-[100%] border-2 relative bottom-0" id="player-captain">
+            Kapteeniksi
         </div>
+        
         
             
             </>

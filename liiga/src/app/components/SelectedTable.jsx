@@ -13,11 +13,10 @@ export default function SelectedTable({
     
 
     return(
-        <table className="text-center h-full p-px">
+        <table className="text-center h-full">
             <tbody>
                 <tr>
-
-                    <td className="border-2 h-full" id="player-1">
+                    <td className="border-2 h-48" id="player-1">
                         <DefaultDisplay setImageSrc1={setImageSrc1} imageSrc1={imageSrc1} position={'Hyökkääjä'} team={imageSrc1.src} name={imageSrc1.nam} LPP={imageSrc1.LPP} value={'1'}/>
 
                     </td>
