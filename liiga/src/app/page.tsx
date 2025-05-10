@@ -5,7 +5,7 @@ import ContentTable from '@/app/components/ContentTable.jsx';
 import SelectedTable from '@/app/components/SelectedTable.jsx'
 import { useState } from 'react';
 
-import question from "@/app/logos/question.png"
+import question from "@/app/logos/QUESTION.png"
 
 
 export default function Home() {
@@ -59,7 +59,7 @@ export default function Home() {
     <div className="header">
       <h1 className="text-gray-300 text-6xl text-center mt-10">LPP-Laskuri</h1>
     </div>
-    <div className='flex flex-col justify-center w-[60%] h-[250px] ml-[20%] bg-sky-900'>
+    <div className='flex  justify-center w-[60%] h-[250px] ml-[20%] bg-zinc-900'>
       <SelectedTable
        setImageSrc1={setImageSrc1} imageSrc1={imageSrc1}
        setImageSrc2={setImageSrc2} imageSrc2={imageSrc2}

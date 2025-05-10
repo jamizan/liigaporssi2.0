@@ -15,7 +15,7 @@ export default function ToolBar() {
           <thead className='bg-slate-300/90'>
               <tr className='table-row'>
                   <th className='table-cell text-stone-900 w-40 pl-5 py-1'>
-                      <input className='p-2 ' type="search" name="searchField" id="searchField" placeholder='Hae pelaajaa' />
+                      <input className='p-2 border-2 border-stone-800 bg-slate-400/50' type="search" name="searchField" id="searchField" placeholder='Hae pelaajaa' />
                   </th>
                   <th className='table-cell text-gray-400'>
                       <select className='bg-stone-800 p-3' name="pelipaikka" id="position"

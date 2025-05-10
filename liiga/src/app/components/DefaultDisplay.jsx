@@ -51,7 +51,7 @@ export default function DefaultDisplay({team, name, LPP, value,
     return(
 
         <>
-        <div className="w-[100%] border-2">
+        <div className="w-[100%] absolute top-0 bg-zinc-900">
             <button
                 title="Vaihda"
                 className="cursor-pointer"
@@ -60,17 +60,17 @@ export default function DefaultDisplay({team, name, LPP, value,
                 Vaihda
             </button>
         </div>
-        <div id="player-name">
+        <div id="player-name" className="text-zinc-900">
             {name}
         </div>
-        <div className="text-center ml-[10%]">
+        <div className="text-center flex items-center justify-center">
             <Image height={''} width={80} id="playerImage" src={team} alt="react"/>
         </div>
 
-        <div>
+        <div className="text-zinc-900">
             {LPP}
         </div>
-        <div className="w-[100%] border-2 relative bottom-0" id="player-captain">
+        <div className="w-[100%] absolute bottom-0 inset-x-0 bg-zinc-900" id="player-captain">
             Kapteeniksi
         </div>
         

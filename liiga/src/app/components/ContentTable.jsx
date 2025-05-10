@@ -2,22 +2,22 @@
 import {  } from "react";
 import React, { useEffect, useState } from 'react';
 
-import ifk from "@/app/logos/ifk.png"
-import hpk from "@/app/logos/hpk.png"
-import ilves from '@/app/logos/ilves.jpg'
-import jukurit from "@/app/logos/jukurit.png"
-import jyp from "@/app/logos/jyp.png"
-import kalpa from "@/app/logos/kalpa.png"
-import karpat from "@/app/logos/karpat.png"
-import espoo from "@/app/logos/k-espoo.png"
-import kookoo from "@/app/logos/kookoo.png"
-import lukko from "@/app/logos/lukko.png"
-import pelicans from "@/app/logos/pelicans.png"
-import saipa from "@/app/logos/saipa.png"
-import sport from "@/app/logos/sport.png"
-import tappara from "@/app/logos/tappara.png"
-import tps from "@/app/logos/tps.png"
-import question from "@/app/logos/question.png"
+import ifk from "@/app/logos/IFK.png"
+import hpk from "@/app/logos/HPK.png"
+import ilves from '@/app/logos/ILVES.png'
+import jukurit from "@/app/logos/JUKURIT.png"
+import jyp from "@/app/logos/JYP.png"
+import kalpa from "@/app/logos/KALPA.png"
+import karpat from "@/app/logos/KARPAT.png"
+import espoo from "@/app/logos/KESPOO.png"
+import kookoo from "@/app/logos/KOOKOO.png"
+import lukko from "@/app/logos/LUKKO.png"
+import pelicans from "@/app/logos/PELICANS.png"
+import saipa from "@/app/logos/SAIPA.png"
+import sport from "@/app/logos/SPORT.png"
+import tappara from "@/app/logos/TAPPARA.png"
+import tps from "@/app/logos/TPS.png"
+import question from "@/app/logos/QUESTION.png"
 
 export function TableVisibilty(position) {
   const attackerHeader = document.getElementById('attacker-header');
