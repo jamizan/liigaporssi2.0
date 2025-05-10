@@ -51,13 +51,13 @@ export default function DefaultDisplay({team, name, LPP, value,
     return(
 
         <>
-        <div className="w-[100%] absolute top-0 bg-zinc-900">
+        <div className="w-[100%] absolute top-0 bg-stone-800 hover:bg-stone-800/50 cursor-pointer">
             <button
                 title="Vaihda"
                 className="cursor-pointer"
                 onClick={ () => deleteSelected(value) }
             >
-                Vaihda
+                Poista
             </button>
         </div>
         <div id="player-name" className="text-zinc-900">
@@ -70,7 +70,7 @@ export default function DefaultDisplay({team, name, LPP, value,
         <div className="text-zinc-900">
             {LPP}
         </div>
-        <div className="w-[100%] absolute bottom-0 inset-x-0 bg-zinc-900" id="player-captain">
+        <div className="w-[100%] absolute bottom-0 inset-x-0 bg-stone-800 hover:bg-stone-800/50 cursor-pointer" id="player-captain">
             Kapteeniksi
         </div>
         
