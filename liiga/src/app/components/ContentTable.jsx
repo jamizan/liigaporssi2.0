@@ -86,9 +86,8 @@ export default function ContentTable({
   setImageSrc4, imageSrc4,
   setImageSrc5, imageSrc5,
   setImageSrc6, imageSrc6,
-  setSearch, search,
 
-}) {  
+}) {
   
   const [players, setPlayers] = useState([]);
 
@@ -100,7 +99,6 @@ export default function ContentTable({
 
 
   const moveSelected = (player, team) => {
-
     // Handles player details for display
     switch (team) {
       case 'IFK':
@@ -222,8 +220,7 @@ export default function ContentTable({
       </thead>
       <tbody id="attacker-body" className='text-s text-center'>
           {players
-            .filter(player => player.position == 'ATTACKER' && player.lastname.toLowerCase().includes(search.toLowerCase()) || player.firstname.toLowerCase().includes(search.toLowerCase()))
-            
+            .filter(player => player.position == 'ATTACKER')
             .map((player, index) => <tr key={index} className='border-b-2 border-stone-600' id={player.team.split(':')[1] + '_' + player.lastname + '-' + player.firstname}>
               <td className="table-cell">{player.firstname} {player.lastname}</td>
               <td className="table-cell">{player.team.split(':')[1].toUpperCase()}</td>

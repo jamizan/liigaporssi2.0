@@ -18,13 +18,27 @@ export default function ToolBar(
           <thead className='bg-slate-300/90'>
               <tr className='table-row'>
                   <th className='relative table-cell text-stone-900 w-40 pl-5 py-1'>
-                      <div className='flex items-center gap-2'>
-                          <input className='p-2 border-2 border-stone-800 bg-stone-400/50' type="search" name="searchField" id="searchField" placeholder='Hae pelaajaa'
-                            value={search} onChange={(e) => {
-                                setSearch(e.target.value);
-                            } }
+                      <div className='relative flex items-center gap-2'>
+                          <input
+                              className='p-2 border-2 border-stone-800 bg-stone-400/50 pr-8'
+                              type="search"
+                              name="searchField"
+                              id="searchField"
+                              placeholder='Hae pelaajaa'
+                              value={search}
+                              onChange={(e) => setSearch(e.target.value)}
                           />
-                          <button className='bg-stone-800 p-2 text-gray-400 hover:bg-stone-800/50 cursor-pointer'>Valitse</button>
+                          {search && (
+                              <button
+                                  type="button"
+                                  className="absolute right-2 text-gray-500 hover:text-red-600 focus:outline-none"
+                                  onClick={() => setSearch("")}
+                                  tabIndex={-1}
+                                  aria-label="Tyhjennä haku"
+                              >
+                                  &#10005;
+                              </button>
+                          )}
                       </div>
                   </th>
                   <th className='table-cell text-gray-400'>

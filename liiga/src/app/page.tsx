@@ -3,6 +3,7 @@
 import ToolBar from './components/ToolBar.jsx';
 import ContentTable from '@/app/components/ContentTable.jsx';
 import SelectedTable from '@/app/components/SelectedTable.jsx'
+import SearchTable from '@/app/components/SearchTable.jsx';
 import { useState } from 'react';
 
 import question from "@/app/logos/QUESTION.png"
@@ -76,6 +77,17 @@ export default function Home() {
         setSearch={setSearch} search={search}
       />
     </div>
+    <div className='w-full flex flex-col justify-center ml-[20%]' id='searchTable'>
+      <SearchTable
+        setImageSrc1={setImageSrc1} imageSrc1={imageSrc1}
+        setImageSrc2={setImageSrc2} imageSrc2={imageSrc2}
+        setImageSrc3={setImageSrc3} imageSrc3={imageSrc3}
+        setImageSrc4={setImageSrc4} imageSrc4={imageSrc4}
+        setImageSrc5={setImageSrc5} imageSrc5={imageSrc5}
+        setImageSrc6={setImageSrc6} imageSrc6={imageSrc6}
+        setSearch={setSearch} search={search}
+      />
+    </div>
     <table id='content-table' className='table-auto w-[60%] ml-[20%] border-spacing-2'>
       <ContentTable
        setImageSrc1={setImageSrc1} imageSrc1={imageSrc1}
@@ -84,10 +96,10 @@ export default function Home() {
        setImageSrc4={setImageSrc4} imageSrc4={imageSrc4}
        setImageSrc5={setImageSrc5} imageSrc5={imageSrc5}
        setImageSrc6={setImageSrc6} imageSrc6={imageSrc6}
-       setSearch={setSearch} search={search}
        
        />
     </table>
+
     </>
   );
 }
