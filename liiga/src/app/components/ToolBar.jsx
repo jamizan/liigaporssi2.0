@@ -5,7 +5,10 @@ import React, { useState, Children } from 'react';
 import { TableVisibilty } from '@/app/components/ContentTable';
 import { TeamSelect } from '@/app/components/ContentTable';
 
-export default function ToolBar() {
+export default function ToolBar(
+    { setSearch, search })
+ 
+    {
     const [position, setPosition] = useState("position")
     const [team, setTeam] = useState("team")
   return (
@@ -16,12 +19,16 @@ export default function ToolBar() {
               <tr className='table-row'>
                   <th className='relative table-cell text-stone-900 w-40 pl-5 py-1'>
                       <div className='flex items-center gap-2'>
-                          <input className='p-2 border-2 border-stone-800 bg-stone-400/50' type="search" name="searchField" id="searchField" placeholder='Hae pelaajaa' />
+                          <input className='p-2 border-2 border-stone-800 bg-stone-400/50' type="search" name="searchField" id="searchField" placeholder='Hae pelaajaa'
+                            value={search} onChange={(e) => {
+                                setSearch(e.target.value);
+                            } }
+                          />
                           <button className='bg-stone-800 p-2 text-gray-400 hover:bg-stone-800/50 cursor-pointer'>Valitse</button>
                       </div>
                   </th>
                   <th className='table-cell text-gray-400'>
-                      <select className='bg-stone-800 p-3 cursor-pointer' name="pelipaikka" id="position"
+                      <select className='bg-stone-800 p-3 hover:bg-stone-800/50 cursor-pointer' name="pelipaikka" id="position"
                           value={position} onChange={(e) => {
                               setPosition(e.target.value);
                               TableVisibilty(e.target.value);

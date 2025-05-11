@@ -53,6 +53,8 @@ export default function Home() {
 
   });
 
+  const [search, setSearch] = useState("")
+
   return (
   
     <>
@@ -70,7 +72,9 @@ export default function Home() {
         />
     </div>
     <div className='w-full flex flex-col justify-center ml-[20%]' id='toolBar'>
-      {ToolBar()}
+      <ToolBar
+        setSearch={setSearch} search={search}
+      />
     </div>
     <table id='content-table' className='table-auto w-[60%] ml-[20%] border-spacing-2'>
       <ContentTable
@@ -80,6 +84,7 @@ export default function Home() {
        setImageSrc4={setImageSrc4} imageSrc4={imageSrc4}
        setImageSrc5={setImageSrc5} imageSrc5={imageSrc5}
        setImageSrc6={setImageSrc6} imageSrc6={imageSrc6}
+       setSearch={setSearch} search={search}
        
        />
     </table>

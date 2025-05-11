@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import question from '@/app/logos/question.png'
+import question from '@/app/logos/QUESTION.png'
 
 
 export default function DefaultDisplay({team, name, LPP, value,
