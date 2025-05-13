@@ -14,30 +14,56 @@ export default function DefaultDisplay({team, name, LPP, value,
     setImageSrc6, imageSrc6
 
 }){
+    function makeCaptain( value, LPP ){
 
 
+        switch (value) {
+            case '1':
+                points = imageSrc1.captainLPP;
+            break;
+            case '2':
+                setImageSrc2({ ...imageSrc2, LPP: newLPP })
+            break;
+            case '3':
+                setImageSrc3({ ...imageSrc3, LPP: newLPP })
+            break;
+            case '4':
+                setImageSrc4({ ...imageSrc4, LPP: newLPP })
+            break;
+            case '5':
+                setImageSrc5({ ...imageSrc5, LPP: newLPP })
+            break;
+            case '6':
+                setImageSrc6({ ...imageSrc6, LPP: newLPP })
+            break;
+        
+            default:
+                let points = LPP
+                break;
+        }
+    }
 
     function deleteSelected(value){
         switch (value) {
             case '1':
-                setImageSrc1({ ...imageSrc1, src: question, nam: '', p:'', LPP: '' })
+                setImageSrc1({ ...imageSrc1, src: question, nam: '', p:'', LPP: 0 })
                 
                 break;
             case '2':
-                setImageSrc2({ ...imageSrc2, src: question, nam: '', p:'', LPP: '' })
+                setImageSrc2({ ...imageSrc2, src: question, nam: '', p:'', LPP: 0 })
                 
                 break;
             case '3':
-                setImageSrc3({ ...imageSrc3, src: question, nam: '', p:'', LPP: '' })
+                setImageSrc3({ ...imageSrc3, src: question, nam: '', p:'', LPP: 0 })
                 break;
             case '4':
-                setImageSrc4({ ...imageSrc4, src: question, nam: '', p:'', LPP: '' })                
+                setImageSrc4({ ...imageSrc4, src: question, nam: '', p:'', LPP: 0 })                
                 break;
             case '5':
-                setImageSrc5({ ...imageSrc5, src: question, nam: '', p:'', LPP: '' })
+                setImageSrc5({ ...imageSrc5, src: question, nam: '', p:'', LPP: 0 })
                 break;
             case '6':
-                setImageSrc6({ ...imageSrc6, src: question, nam: '', p:'', LPP: '' })
+                setImageSrc6({ ...imageSrc6, src: question, nam: '', p:'', LPP: 0 })
                 break;
         
             default:
@@ -46,7 +72,6 @@ export default function DefaultDisplay({team, name, LPP, value,
         
         
     }
-
 
     return(
 
@@ -64,14 +89,22 @@ export default function DefaultDisplay({team, name, LPP, value,
             {name}
         </div>
         <div className="text-center flex items-center justify-center">
-            <Image height={''} width={80} id="playerImage" src={team} alt="react"/>
+            <Image height={''} width={80} id="playerImage" src={team} alt="team"/>
         </div>
 
         <div className="text-zinc-900">
             {LPP}
         </div>
         <div className="w-[100%] absolute bottom-0 inset-x-0 bg-stone-800 hover:bg-stone-800/50 cursor-pointer" id="player-captain">
-            Kapteeniksi
+            <button
+                title="Kapteeni"
+                id="captain-button"
+                className="cursor-pointer w-full h-[24]"
+                onClick={ () => makeCaptain(value, LPP) }
+            >
+                Kapteeniksi
+            </button>
+            
         </div>
         
         

@@ -85,7 +85,7 @@ export default function ContentTable({
   setImageSrc3, imageSrc3,
   setImageSrc4, imageSrc4,
   setImageSrc5, imageSrc5,
-  setImageSrc6, imageSrc6,
+  setImageSrc6, imageSrc6
 
 }) {
   

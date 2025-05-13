@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 import ifk from "@/app/logos/IFK.png"
 import hpk from "@/app/logos/HPK.png"
@@ -26,7 +27,8 @@ export default function SearchTable({
     setImageSrc4, imageSrc4,
     setImageSrc5, imageSrc5,
     setImageSrc6, imageSrc6,
-    setSearch, search }) {
+    setSearch, search,
+  }) {
   
     const [players, setPlayers] = useState([]);
 
@@ -91,7 +93,6 @@ export default function SearchTable({
     }
     var nameStr = player.lastname+' '+ player.firstname;
     
-
     if (imageSrc1.p == '' && player.position == 'ATTACKER' &&
       imageSrc1.nam != nameStr && imageSrc2.nam != nameStr && imageSrc3.nam != nameStr
     ) {
@@ -136,46 +137,95 @@ export default function SearchTable({
   };
 
   if (search == '') {
-    
-  } else{
-  return (
-    <div>
-        <table className='absolute z-50 ml-2 w-65 bg-stone-800 border-2 border-stone-600'>
-            <tbody className='w-full'>
-                {players
-            .filter(player => player.lastname.toLowerCase().includes(search.toLowerCase()) || player.firstname.toLowerCase().includes(search.toLowerCase()))
-            
-            .map((player, index) => <tr key={index} className='border-b-2 border-stone-600' id={player.team.split(':')[1] + '_' + player.lastname + '-' + player.firstname}>
-                    <td className="table-cell w-full pl-2">{player.firstname} {player.lastname}</td>
-                    <td className="pt-2 pr-2">
-                        <button
-                        title="Valitse"
-                        className="group cursor-pointer outline-none hover:rotate-90 duration-300"
-                        onClick={() => moveSelected(player, player.team.split(':')[1].toUpperCase())}
-                        id="selectPlayer"
-                        disabled={false}
-                        >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="20px"
-                            height="20px"
-                            viewBox="0 0 24 24"
-                            className="stroke-zinc-400 fill-none group-hover:fill-zinc-800 group-active:stroke-zinc-200 group-active:fill-zinc-600 group-active:duration-0 duration-300"
-                        >
-                            <path
-                            d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
-                            strokeWidth="1.5"
-                            ></path>
-                            <path d="M8 12H16" strokeWidth="1.5"></path>
-                            <path d="M12 16V8" strokeWidth="1.5"></path>
-                        </svg>
-                        </button>
-                    </td>
+
+  } else {
+    const teamLogos = {
+      IFK: ifk,
+      HPK: hpk,
+      ILVES: ilves,
+      JUKURIT: jukurit,
+      JYP: jyp,
+      KALPA: kalpa,
+      KARPAT: karpat,
+      ESPOO: espoo,
+      KOOKOO: kookoo,
+      LUKKO: lukko,
+      PELICANS: pelicans,
+      SAIPA: saipa,
+      SPORT: sport,
+      TAPPARA: tappara,
+      TPS: tps,
+    };
+
+    return (
+      <div>
+        <table className='table-auto absolute z-50 ml-2 bg-stone-800 border-2 border-stone-600 border-spacing-2'>
+          <thead>
+            <tr className='border-b-2 border-stone-600 justify-content-center'>
+              <th colSpan={2} className='px-2 py-1 bg-stone-800 text-stone-400 border-stone-600 whitespace-nowrap'>Nimi</th>
+              <th className='px-2 py-1 bg-stone-800 text-stone-400 border-stone-600 whitespace-nowrap'>M</th>
+              <th className='px-2 py-1 bg-stone-800 text-stone-400 border-stone-600 whitespace-nowrap'>S</th>
+              <th className='px-2 py-1 bg-stone-800 text-stone-400 border-stone-600 whitespace-nowrap'>R</th>
+              <th className='px-2 py-1 bg-stone-800 text-stone-400 border-stone-600 whitespace-nowrap'>L</th>
+              <th className='px-2 py-1 bg-stone-800 text-stone-400 border-stone-600 whitespace-nowrap'>T</th>
+              <th className='px-2 py-1 bg-stone-800 text-stone-400 border-stone-600 whitespace-nowrap'>A</th>
+              <th className='px-2 py-1 bg-stone-800 text-stone-400 border-stone-600 whitespace-nowrap'>+/-</th>
+              <th className='px-2 py-1 bg-stone-800 text-stone-400 border-stone-600 whitespace-nowrap'>LPP</th>
+              <th className='px-2 py-1 bg-stone-800 border-stone-600'></th>
+            </tr>
+          </thead>
+          <tbody>
+            {players
+              .filter(player => player.lastname.toLowerCase().includes(search.toLowerCase()) || player.firstname.toLowerCase().includes(search.toLowerCase()))
+              .map((player, index) => (
+                <tr key={index} className='border-b-2 border-stone-600 justify-content-center'>
+                  <td>
+                    <Image
+                      height={''}
+                      width={40}
+                      id="playerImage"
+                      src={teamLogos[player.team.split(':')[1]?.toUpperCase()] || question}
+                      alt="team"
+                    />
+                  </td>
+                  <td className="table-cell px-2 whitespace-nowrap">{player.firstname} {player.lastname}</td>
+                  <td className="table-cell px-2 whitespace-nowrap">{player.goals}</td>
+                  <td className="table-cell px-2 whitespace-nowrap">{player.assists}</td>
+                  <td className="table-cell px-2 whitespace-nowrap">{player.penaltyminutes}</td>
+                  <td className="table-cell px-2 whitespace-nowrap">{player.shots}</td>
+                  <td className="table-cell px-2 whitespace-nowrap">{player.blocks}</td>
+                  <td className="table-cell px-2 whitespace-nowrap">{player.faceoffs}</td>
+                  <td className="table-cell px-2 whitespace-nowrap">{player.plusminus}</td>
+                  <td className="table-cell px-2 whitespace-nowrap">{player.LPP}</td>
+                  <td className="pt-2 pr-2">
+                    <button
+                      title="Valitse"
+                      className="group cursor-pointer outline-none hover:rotate-90 duration-300"
+                      onClick={() => moveSelected(player, player.team.split(':')[1].toUpperCase())}
+                      id="selectPlayer"
+                      disabled={false}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20px"
+                        height="20px"
+                        viewBox="0 0 24 24"
+                        className="stroke-zinc-400 fill-none group-hover:fill-zinc-800 group-active:stroke-zinc-200 group-active:fill-zinc-600 group-active:duration-0 duration-300"
+                      >
+                        <path
+                          d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                          strokeWidth="1.5"
+                        ></path>
+                        <path d="M8 12H16" strokeWidth="1.5"></path>
+                        <path d="M12 16V8" strokeWidth="1.5"></path>
+                      </svg>
+                    </button>
+                  </td>
                 </tr>
-                )}
-            </tbody>
+              ))}
+          </tbody>
         </table>
-    </div>
-  );
+      </div>
+    );
+  }
 }
-    }

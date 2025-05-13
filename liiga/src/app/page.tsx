@@ -12,38 +12,43 @@ import question from "@/app/logos/QUESTION.png"
 export default function Home() {
 
   const [imageSrc1, setImageSrc1] = useState({
-      src: question,
-      nam: '',
-      p: '',
-      LPP: ''
+    src: question,
+    nam: '',
+    p: '',
+    LPP: '',
+    captainLPP: ''
     
   });
   const [imageSrc2, setImageSrc2] = useState({
     src: question,
     nam: '',
     p: '',
-    LPP: ''
+    LPP: '',
+    captainLPP: ''
   
   });
   const [imageSrc3, setImageSrc3] = useState({
     src: question,
     nam: '',
     p: '',
-    LPP: ''
+    LPP: '',
+    captainLPP: ''
 
   });
   const [imageSrc4, setImageSrc4] = useState({
     src: question,
     nam: '',
     p: '',
-    LPP: ''
+    LPP: '',
+    captainLPP: ''
 
   });
   const [imageSrc5, setImageSrc5] = useState({
     src: question,
     nam: '',
     p: '',
-    LPP: ''
+    LPP: '',
+    captainLPP: ''
 
   });
   const [imageSrc6, setImageSrc6] = useState({
@@ -96,7 +101,6 @@ export default function Home() {
        setImageSrc4={setImageSrc4} imageSrc4={imageSrc4}
        setImageSrc5={setImageSrc5} imageSrc5={imageSrc5}
        setImageSrc6={setImageSrc6} imageSrc6={imageSrc6}
-       
        />
     </table>
 

@@ -27,6 +27,7 @@ export default function ToolBar(
                               placeholder='Hae pelaajaa'
                               value={search}
                               onChange={(e) => setSearch(e.target.value)}
+                              autoComplete="off"
                           />
                           {search && (
                               <button
