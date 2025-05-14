@@ -1,6 +1,7 @@
 "use client";
 import {  } from "react";
 import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 import ifk from "@/app/logos/IFK.png"
 import hpk from "@/app/logos/HPK.png"
@@ -18,6 +19,7 @@ import sport from "@/app/logos/SPORT.png"
 import tappara from "@/app/logos/TAPPARA.png"
 import tps from "@/app/logos/TPS.png"
 import question from "@/app/logos/QUESTION.png"
+import arrow from "@/app/logos/down.png"
 
 export function TableVisibilty(position) {
   const attackerHeader = document.getElementById('attacker-header');
@@ -222,7 +224,18 @@ export default function ContentTable({
           {players
             .filter(player => player.position == 'ATTACKER')
             .map((player, index) => <tr key={index} className='border-b-2 border-stone-600' id={player.team.split(':')[1] + '_' + player.lastname + '-' + player.firstname}>
-              <td className="table-cell">{player.firstname} {player.lastname}</td>
+              <td className="table-cell">
+                <div className="flex items-center gap-4 ">
+                  <Image
+                    height={40}
+                    width={40}
+                    id="playerRowImage"
+                    src={arrow}
+                    alt="team"
+                  />
+                  <span>{player.firstname} {player.lastname}</span>
+                </div>
+              </td>
               <td className="table-cell">{player.team.split(':')[1].toUpperCase()}</td>
               <td className="table-cell">{player.goals}</td>
               <td className="table-cell">{player.assists}</td>
@@ -283,7 +296,18 @@ export default function ContentTable({
 
             .filter(player => player.position == 'DEFENDER')
             .map((player, index) => <tr key={index} className='border-b-2 border-stone-600' id={player.team.split(':')[1] + '_' + player.lastname + '-' + player.firstname}>
-              <td className="table-cell">{player.firstname} {player.lastname}</td>
+              <td className="table-cell">
+                <div className="flex items-center gap-4 ">
+                  <Image
+                    height={40}
+                    width={40}
+                    id="playerRowImage"
+                    src={arrow}
+                    alt="team"
+                  />
+                  <span>{player.firstname} {player.lastname}</span>
+                </div>
+              </td>
               <td className="table-cell">{player.team.split(':')[1].toUpperCase()}</td>
               <td className="table-cell">{player.goals}</td>
               <td className="table-cell">{player.assists}</td>
@@ -341,7 +365,18 @@ export default function ContentTable({
           {players
             .filter(player => player.position == 'GOALIE')
             .map((player, index) => <tr key={index} className='border-b-2 border-stone-600' id={player.team.split(':')[1] + '_' + player.lastname + '-' + player.firstname}>
-              <td className="table-cell">{player.firstname} {player.lastname}</td>
+              <td className="table-cell">
+                <div className="flex items-center gap-4 ">
+                  <Image
+                    height={40}
+                    width={40}
+                    id="playerRowImage"
+                    src={arrow}
+                    alt="team"
+                  />
+                  <span>{player.firstname} {player.lastname}</span>
+                </div>
+              </td>
               <td className="table-cell">{player.team.split(':')[1].toUpperCase()}</td>
               <td className="table-cell">{player.goals}</td>
               <td className="table-cell">{player.assists}</td>
