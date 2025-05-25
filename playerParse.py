@@ -37,7 +37,7 @@ if response.status_code == 200:
 
         i += 1
 
-    with open('playerData.json', 'w', encoding='utf-8') as json_file:
+    with open('liigaporssi2.0/liiga/public/playerData.json', 'w', encoding='utf-8') as json_file:
         json.dump(players_dict, json_file, ensure_ascii=False, indent=4)
 
     print('file created!')

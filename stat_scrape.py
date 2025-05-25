@@ -1,12 +1,15 @@
 import requests
 import json
 from datetime import datetime
+import os
 
 # Reading data from JSON file created by playerParse.py
 def readJson():
-    with open('playerData.json', 'r', encoding='utf-8') as file:
+    # Use absolute path based on this script's location
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    json_path = os.path.join(base_dir, 'liiga', 'public', 'playerData.json')
+    with open(json_path, 'r', encoding='utf-8') as file:
         data = json.load(file)
-
     return data
 
 # Parsing matchnumbers from Liiga
@@ -24,9 +27,9 @@ def matchnumbers():
             beginTime = game['start'].split('T')
             
     # Compare game dates to todays date
-            dateNow = datetime.now()
-            dateNow = dateNow.strftime("%Y-%m-%d")
-            #dateNow = '2024-09-10' # VAIN DEV KÄYTTÖÖN
+            #dateNow = datetime.now()
+            #dateNow = dateNow.strftime("%Y-%m-%d")
+            dateNow = '2025-03-28' # VAIN DEV KÄYTTÖÖN
     # If game date is today => save team data
             if beginTime[0] == dateNow:
                 gameId = game['id']
@@ -206,7 +209,7 @@ def mergeData(playerStats, goalieStats, JsonData, penaltyData):
                 firstname = JsonData[str(id)]['firstname']
                 lastname = JsonData[str(id)]['lastname']
                 team = JsonData[str(id)]['teamid']
-                personalData = {'position' : position, 'firstname' : firstname, 'lastname' : lastname, 'team' : team}
+                personalData = {'position' : position, 'firstname' : firstname, 'lastname' : lastname, 'team' : team, 'id' : id}
     # Count individual points
                 LPP = countLPP(i[id], penaltyData, position, id)
                 returnData = {'goals' : i[id]['goals'], 'assists' : i[id]['assists'], 'plusminus' : i[id]['plus'] - i[id]['minus'], 'penaltyminutes' : i[id]['penaltyminutes'], 'blocks' : i[id]['blocks'], 'shots' : i[id]['shots'], 'faceoffs' : i[id]['faceoffsTotal'] - i[id]['faceoffsWon'], 'LPP' : LPP}
@@ -223,7 +226,7 @@ def mergeData(playerStats, goalieStats, JsonData, penaltyData):
                 firstname = JsonData[str(id)]['firstname']
                 lastname = JsonData[str(id)]['lastname']
                 team = JsonData[str(id)]['teamid']
-                personalData = {'position' : position, 'firstname' : firstname, 'lastname' : lastname, 'team' : team}
+                personalData = {'position' : position, 'firstname' : firstname, 'lastname' : lastname, 'team' : team, 'id' : id}
     # Count individual points
                 LPP = countLPP(x[id], penaltyData, position, id)
                 returnData = {'goals' : x[id]['goals'], 'assists' : x[id]['assists'], 'penaltyminutes' : x[id]['penaltyminutes'], 'saves' : x[id]['saves'], 'goalsallowed' : x[id]['goalsAllowed'], 'LPP' : LPP}
@@ -428,9 +431,11 @@ def countLPP(playerStats, penaltyData, position, id):
 
 # Creating JSON file for player data
 def createJSON(mergedData):
-    with open('liiga/public/playerStats.json', 'w', encoding='utf-8') as json_file:
+    # Use absolute path based on this script's location
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    json_path = os.path.join(base_dir, 'liiga', 'public', 'playerStats.json')
+    with open(json_path, 'w', encoding='utf-8') as json_file:
         json.dump(mergedData, json_file, ensure_ascii=False, indent=4)
-
     print('file created!')
 
 def main():

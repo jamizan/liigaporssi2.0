@@ -5380,5 +5380,14 @@
         "role": "RIGHT_WING",
         "jersey": 17,
         "playerid": 34373431
+    },
+    "40037465": {
+        "teamid": "55786244:hpk",
+        "teamname": "HPK",
+        "firstname": "Akseli",
+        "lastname": "Ketonen",
+        "role": null,
+        "jersey": 0,
+        "playerid": 40037465
     }
 }
