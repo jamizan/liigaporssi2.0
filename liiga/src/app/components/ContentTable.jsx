@@ -2,6 +2,7 @@
 import {  } from "react";
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import ExtraInfo from "@/app/components/ExtraInfo.jsx"
 
 import ifk from "@/app/logos/IFK.png"
 import hpk from "@/app/logos/HPK.png"
@@ -92,6 +93,7 @@ export default function ContentTable({
 }) {
   
   const [players, setPlayers] = useState([]);
+  const [openPlayerInfo, setOpenPlayerInfo] = useState(null);
 
   useEffect(() => {
     fetch('/playerStats.json')
@@ -222,55 +224,58 @@ export default function ContentTable({
       </thead>
       <tbody id="attacker-body" className='text-s text-center'>
           {players
-            .filter(player => player.position == 'ATTACKER')
-            .map((player, index) => <tr key={index} className='border-b-2 border-stone-600' id={player.team.split(':')[1] + '_' + player.lastname + '-' + player.firstname}>
-              <td className="table-cell">
-                <div className="flex items-center gap-4 ">
-                  <Image
-                    height={40}
-                    width={40}
-                    id="playerRowImage"
-                    src={arrow}
-                    alt="team"
-                  />
-                  <span>{player.firstname} {player.lastname}</span>
-                </div>
-              </td>
-              <td className="table-cell">{player.team.split(':')[1].toUpperCase()}</td>
-              <td className="table-cell">{player.goals}</td>
-              <td className="table-cell">{player.assists}</td>
-              <td className="table-cell">{player.penaltyminutes}</td>
-              <td className="table-cell">{player.shots}</td>
-              <td className="table-cell">{player.blocks}</td>
-              <td className='table-cell'>{player.faceoffs}</td>
-              <td className="table-cell">{player.plusminus}</td>
-              <td className="table-cell">{player.LPP}</td>
-              <td className="pt-2">
-                <button
-                  title="Valitse"
-                  className="group cursor-pointer outline-none hover:rotate-90 duration-300"
-                  onClick={() => moveSelected(player, player.team.split(':')[1].toUpperCase())}
-                  id="selectPlayer"
-                  disabled={false}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20px"
-                    height="20px"
-                    viewBox="0 0 24 24"
-                    className="stroke-zinc-400 fill-none group-hover:fill-zinc-800 group-active:stroke-zinc-200 group-active:fill-zinc-600 group-active:duration-0 duration-300"
-                  >
-                    <path
-                      d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
-                      strokeWidth="1.5"
-                    ></path>
-                    <path d="M8 12H16" strokeWidth="1.5"></path>
-                    <path d="M12 16V8" strokeWidth="1.5"></path>
-                  </svg>
-                </button>
-              </td>
-            </tr>
-            )}
+            .filter(player => player.position == 'RIGHT_WING' || player.position == 'LEFT_WING' || player.position == 'CENTER')
+            .map((player, index) => (
+              <React.Fragment key={player.team + '_' + player.lastname + '-' + player.firstname}>
+                <tr className='border-b-2 border-stone-600' id={player.team.split(':')[1] + '_' + player.lastname + '-' + player.firstname}>
+                  <td className="table-cell">
+                    <div className="text-left pl-3 gap-4 text-decoration-line: underline hover:text-gray-300/80">
+                      <span
+                        onClick={() =>
+                          setOpenPlayerInfo(openPlayerInfo === player.id ? null : player.id)
+                        }
+                      >{player.firstname} {player.lastname}</span>
+                    </div>
+                  </td>
+                  <td className="table-cell">{player.team.split(':')[1].toUpperCase()}</td>
+                  <td className="table-cell">{player.goals}</td>
+                  <td className="table-cell">{player.assists}</td>
+                  <td className="table-cell">{player.penaltyminutes}</td>
+                  <td className="table-cell">{player.shots}</td>
+                  <td className="table-cell">{player.blocks}</td>
+                  <td className='table-cell'>{player.faceoffs}</td>
+                  <td className="table-cell">{player.plusminus}</td>
+                  <td className="table-cell">{player.LPP}</td>
+                  <td className="pt-2">
+                    <button
+                      title="Valitse"
+                      className="group cursor-pointer outline-none hover:rotate-90 duration-300"
+                      onClick={() => moveSelected(player, player.team.split(':')[1].toUpperCase())}
+                      id="selectPlayer"
+                      disabled={false}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20px"
+                        height="20px"
+                        viewBox="0 0 24 24"
+                        className="stroke-zinc-400 fill-none group-hover:fill-zinc-800 group-active:stroke-zinc-200 group-active:fill-zinc-600 group-active:duration-0 duration-300"
+                      >
+                        <path
+                          d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                          strokeWidth="1.5"
+                        ></path>
+                        <path d="M8 12H16" strokeWidth="1.5"></path>
+                        <path d="M12 16V8" strokeWidth="1.5"></path>
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+                {openPlayerInfo === player.id && (
+                  <ExtraInfo player={player}/>
+                )}
+              </React.Fragment>
+            ))}
         </tbody>
         
         <thead id="defender-header" className="text-gray-300 text-s border-collapse text-center">
@@ -294,17 +299,10 @@ export default function ContentTable({
         <tbody id="defender-body" className='text-s border-collapse text-center'>
           {players
 
-            .filter(player => player.position == 'DEFENDER')
+            .filter(player => player.position == 'RIGHT_DEFENSEMAN' || player.position == 'LEFT_DEFENSEMAN')
             .map((player, index) => <tr key={index} className='border-b-2 border-stone-600' id={player.team.split(':')[1] + '_' + player.lastname + '-' + player.firstname}>
               <td className="table-cell">
                 <div className="flex items-center gap-4 ">
-                  <Image
-                    height={40}
-                    width={40}
-                    id="playerRowImage"
-                    src={arrow}
-                    alt="team"
-                  />
                   <span>{player.firstname} {player.lastname}</span>
                 </div>
               </td>
@@ -366,14 +364,7 @@ export default function ContentTable({
             .filter(player => player.position == 'GOALIE')
             .map((player, index) => <tr key={index} className='border-b-2 border-stone-600' id={player.team.split(':')[1] + '_' + player.lastname + '-' + player.firstname}>
               <td className="table-cell">
-                <div className="flex items-center gap-4 ">
-                  <Image
-                    height={40}
-                    width={40}
-                    id="playerRowImage"
-                    src={arrow}
-                    alt="team"
-                  />
+                <div className="text-left pl-3 gap-4 text-decoration-line: underline hover:text-gray-300/80">
                   <span>{player.firstname} {player.lastname}</span>
                 </div>
               </td>
