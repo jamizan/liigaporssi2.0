@@ -62,7 +62,7 @@ def parseGameData(gameData):
         
         gameId = game['gameId']
         #url = 'https://liiga.fi/api/v2/games/stats/2025/93' # VAIN DEV KÄYTTÖÖN
-        url = f'https://liiga.fi/api/v2/games/stats/2025/{gameId}' 
+        url = f'https://liiga.fi/api/v2/games/stats/2025/{gameId}'
 
         response = requests.get(url)
 

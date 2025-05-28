@@ -18,6 +18,8 @@ import saipa from "@/app/logos/saipa.png"
 import sport from "@/app/logos/sport.png"
 import tappara from "@/app/logos/tappara.png"
 import tps from "@/app/logos/tps.png"
+import assat from "@/app/logos/assat.png"
+
 import question from "@/app/logos/question.png"
 
 export default function SearchTable({ 
@@ -41,7 +43,7 @@ export default function SearchTable({
     const moveSelected = (player, team) => {
     // Handles player details for display
     switch (team) {
-      case 'IFK':
+      case 'HIFK':
         var value = ifk;
         break;
       case 'HPK':
@@ -59,10 +61,10 @@ export default function SearchTable({
       case 'KALPA':
         var value = kalpa;
         break;
-      case 'KARPAT':
+      case 'KÄRPÄT':
         var value = karpat;
         break;
-      case 'ESPOO':
+      case 'K-ESPOO':
         var value = espoo;
         break;
       case 'KOOKOO':
@@ -85,7 +87,10 @@ export default function SearchTable({
         break;
       case 'TPS':
         var value = tps;
-        break;      
+        break;
+      case 'ÄSSÄT':
+        var value = assat;
+        break;
     
       default:
         var value = question;
@@ -93,38 +98,67 @@ export default function SearchTable({
     }
     var nameStr = player.lastname+' '+ player.firstname;
     
-    if (imageSrc1.p == '' && player.position == 'ATTACKER' &&
+    var position = player.position;
+    var playerPosition = '';
+
+    switch (position) {
+      case 'LEFT_WING':
+         playerPosition = 'ATTACKER';
+        break;
+      case 'RIGHT_WING':
+        playerPosition = 'ATTACKER';
+        break;
+      case 'CENTER':
+        playerPosition = 'ATTACKER';
+        break;
+      case 'LEFT_DEFENSEMAN':
+        playerPosition = 'DEFENDER';
+        break;
+      case 'RIGHT_DEFENSEMAN':
+        playerPosition = 'DEFENDER';
+        break;
+      case 'GOALIE':
+        playerPosition = 'GOALIE';
+        break;
+
+      default:
+        playerPosition = '';
+        break;
+    }
+
+    console.log(player.team.split(':')[1].toUpperCase());
+    if (imageSrc1.p == '' && playerPosition == 'ATTACKER' &&
       imageSrc1.nam != nameStr && imageSrc2.nam != nameStr && imageSrc3.nam != nameStr
     ) {
       setImageSrc1({ ...imageSrc1, src: value, nam: nameStr, p:'t', LPP: player.LPP });
       
     }
     else{
-      if (imageSrc2.p == '' && player.position == 'ATTACKER' &&
+      if (imageSrc2.p == '' && playerPosition == 'ATTACKER' &&
         imageSrc1.nam != nameStr && imageSrc2.nam != nameStr && imageSrc3.nam != nameStr
       ) {
         setImageSrc2({ ...imageSrc2, src: value, nam: nameStr, p:'t', LPP: player.LPP });
       }
       else{
-        if (imageSrc3.p == '' && player.position == 'ATTACKER' &&
+        if (imageSrc3.p == '' && playerPosition == 'ATTACKER' &&
           imageSrc1.nam != nameStr && imageSrc2.nam != nameStr && imageSrc3.nam != nameStr
         ) {
           setImageSrc3({ ...imageSrc3, src: value, nam: nameStr, p:'t', LPP: player.LPP });
         }
         else{
-          if (imageSrc4.p == '' && player.position == 'DEFENDER' &&
+          if (imageSrc4.p == '' && playerPosition == 'DEFENDER' &&
             imageSrc4.nam != nameStr && imageSrc5.nam != nameStr
           ) {
             setImageSrc4({ ...imageSrc4, src: value, nam: nameStr, p:'t', LPP: player.LPP });
           }
           else{
-            if (imageSrc5.p == '' && player.position == 'DEFENDER' &&
+            if (imageSrc5.p == '' && playerPosition == 'DEFENDER' &&
               imageSrc4.nam != nameStr && imageSrc5.nam != nameStr
             ) {
               setImageSrc5({ ...imageSrc5, src: value, nam: nameStr, p:'t', LPP: player.LPP });
             }
             else{
-              if (imageSrc6.p == '' && player.position == 'GOALIE' &&
+              if (imageSrc6.p == '' && playerPosition == 'GOALIE' &&
                 imageSrc6 != nameStr
               ) {
                 setImageSrc6({ ...imageSrc6, src: value, nam: nameStr, p:'t', LPP: player.LPP });
