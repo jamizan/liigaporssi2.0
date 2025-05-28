@@ -1,30 +1,25 @@
 "use client";
 import {  } from "react";
 import React, { useEffect, useState } from 'react';
-<<<<<<< HEAD
-import SelectedTable from "./SelectedTable";
-import DefaultDisplay from "./DefaultDisplay";
-=======
 import Image from 'next/image';
 import ExtraInfo from "@/app/components/ExtraInfo.jsx"
->>>>>>> refs/remotes/origin/main
 
-import ifk from "@/app/logos/IFK.png"
-import hpk from "@/app/logos/HPK.png"
+import ifk from "@/app/logos/ifk.png"
+import hpk from "@/app/logos/hpk.png"
 import ilves from '@/app/logos/ILVES.png'
-import jukurit from "@/app/logos/JUKURIT.png"
-import jyp from "@/app/logos/JYP.png"
-import kalpa from "@/app/logos/KALPA.png"
-import karpat from "@/app/logos/KARPAT.png"
+import jukurit from "@/app/logos/jukurit.png"
+import jyp from "@/app/logos/jyp.png"
+import kalpa from "@/app/logos/kalpa.png"
+import karpat from "@/app/logos/karpat.png"
 import espoo from "@/app/logos/KESPOO.png"
-import kookoo from "@/app/logos/KOOKOO.png"
-import lukko from "@/app/logos/LUKKO.png"
-import pelicans from "@/app/logos/PELICANS.png"
-import saipa from "@/app/logos/SAIPA.png"
-import sport from "@/app/logos/SPORT.png"
-import tappara from "@/app/logos/TAPPARA.png"
-import tps from "@/app/logos/TPS.png"
-import question from "@/app/logos/QUESTION.png"
+import kookoo from "@/app/logos/kookoo.png"
+import lukko from "@/app/logos/lukko.png"
+import pelicans from "@/app/logos/pelicans.png"
+import saipa from "@/app/logos/saipa.png"
+import sport from "@/app/logos/sport.png"
+import tappara from "@/app/logos/tappara.png"
+import tps from "@/app/logos/tps.png"
+import question from "@/app/logos/question.png"
 import arrow from "@/app/logos/down.png"
 
 export function TableVisibilty(position) {
@@ -87,9 +82,6 @@ export function TeamSelect(team) {
   }  
 }
 
-<<<<<<< HEAD
-export default function ContentTable() {
-=======
 export default function ContentTable({
   setImageSrc1, imageSrc1, 
   setImageSrc2, imageSrc2,
@@ -100,7 +92,6 @@ export default function ContentTable({
 
 }) {
   
->>>>>>> refs/remotes/origin/main
   const [players, setPlayers] = useState([]);
   const [openPlayerInfo, setOpenPlayerInfo] = useState(null);
 
@@ -110,8 +101,6 @@ export default function ContentTable({
     .then((data) => setPlayers(data));
   }, []);
 
-<<<<<<< HEAD
-=======
 
   const moveSelected = (player, team) => {
     // Handles player details for display
@@ -212,7 +201,6 @@ export default function ContentTable({
     }
   };
 
->>>>>>> refs/remotes/origin/main
   return (
 
     <>
@@ -236,44 +224,6 @@ export default function ContentTable({
       </thead>
       <tbody id="attacker-body" className='text-s text-center'>
           {players
-<<<<<<< HEAD
-            .filter(player => player.position == 'ATTACKER')
-            .map((player, index) => <tr key={index} className='border-b-2 border-stone-600' id={player.team.split(':')[1] + '_' + player.lastname + '-' + player.firstname}>
-              <td className="table-cell">{player.firstname} {player.lastname}</td>
-              <td className="table-cell">{player.team.split(':')[1].toUpperCase()}</td>
-              <td className="table-cell">{player.goals}</td>
-              <td className="table-cell">{player.assists}</td>
-              <td className="table-cell">{player.penaltyminutes}</td>
-              <td className="table-cell">{player.shots}</td>
-              <td className="table-cell">{player.blocks}</td>
-              <td className='table-cell'>{player.faceoffs}</td>
-              <td className="table-cell">{player.plusminus}</td>
-              <td className="table-cell">{player.LPP}</td>
-              <td className="pt-2">
-                <button
-                  title="Valitse"
-                  className="group cursor-pointer outline-none hover:rotate-90 duration-300"
-                  onClick={() => SelectedTable(player, player.team.split(':')[1].toUpperCase())}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20px"
-                    height="20px"
-                    viewBox="0 0 24 24"
-                    className="stroke-zinc-400 fill-none group-hover:fill-zinc-800 group-active:stroke-zinc-200 group-active:fill-zinc-600 group-active:duration-0 duration-300"
-                  >
-                    <path
-                      d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
-                      strokeWidth="1.5"
-                    ></path>
-                    <path d="M8 12H16" strokeWidth="1.5"></path>
-                    <path d="M12 16V8" strokeWidth="1.5"></path>
-                  </svg>
-                </button>
-              </td>
-            </tr>
-            )}
-=======
             .filter(player => player.position == 'RIGHT_WING' || player.position == 'LEFT_WING' || player.position == 'CENTER')
             .map((player, index) => (
               <React.Fragment key={player.team + '_' + player.lastname + '-' + player.firstname}>
@@ -326,7 +276,6 @@ export default function ContentTable({
                 )}
               </React.Fragment>
             ))}
->>>>>>> refs/remotes/origin/main
         </tbody>
         
         <thead id="defender-header" className="text-gray-300 text-s border-collapse text-center">
@@ -370,7 +319,8 @@ export default function ContentTable({
               <button
                   title="Valitse"
                   className="group cursor-pointer outline-none hover:rotate-90 duration-300"
-                  onClick={() => SelectedTable(player, player.team.split(':')[1].toUpperCase())}
+                  onClick={() => moveSelected(player, player.team.split(':')[1].toUpperCase())}
+                  id="selectPlayer"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -431,7 +381,8 @@ export default function ContentTable({
               <button
                   title="Valitse"
                   className="group cursor-pointer outline-none hover:rotate-90 duration-300"
-                  onClick={() => SelectedTable(player, player.team.split(':')[1].toUpperCase())}
+                  onClick={() => moveSelected(player, player.team.split(':')[1].toUpperCase())}
+                  id="selectPlayer"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

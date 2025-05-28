@@ -2,12 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-<<<<<<< HEAD
-
-
-export default function DefaultDisplay({position, team, info}){
-=======
-import question from '@/app/logos/QUESTION.png'
+import question from '@/app/logos/question.png'
 
 
 export default function DefaultDisplay({team, name, LPP, value,
@@ -78,21 +73,9 @@ export default function DefaultDisplay({team, name, LPP, value,
         
     }
 
->>>>>>> refs/remotes/origin/main
     return(
+
         <>
-<<<<<<< HEAD
-        
-        <div className="text-center ml-[10%]" id = 'playerImage'>
-            <Image src={team} alt="react" width={140} height={100} />
-        </div>
-        <div id="player-name">
-            {position}
-        </div>
-        <div id="player-captain">
-            kakak
-        </div>
-=======
         <div className="w-[100%] absolute top-0 bg-stone-800 hover:bg-stone-800/50 cursor-pointer">
             <button
                 title="Vaihda"
@@ -125,7 +108,6 @@ export default function DefaultDisplay({team, name, LPP, value,
         </div>
         
         
->>>>>>> refs/remotes/origin/main
             
             </>
     );
