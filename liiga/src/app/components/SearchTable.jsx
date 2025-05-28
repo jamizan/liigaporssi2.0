@@ -126,7 +126,6 @@ export default function SearchTable({
         break;
     }
 
-    console.log(player.team.split(':')[1].toUpperCase());
     if (imageSrc1.p == '' && playerPosition == 'ATTACKER' &&
       imageSrc1.nam != nameStr && imageSrc2.nam != nameStr && imageSrc3.nam != nameStr
     ) {
