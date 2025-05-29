@@ -243,12 +243,12 @@ export default function ContentTable({
         <tr id="smallHeader" className="w-[100] table-row bg-gray-200/5 border-b-4">
           <th className="table-cell">Nimi</th>
           <th className="table-cell">Joukkue</th>
-          <th className="table-cell">Maalit</th>
-          <th className="table-cell">Syötöt</th>
-          <th className="table-cell">Rangaistukset</th>
-          <th className="table-cell">Laukaukset</th>
-          <th className="table-cell">Blockit</th>
-          <th className='table-cell'>Aloitukset</th>
+          <th className="table-cell">M</th>
+          <th className="table-cell">S</th>
+          <th className="table-cell">R</th>
+          <th className="table-cell">L</th>
+          <th className="table-cell">B</th>
+          <th className='table-cell'>A</th>
           <th className="table-cell">+/-</th>
           <th className='table-cell'>LPP</th>
           <th></th>
@@ -317,12 +317,12 @@ export default function ContentTable({
           <tr id="smallHeader" className="table-row bg-gray-200/5 border-b-4">
             <th className="table-cell">Nimi</th>
             <th className="table-cell">Joukkue</th>
-            <th className="table-cell">Maalit</th>
-            <th className="table-cell">Syötöt</th>
-            <th className="table-cell">Rangaistukset</th>
-            <th className="table-cell">Laukaukset</th>
-            <th className="table-cell">Blockit</th>
-            <th className='table-cell'>Aloitukset</th>
+            <th className="table-cell">M</th>
+            <th className="table-cell">S</th>
+            <th className="table-cell">R</th>
+            <th className="table-cell">L</th>
+            <th className="table-cell">B</th>
+            <th className='table-cell'>A</th>
             <th className="table-cell">+/-</th>
             <th className='table-cell'>LPP</th>
             <th></th>
@@ -380,11 +380,11 @@ export default function ContentTable({
           <tr id="smallHeader" className="table-row bg-gray-200/5 border-b-4">
             <th className="table-cell">Nimi</th>
             <th className="table-cell">Joukkue</th>
-            <th className="table-cell">Maalit</th>
-            <th className="table-cell">Syötöt</th>
-            <th className="table-cell">Rangaistukset</th>
-            <th className="table-cell">Torjunnat</th>
-            <th className="table-cell">Päästetyt maalit</th>
+            <th className="table-cell">M</th>
+            <th className="table-cell">S</th>
+            <th className="table-cell">R</th>
+            <th className="table-cell">T</th>
+            <th className="table-cell">PM</th>
             <th className='table-cell'>LPP</th>
             <th></th>
             <th></th>

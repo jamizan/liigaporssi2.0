@@ -29,7 +29,7 @@ def matchnumbers():
     # Compare game dates to todays date
             #dateNow = datetime.now()
             #dateNow = dateNow.strftime("%Y-%m-%d")
-            dateNow = '2025-03-28' # VAIN DEV KÄYTTÖÖN
+            dateNow = '2025-04-11' # VAIN DEV KÄYTTÖÖN
     # If game date is today => save team data
             if beginTime[0] == dateNow:
                 gameId = game['id']
