@@ -90,7 +90,7 @@ useEffect(() => {
     var imageId = 'https://liigaporssi.fi/LP/images/players/player_'+player.id+'.jpg';
 
     return(
-        <tr className="w-full">
+        <tr className="w-full border-b-2 border-stone-600">
             <td className="text-gray-400 w-auto">
                 <div className="ml-4 mr-4">
                     <Image

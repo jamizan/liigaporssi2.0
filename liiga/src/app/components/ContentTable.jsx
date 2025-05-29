@@ -236,31 +236,31 @@ export default function ContentTable({
   return (
 
     <>
-      <thead id="attacker-header" className="w-[100] text-gray-300 text-s border-collapse text-center">
+      <thead id="attacker-header" className="w-full text-gray-300 text-s border-collapse text-center">
         <tr id="bigHeader" className="table-row">
-          <th colSpan={11} className="table-cell row-span-full bg-gray-200/10 flex-full text-xl">Hyökkääjät</th>
+          <th colSpan={11} className="table-cell row-span-full bg-gray-200/10 flex-full text-xl py-4">Hyökkääjät</th>
         </tr>
-        <tr id="smallHeader" className="w-[100] table-row bg-gray-200/5 border-b-4">
-          <th className="table-cell">Nimi</th>
-          <th className="table-cell">Joukkue</th>
-          <th className="table-cell">M</th>
-          <th className="table-cell">S</th>
-          <th className="table-cell">R</th>
-          <th className="table-cell">L</th>
-          <th className="table-cell">B</th>
-          <th className='table-cell'>A</th>
-          <th className="table-cell">+/-</th>
-          <th className='table-cell'>LPP</th>
+        <tr id="smallHeader" className="w-full table-row bg-gray-200/5 border-b-4">
+          <th className="table-cell px-6 py-4">Nimi</th>
+          <th className="table-cell px-6 py-4">Joukkue</th>
+          <th className="table-cell px-4 py-2">M</th>
+          <th className="table-cell px-4 py-2">S</th>
+          <th className="table-cell px-4 py-2">R</th>
+          <th className="table-cell px-4 py-2">L</th>
+          <th className="table-cell px-4 py-2">B</th>
+          <th className="table-cell px-4 py-2">A</th>
+          <th className="table-cell px-4 py-2">+/-</th>
+          <th className="table-cell px-4 py-2">LPP</th>
           <th></th>
         </tr>
       </thead>
-      <tbody id="attacker-body" className='text-s text-center'>
+      <tbody id="attacker-body" className="text-s text-center">
           {players
             .filter(player => player.position == 'RIGHT_WING' || player.position == 'LEFT_WING' || player.position == 'CENTER')
             .map((player, index) => (
               <React.Fragment key={player.team + '_' + player.lastname + '-' + player.firstname}>
-                <tr className='border-b-2 border-stone-600' id={player.team.split(':')[1] + '_' + player.lastname + '-' + player.firstname}>
-                  <td className="table-cell">
+                <tr className="border-b-2 border-stone-600" id={player.team.split(':')[1] + '_' + player.lastname + '-' + player.firstname}>
+                  <td className="table-cell px-6 py-4">
                     <div className="text-left pl-3 gap-4 text-decoration-line: underline hover:text-gray-300/80">
                       <span
                         onClick={() =>
@@ -269,15 +269,15 @@ export default function ContentTable({
                       >{player.firstname} {player.lastname}</span>
                     </div>
                   </td>
-                  <td className="table-cell">{player.team.split(':')[1].toUpperCase()}</td>
-                  <td className="table-cell">{player.goals}</td>
-                  <td className="table-cell">{player.assists}</td>
-                  <td className="table-cell">{player.penaltyminutes}</td>
-                  <td className="table-cell">{player.shots}</td>
-                  <td className="table-cell">{player.blocks}</td>
-                  <td className='table-cell'>{player.faceoffs}</td>
-                  <td className="table-cell">{player.plusminus}</td>
-                  <td className="table-cell">{player.LPP}</td>
+                  <td className="table-cell px-6 py-4">{player.team.split(':')[1].toUpperCase()}</td>
+                  <td className="table-cell px-4 py-2">{player.goals}</td>
+                  <td className="table-cell px-4 py-2">{player.assists}</td>
+                  <td className="table-cell px-4 py-2">{player.penaltyminutes}</td>
+                  <td className="table-cell px-4 py-2">{player.shots}</td>
+                  <td className="table-cell px-4 py-2">{player.blocks}</td>
+                  <td className="table-cell px-4 py-2">{player.faceoffs}</td>
+                  <td className="table-cell px-4 py-2">{player.plusminus}</td>
+                  <td className="table-cell px-4 py-2">{player.LPP}</td>
                   <td className="pt-2">
                     <button
                       title="Valitse"
@@ -312,80 +312,91 @@ export default function ContentTable({
         
         <thead id="defender-header" className="text-gray-300 text-s border-collapse text-center">
           <tr id="bigHeader" className="table-row">
-            <th colSpan={11} className="table-cell row-span-full bg-gray-200/10 flex-full text-xl">Puolustajat</th>
+            <th colSpan={11} className="table-cell row-span-full bg-gray-200/10 flex-full text-xl py-4">Puolustajat</th>
           </tr>
           <tr id="smallHeader" className="table-row bg-gray-200/5 border-b-4">
-            <th className="table-cell">Nimi</th>
-            <th className="table-cell">Joukkue</th>
-            <th className="table-cell">M</th>
-            <th className="table-cell">S</th>
-            <th className="table-cell">R</th>
-            <th className="table-cell">L</th>
-            <th className="table-cell">B</th>
-            <th className='table-cell'>A</th>
-            <th className="table-cell">+/-</th>
-            <th className='table-cell'>LPP</th>
+            <th className="table-cell py-4">Nimi</th>
+            <th className="table-cell py-4">Joukkue</th>
+            <th className="table-cell py-2">M</th>
+            <th className="table-cell py-2">S</th>
+            <th className="table-cell py-2">R</th>
+            <th className="table-cell py-2">L</th>
+            <th className="table-cell py-2">B</th>
+            <th className='table-cell py-2'>A</th>
+            <th className="table-cell py-2">+/-</th>
+            <th className='table-cell py-2'>LPP</th>
             <th></th>
           </tr>
         </thead>
-        <tbody id="defender-body" className='text-s border-collapse text-center'>
+        <tbody id="defender-body" className="text-s border-collapse text-center">
           {players
 
             .filter(player => player.position == 'RIGHT_DEFENSEMAN' || player.position == 'LEFT_DEFENSEMAN')
-            .map((player, index) => <tr key={index} className='border-b-2 border-stone-600' id={player.team.split(':')[1] + '_' + player.lastname + '-' + player.firstname}>
-              <td className="table-cell">
-                <div className="flex items-center gap-4 ">
-                  <span>{player.firstname} {player.lastname}</span>
-                </div>
-              </td>
-              <td className="table-cell">{player.team.split(':')[1].toUpperCase()}</td>
-              <td className="table-cell">{player.goals}</td>
-              <td className="table-cell">{player.assists}</td>
-              <td className="table-cell">{player.penaltyminutes}</td>
-              <td className="table-cell">{player.shots}</td>
-              <td className="table-cell">{player.blocks}</td>
-              <td className='table-cell'>{player.faceoffs}</td>
-              <td className="table-cell">{player.plusminus}</td>
-              <td className="table-cell">{player.LPP}</td>
-              <td className="pt-2">
-              <button
-                  title="Valitse"
-                  className="group cursor-pointer outline-none hover:rotate-90 duration-300"
-                  onClick={() => moveSelected(player, player.team.split(':')[1].toUpperCase())}
-                  id="selectPlayer"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20px"
-                    height="20px"
-                    viewBox="0 0 24 24"
-                    className="stroke-zinc-400 fill-none group-hover:fill-zinc-800 group-active:stroke-zinc-200 group-active:fill-zinc-600 group-active:duration-0 duration-300"
-                  >
-                    <path
-                      d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
-                      strokeWidth="1.5"
-                    ></path>
-                    <path d="M8 12H16" strokeWidth="1.5"></path>
-                    <path d="M12 16V8" strokeWidth="1.5"></path>
-                  </svg>
-                </button>
-              </td>
-            </tr>
-            )}
+            .map((player, index) => (
+              <React.Fragment key={player.team + '_' + player.lastname + '-' + player.firstname}>
+                <tr className="border-b-2 border-stone-600" id={player.team.split(':')[1] + '_' + player.lastname + '-' + player.firstname}>
+                  <td className="table-cell px-6 py-4">
+                    <div className="text-left pl-3 gap-4 text-decoration-line: underline hover:text-gray-300/80">
+                      <span
+                        onClick={() =>
+                          setOpenPlayerInfo(openPlayerInfo === player.id ? null : player.id)
+                        }
+                      >{player.firstname} {player.lastname}</span>
+                    </div>
+                  </td>
+                  <td className="table-cell px-6 py-4">{player.team.split(':')[1].toUpperCase()}</td>
+                  <td className="table-cell px-4 py-2">{player.goals}</td>
+                  <td className="table-cell px-4 py-2">{player.assists}</td>
+                  <td className="table-cell px-4 py-2">{player.penaltyminutes}</td>
+                  <td className="table-cell px-4 py-2">{player.shots}</td>
+                  <td className="table-cell px-4 py-2">{player.blocks}</td>
+                  <td className="table-cell px-4 py-2">{player.faceoffs}</td>
+                  <td className="table-cell px-4 py-2">{player.plusminus}</td>
+                  <td className="table-cell px-4 py-2">{player.LPP}</td>
+                  <td className="pt-2">
+                    <button
+                      title="Valitse"
+                      className="group cursor-pointer outline-none hover:rotate-90 duration-300"
+                      onClick={() => moveSelected(player, player.team.split(':')[1].toUpperCase())}
+                      id="selectPlayer"
+                      disabled={false}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20px"
+                        height="20px"
+                        viewBox="0 0 24 24"
+                        className="stroke-zinc-400 fill-none group-hover:fill-zinc-800 group-active:stroke-zinc-200 group-active:fill-zinc-600 group-active:duration-0 duration-300"
+                      >
+                        <path
+                          d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+                          strokeWidth="1.5"
+                        ></path>
+                        <path d="M8 12H16" strokeWidth="1.5"></path>
+                        <path d="M12 16V8" strokeWidth="1.5"></path>
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
+                {openPlayerInfo === player.id && (
+                  <ExtraInfo player={player}/>
+                )}
+              </React.Fragment>
+            ))}
         </tbody>
         <thead id="goalie-header" className="text-gray-300 text-s border-collapse text-center">
           <tr id="bigHeader" className="table-row">
-            <th colSpan={11} className="table-cell row-span-full bg-gray-200/10 flex-full text-xl">Maalivahdit</th>
+            <th colSpan={11} className="table-cell row-span-full bg-gray-200/10 flex-full text-xl py-4">Maalivahdit</th>
           </tr>
           <tr id="smallHeader" className="table-row bg-gray-200/5 border-b-4">
-            <th className="table-cell">Nimi</th>
-            <th className="table-cell">Joukkue</th>
-            <th className="table-cell">M</th>
-            <th className="table-cell">S</th>
-            <th className="table-cell">R</th>
-            <th className="table-cell">T</th>
-            <th className="table-cell">PM</th>
-            <th className='table-cell'>LPP</th>
+            <th className="table-cell py-4">Nimi</th>
+            <th className="table-cell py-4">Joukkue</th>
+            <th className="table-cell py-2">M</th>
+            <th className="table-cell py-2">S</th>
+            <th className="table-cell py-2">R</th>
+            <th className="table-cell py-2">T</th>
+            <th className="table-cell py-2">PM</th>
+            <th className='table-cell py-2'>LPP</th>
             <th></th>
             <th></th>
             <th></th>
@@ -395,18 +406,22 @@ export default function ContentTable({
           {players
             .filter(player => player.position == 'GOALIE')
             .map((player, index) => <tr key={index} className='border-b-2 border-stone-600' id={player.team.split(':')[1] + '_' + player.lastname + '-' + player.firstname}>
-              <td className="table-cell">
+              <td className="table-cell py-4">
                 <div className="text-left pl-3 gap-4 text-decoration-line: underline hover:text-gray-300/80">
-                  <span>{player.firstname} {player.lastname}</span>
+                  <span
+                    onClick={() =>
+                      setOpenPlayerInfo(openPlayerInfo === player.id ? null : player.id)
+                    }
+                  >{player.firstname} {player.lastname}</span>
                 </div>
               </td>
-              <td className="table-cell">{player.team.split(':')[1].toUpperCase()}</td>
-              <td className="table-cell">{player.goals}</td>
-              <td className="table-cell">{player.assists}</td>
-              <td className="table-cell">{player.penaltyminutes}</td>
-              <td className="table-cell">{player.saves}</td>
-              <td className="table-cell">{player.goalsallowed}</td>
-              <td className="table-cell">{player.LPP}</td>
+              <td className="table-cell py-4">{player.team.split(':')[1].toUpperCase()}</td>
+              <td className="table-cell py-2">{player.goals}</td>
+              <td className="table-cell py-2">{player.assists}</td>
+              <td className="table-cell py-2">{player.penaltyminutes}</td>
+              <td className="table-cell py-2">{player.saves}</td>
+              <td className="table-cell py-2">{player.goalsallowed}</td>
+              <td className="table-cell py-2">{player.LPP}</td>
               <td></td>
               <td></td>
               <td className="pt-2">
