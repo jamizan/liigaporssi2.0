@@ -15,8 +15,6 @@ export default function DefaultDisplay({team, name, LPP, value,
 
 }){
     function makeCaptain( value, LPP ){
-
-
         switch (value) {
             case '1':
                 points = imageSrc1.captainLPP;
@@ -46,37 +44,35 @@ export default function DefaultDisplay({team, name, LPP, value,
     function deleteSelected(value){
         switch (value) {
             case '1':
-                setImageSrc1({ ...imageSrc1, src: question, nam: '', p:'', LPP: 0 })
+                setImageSrc1({ ...imageSrc1, src: question, nam: '\u200B', p:'', LPP: '\u200B' })
                 
                 break;
             case '2':
-                setImageSrc2({ ...imageSrc2, src: question, nam: '', p:'', LPP: 0 })
+                setImageSrc2({ ...imageSrc2, src: question, nam: '\u200B', p:'', LPP: '\u200B' })
                 
                 break;
             case '3':
-                setImageSrc3({ ...imageSrc3, src: question, nam: '', p:'', LPP: 0 })
+                setImageSrc3({ ...imageSrc3, src: question, nam: '\u200B', p:'', LPP: '\u200B' })
                 break;
             case '4':
-                setImageSrc4({ ...imageSrc4, src: question, nam: '', p:'', LPP: 0 })                
+                setImageSrc4({ ...imageSrc4, src: question, nam: '\u200B', p:'', LPP: '\u200B' })                
                 break;
             case '5':
-                setImageSrc5({ ...imageSrc5, src: question, nam: '', p:'', LPP: 0 })
+                setImageSrc5({ ...imageSrc5, src: question, nam: '\u200B', p:'', LPP: '\u200B' })
                 break;
             case '6':
-                setImageSrc6({ ...imageSrc6, src: question, nam: '', p:'', LPP: 0 })
+                setImageSrc6({ ...imageSrc6, src: question, nam: '\u200B', p:'', LPP: '\u200B' })
                 break;
         
             default:
                 break;
         }
-        
-        
     }
 
     return(
 
         <>
-        <div className="w-[100%] absolute top-0 bg-stone-800 hover:bg-stone-800/50 cursor-pointer">
+        <div className="w-[100%] top-0 bg-stone-800 hover:bg-stone-800/50 cursor-pointer">
             <button
                 title="Vaihda"
                 className="cursor-pointer"
@@ -91,11 +87,10 @@ export default function DefaultDisplay({team, name, LPP, value,
         <div className="text-center flex items-center justify-center">
             <Image height={''} width={80} id="playerImage" src={team} alt="team"/>
         </div>
-
-        <div className="text-zinc-900">
+        <div className="text-zinc-900" aria-placeholder="&#8203;">
             {LPP}
         </div>
-        <div className="w-[100%] absolute bottom-0 inset-x-0 bg-stone-800 hover:bg-stone-800/50 cursor-pointer" id="player-captain">
+        <div className="w-[100%] bottom-0 inset-x-0 bg-stone-800 hover:bg-stone-800/50 cursor-pointer" id="player-captain">
             <button
                 title="Kapteeni"
                 id="captain-button"

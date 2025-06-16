@@ -194,7 +194,7 @@ export default function ContentTable({
     if (imageSrc1.p == '' && playerPosition == 'ATTACKER' &&
       imageSrc1.nam != nameStr && imageSrc2.nam != nameStr && imageSrc3.nam != nameStr
     ) {
-      setImageSrc1({ ...imageSrc1, src: value, nam: nameStr, p:'t', LPP: player.LPP });
+      setImageSrc1({ ...imageSrc1, src: value, nam: nameStr, p:'t', LPP: player.LPP, playerData: player });
     }
     else{
       if (imageSrc2.p == '' && playerPosition == 'ATTACKER' &&

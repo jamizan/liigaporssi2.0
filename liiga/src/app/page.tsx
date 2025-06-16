@@ -13,49 +13,50 @@ export default function Home() {
 
   const [imageSrc1, setImageSrc1] = useState({
     src: question,
-    nam: '',
+    nam: '\u200B',
     p: '',
-    LPP: '',
-    captainLPP: ''
+    LPP: "\u200B",
+    captainLPP: '',
+    playerData: []
     
   });
   const [imageSrc2, setImageSrc2] = useState({
     src: question,
-    nam: '',
+    nam: '\u200B',
     p: '',
-    LPP: '',
+    LPP: "\u200B",
     captainLPP: ''
   
   });
   const [imageSrc3, setImageSrc3] = useState({
     src: question,
-    nam: '',
+    nam: '\u200B',
     p: '',
-    LPP: '',
+    LPP: "\u200B",
     captainLPP: ''
 
   });
   const [imageSrc4, setImageSrc4] = useState({
     src: question,
-    nam: '',
+    nam: '\u200B',
     p: '',
-    LPP: '',
+    LPP: "\u200B",
     captainLPP: ''
 
   });
   const [imageSrc5, setImageSrc5] = useState({
     src: question,
-    nam: '',
+    nam: '\u200B',
     p: '',
-    LPP: '',
+    LPP: "\u200B",
     captainLPP: ''
 
   });
   const [imageSrc6, setImageSrc6] = useState({
     src: question,
-    nam: '',
+    nam: '\u200B',
     p: '',
-    LPP: ''
+    LPP: "\u200B"
 
   });
 
@@ -67,7 +68,7 @@ export default function Home() {
     <div className="header">
       <h1 className="text-gray-300 text-6xl text-center mt-10">LPP-Laskuri</h1>
     </div>
-    <div className='flex  justify-center w-[60%] h-[250px] ml-[20%]'>
+    <div className='flex flex-col justify-center w-[60%] h-auto ml-[20%]'>
       <SelectedTable
        setImageSrc1={setImageSrc1} imageSrc1={imageSrc1}
        setImageSrc2={setImageSrc2} imageSrc2={imageSrc2}

@@ -1,6 +1,7 @@
 "use client"
 
 import DefaultDisplay from "@/app/components/DefaultDisplay";
+import SelectedPlayerRows from "@/app/components/SelectedPlayerRows";
 
 export default function SelectedTable({
     setImageSrc1, imageSrc1, 
@@ -13,26 +14,26 @@ export default function SelectedTable({
     
 
     return(
-        <table className="text-center w-[100%]">
+        <><table className="text-center w-[100%] ">
             <tbody>
                 <tr>
                     <td className="border-2 border-stone-600 w-[10%] relative bg-white" id="player-1">
-                        <DefaultDisplay setImageSrc1={setImageSrc1} imageSrc1={imageSrc1} position={'Hyökkääjä'} team={imageSrc1.src} name={imageSrc1.nam} LPP={imageSrc1.LPP} value={'1'}/>
+                        <DefaultDisplay setImageSrc1={setImageSrc1} imageSrc1={imageSrc1} position={'Hyökkääjä'} team={imageSrc1.src} name={imageSrc1.nam} LPP={imageSrc1.LPP} value={'1'} />
                     </td>
                     <td className="border-2 border-stone-600 w-[10%] relative bg-white" id="player-2">
-                        <DefaultDisplay setImageSrc2={setImageSrc2} imageSrc2={imageSrc2} position={'Hyökkääjä'} team={imageSrc2.src} name={imageSrc2.nam} LPP={imageSrc2.LPP} value={'2'}/>
+                        <DefaultDisplay setImageSrc2={setImageSrc2} imageSrc2={imageSrc2} position={'Hyökkääjä'} team={imageSrc2.src} name={imageSrc2.nam} LPP={imageSrc2.LPP} value={'2'} />
                     </td>
                     <td className="border-2 border-stone-600 w-[10%] relative bg-white" id="player-3">
-                        <DefaultDisplay setImageSrc3={setImageSrc3} imageSrc3={imageSrc3} position={'Hyökkääjä'} team={imageSrc3.src} name={imageSrc3.nam} LPP={imageSrc3.LPP} value={'3'}/>
+                        <DefaultDisplay setImageSrc3={setImageSrc3} imageSrc3={imageSrc3} position={'Hyökkääjä'} team={imageSrc3.src} name={imageSrc3.nam} LPP={imageSrc3.LPP} value={'3'} />
                     </td>
                     <td className="border-2 border-stone-600 w-[10%] relative bg-white" id="player-4">
-                        <DefaultDisplay setImageSrc4={setImageSrc4} imageSrc4={imageSrc4} position={'Puolustaja'} team={imageSrc4.src} name={imageSrc4.nam} LPP={imageSrc4.LPP} value={'4'}/>
+                        <DefaultDisplay setImageSrc4={setImageSrc4} imageSrc4={imageSrc4} position={'Puolustaja'} team={imageSrc4.src} name={imageSrc4.nam} LPP={imageSrc4.LPP} value={'4'} />
                     </td>
                     <td className="border-2 border-stone-600 w-[10%] relative bg-white" id="player-5">
-                        <DefaultDisplay setImageSrc5={setImageSrc5} imageSrc5={imageSrc5} position={'Puolustaja'} team={imageSrc5.src} name={imageSrc5.nam} LPP={imageSrc5.LPP} value={'5'}/>
+                        <DefaultDisplay setImageSrc5={setImageSrc5} imageSrc5={imageSrc5} position={'Puolustaja'} team={imageSrc5.src} name={imageSrc5.nam} LPP={imageSrc5.LPP} value={'5'} />
                     </td>
                     <td className="border-2 border-stone-600 w-[10%] relative bg-white" id="player-6">
-                        <DefaultDisplay setImageSrc6={setImageSrc6} imageSrc6={imageSrc6} position={'Maalivahti'} team={imageSrc6.src} name={imageSrc6.nam} LPP={imageSrc6.LPP} value={'6'}/>
+                        <DefaultDisplay setImageSrc6={setImageSrc6} imageSrc6={imageSrc6} position={'Maalivahti'} team={imageSrc6.src} name={imageSrc6.nam} LPP={imageSrc6.LPP} value={'6'} />
                     </td>
                 </tr>
                 <tr className="p-[50px]">
@@ -42,6 +43,11 @@ export default function SelectedTable({
                 </tr>
             </tbody>
         </table>
+        <table className="w-[100%] w-full table-auto justify-center text-center">
+            {(imageSrc1.nam !== '\u200B') &&(
+            <SelectedPlayerRows setImageSrc1={setImageSrc1} imageSrc1={imageSrc1} value={'1'}/>
+            )}
+        </table>
+    </>
     );
-    
 }
