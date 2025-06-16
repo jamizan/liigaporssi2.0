@@ -1,25 +1,28 @@
 "use client"
 
-import React from "react";
+import React, {useState} from "react";
+import ExtraInfo from "@/app/components/ExtraInfo";
 import question from '@/app/logos/question.png'
 
 export default function SelectedPlayerRows({value,
+    imageSrc,
     setImageSrc1, imageSrc1, 
     setImageSrc2, imageSrc2,
     setImageSrc3, imageSrc3,
     setImageSrc4, imageSrc4,
     setImageSrc5, imageSrc5,
-    setImageSrc6, imageSrc6
+    setImageSrc6, imageSrc6,
+    openPlayerInfo, setOpenPlayerInfo
 }){
 
     function deleteSelected(value){
         switch (value) {
             case '1':
-                setImageSrc1({ ...imageSrc1, src: question, nam: '\u200B', p:'', LPP: '\u200B', playerData: {} })
+                setImageSrc1({ ...imageSrc1, src: question, nam: '\u200B', p:'', LPP: '\u200B', playerData: [] })
                 
                 break;
             case '2':
-                setImageSrc2({ ...imageSrc2, src: question, nam: '\u200B', p:'', LPP: '\u200B' })
+                setImageSrc2({ ...imageSrc2, src: question, nam: '\u200B', p:'', LPP: '\u200B', playerData: [] })
                 
                 break;
             case '3':
@@ -40,39 +43,47 @@ export default function SelectedPlayerRows({value,
         }
     }
 
+
+    
     return(
     <>
-        <tbody>
-            <tr>
+            <tr className="border-b-2 border-stone-600">
                 <td className="table-cell px-6 py-4">
-                    {imageSrc1.nam}
+                    <div className="text-left pl-3 gap-4 text-decoration-line: underline hover:text-gray-300/80">
+                      <span
+                        onClick={() =>
+                          setOpenPlayerInfo(openPlayerInfo === imageSrc.playerData.id ? null : imageSrc.playerData.id)
+                        }
+                      >{imageSrc.nam}
+                      </span>
+                    </div>
                 </td>
                 <td className="table-cell px-6 py-4">
-                    {imageSrc1.playerData?.team?.split(':')[1].toUpperCase() || ""}
+                    {imageSrc.playerData?.team?.split(':')[1].toUpperCase() || ""}
                 </td>
                 <td className="table-cell px-4 py-2">
-                    {imageSrc1.playerData.goals}
+                    {imageSrc.playerData.goals}
                 </td>
                 <td className="table-cell px-4 py-2">
-                    {imageSrc1.playerData.assists}
+                    {imageSrc.playerData.assists}
                 </td>
                 <td className="table-cell px-4 py-2">
-                    {imageSrc1.playerData.penaltyminutes}
+                    {imageSrc.playerData.penaltyminutes}
                 </td>
                 <td className="table-cell px-4 py-2">
-                    {imageSrc1.playerData.shots}
+                    {imageSrc.playerData.shots || imageSrc.playerData.saves || 0}
                 </td>
                 <td className="table-cell px-4 py-2">
-                    {imageSrc1.playerData.blocks}
+                    {imageSrc.playerData.blocks || imageSrc.playerData.goalsallowed}
                 </td>
                 <td className="table-cell px-4 py-2">
-                    {imageSrc1.playerData.faceoffs}
+                    {imageSrc.playerData.faceoffs}
                 </td>
                 <td className="table-cell px-4 py-2">
-                    {imageSrc1.playerData.plusminus}
+                    {imageSrc.playerData.plusminus}
                 </td>
                 <td className="table-cell px-4 py-2">
-                    {imageSrc1.LPP}
+                    {imageSrc.LPP}
                 </td>
                 <td>
                     <button
@@ -101,7 +112,10 @@ export default function SelectedPlayerRows({value,
                 </td>
 
             </tr>
-        </tbody>
+            {openPlayerInfo === imageSrc.playerData.id && (
+                <ExtraInfo player={imageSrc.playerData}/>
+            )}
         </>
     );
+
 }

@@ -25,7 +25,8 @@ export default function Home() {
     nam: '\u200B',
     p: '',
     LPP: "\u200B",
-    captainLPP: ''
+    captainLPP: '',
+    playerData: []
   
   });
   const [imageSrc3, setImageSrc3] = useState({
@@ -33,7 +34,8 @@ export default function Home() {
     nam: '\u200B',
     p: '',
     LPP: "\u200B",
-    captainLPP: ''
+    captainLPP: '',
+    playerData: []
 
   });
   const [imageSrc4, setImageSrc4] = useState({
@@ -41,7 +43,8 @@ export default function Home() {
     nam: '\u200B',
     p: '',
     LPP: "\u200B",
-    captainLPP: ''
+    captainLPP: '',
+    playerData: []
 
   });
   const [imageSrc5, setImageSrc5] = useState({
@@ -49,14 +52,16 @@ export default function Home() {
     nam: '\u200B',
     p: '',
     LPP: "\u200B",
-    captainLPP: ''
+    captainLPP: '',
+    playerData: []
 
   });
   const [imageSrc6, setImageSrc6] = useState({
     src: question,
     nam: '\u200B',
     p: '',
-    LPP: "\u200B"
+    LPP: "\u200B",
+    playerData: []
 
   });
 

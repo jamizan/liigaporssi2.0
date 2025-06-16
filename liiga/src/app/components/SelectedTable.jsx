@@ -1,5 +1,6 @@
 "use client"
 
+import React, { useState } from 'react';
 import DefaultDisplay from "@/app/components/DefaultDisplay";
 import SelectedPlayerRows from "@/app/components/SelectedPlayerRows";
 
@@ -9,8 +10,10 @@ export default function SelectedTable({
     setImageSrc3, imageSrc3,
     setImageSrc4, imageSrc4,
     setImageSrc5, imageSrc5,
-    setImageSrc6, imageSrc6
+    setImageSrc6, imageSrc6,
 }){
+
+    const [openPlayerInfo, setOpenPlayerInfo] = useState(null);
     
 
     return(
@@ -44,9 +47,61 @@ export default function SelectedTable({
             </tbody>
         </table>
         <table className="w-[100%] w-full table-auto justify-center text-center">
-            {(imageSrc1.nam !== '\u200B') &&(
-            <SelectedPlayerRows setImageSrc1={setImageSrc1} imageSrc1={imageSrc1} value={'1'}/>
+            {[imageSrc1, imageSrc2, imageSrc3, imageSrc4, imageSrc5].some(src => src.nam !== '\u200B') && (
+            <thead className="text-gray-300 border-b-2 border-gray-300">
+                <tr>
+                    <th className="py-2">Nimi</th>
+                    <th className="py-2">Joukkue</th>
+                    <th className="py-2">M</th>
+                    <th className="py-2">S</th>
+                    <th className="py-2">R</th>
+                    <th className="py-2">L</th>
+                    <th className="py-2">B</th>
+                    <th className="py-2">A</th>
+                    <th className="py-2">+/-</th>
+                    <th className="py-2">LPP</th>
+                </tr>
+            </thead>
             )}
+            <tbody>
+                {(imageSrc1.nam !== '\u200B') &&(
+                    <SelectedPlayerRows setImageSrc1={setImageSrc1} imageSrc1={imageSrc1} imageSrc={imageSrc1} openPlayerInfo={openPlayerInfo} setOpenPlayerInfo={setOpenPlayerInfo} value={'1'} />
+                )}
+                {(imageSrc2.nam !== '\u200B') &&(
+                    <SelectedPlayerRows setImageSrc2={setImageSrc2} imageSrc2={imageSrc2} imageSrc={imageSrc2} openPlayerInfo={openPlayerInfo} setOpenPlayerInfo={setOpenPlayerInfo} value={'2'} />
+                )}
+                {(imageSrc3.nam !== '\u200B') &&(
+                    <SelectedPlayerRows setImageSrc3={setImageSrc3} imageSrc3={imageSrc3} imageSrc={imageSrc3} openPlayerInfo={openPlayerInfo} setOpenPlayerInfo={setOpenPlayerInfo} value={'3'} />
+                )}
+                {(imageSrc4.nam !== '\u200B') &&(
+                    <SelectedPlayerRows setImageSrc4={setImageSrc4} imageSrc4={imageSrc4} imageSrc={imageSrc4} openPlayerInfo={openPlayerInfo} setOpenPlayerInfo={setOpenPlayerInfo} value={'4'} />
+                )}
+                {(imageSrc5.nam !== '\u200B') &&(
+                    <SelectedPlayerRows setImageSrc5={setImageSrc5} imageSrc5={imageSrc5} imageSrc={imageSrc5} openPlayerInfo={openPlayerInfo} setOpenPlayerInfo={setOpenPlayerInfo} value={'5'} />
+                )}
+            </tbody>
+            { [imageSrc6].some(src => src.nam !== '\u200B') && (
+            <thead className="text-gray-300 border-t-3 border-gray-300">
+                <tr>
+                    <th className="py-2">Nimi</th>
+                    <th className="py-2">Joukkue</th>
+                    <th className="py-2">M</th>
+                    <th className="py-2">S</th>
+                    <th className="py-2">R</th>
+                    <th className="py-2">T</th>
+                    <th className="py-2">PM</th>
+                    <th></th>
+                    <th></th>
+                    <th className="py-2">LPP</th>
+                </tr>
+            </thead>
+            )}
+            <tbody>
+                {(imageSrc6.nam !== '\u200B') &&(
+                    <SelectedPlayerRows setImageSrc6={setImageSrc6} imageSrc6={imageSrc6} imageSrc={imageSrc6} openPlayerInfo={openPlayerInfo} setOpenPlayerInfo={setOpenPlayerInfo} value={'6'} />
+                )}
+            </tbody>
+            
         </table>
     </>
     );

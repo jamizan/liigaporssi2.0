@@ -200,31 +200,31 @@ export default function ContentTable({
       if (imageSrc2.p == '' && playerPosition == 'ATTACKER' &&
         imageSrc1.nam != nameStr && imageSrc2.nam != nameStr && imageSrc3.nam != nameStr
       ) {
-        setImageSrc2({ ...imageSrc2, src: value, nam: nameStr, p:'t', LPP: player.LPP });
+        setImageSrc2({ ...imageSrc2, src: value, nam: nameStr, p:'t', LPP: player.LPP, playerData: player });
       }
       else{
         if (imageSrc3.p == '' && playerPosition == 'ATTACKER' &&
           imageSrc1.nam != nameStr && imageSrc2.nam != nameStr && imageSrc3.nam != nameStr
         ) {
-          setImageSrc3({ ...imageSrc3, src: value, nam: nameStr, p:'t', LPP: player.LPP });
+          setImageSrc3({ ...imageSrc3, src: value, nam: nameStr, p:'t', LPP: player.LPP, playerData: player });
         }
         else{
           if (imageSrc4.p == '' && playerPosition == 'DEFENDER' &&
             imageSrc4.nam != nameStr && imageSrc5.nam != nameStr
           ) {
-            setImageSrc4({ ...imageSrc4, src: value, nam: nameStr, p:'t', LPP: player.LPP });
+            setImageSrc4({ ...imageSrc4, src: value, nam: nameStr, p:'t', LPP: player.LPP, playerData: player });
           }
           else{
             if (imageSrc5.p == '' && playerPosition == 'DEFENDER' &&
               imageSrc4.nam != nameStr && imageSrc5.nam != nameStr
             ) {
-              setImageSrc5({ ...imageSrc5, src: value, nam: nameStr, p:'t', LPP: player.LPP });
+              setImageSrc5({ ...imageSrc5, src: value, nam: nameStr, p:'t', LPP: player.LPP, playerData: player });
             }
             else{
               if (imageSrc6.p == '' && playerPosition == 'GOALIE' &&
                 imageSrc6 != nameStr
               ) {
-                setImageSrc6({ ...imageSrc6, src: value, nam: nameStr, p:'t', LPP: player.LPP });
+                setImageSrc6({ ...imageSrc6, src: value, nam: nameStr, p:'t', LPP: player.LPP, playerData: player });
               }
             }
           }
