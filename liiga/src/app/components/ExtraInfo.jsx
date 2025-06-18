@@ -28,6 +28,8 @@ useEffect(() => {
                 shots: 0,
                 faceoffs: 0,
                 LPP: 0,
+                saves: 0,
+                goalsallowed: 0
             };
             const lastTen = {
                 goals: 0,
@@ -38,6 +40,8 @@ useEffect(() => {
                 shots: 0,
                 faceoffs: 0,
                 LPP: 0,
+                saves: 0,
+                goalsallowed: 0
             };
 
             Object.keys(data).forEach((date) => {
@@ -55,6 +59,8 @@ useEffect(() => {
                                 currentYear.shots += playerData.shots || 0;
                                 currentYear.faceoffs += playerData.faceoffs || 0;
                                 currentYear.LPP += playerData.LPP || 0;
+                                currentYear.saves += playerData.saves || 0;
+                                currentYear.goalsallowed += playerData.goalsallowed || 0;
                             }
                         });
                     });
@@ -76,6 +82,8 @@ useEffect(() => {
                 lastTen.shots += game.shots || 0;
                 lastTen.faceoffs += game.faceoffs || 0;
                 lastTen.LPP += game.LPP || 0;
+                lastTen.saves += game.saves || 0;
+                lastTen.goalsallowed += game.goalsallowed || 0;
             });
             
             setPlayersYearly(currentYear);
@@ -104,72 +112,147 @@ useEffect(() => {
             </td>
             <td colSpan={10} className="w-100">
                 <table className="w-full table-fixed mt-2 mb-4">
-                    <thead>
-                        <tr className="text-center">
-                            <th colSpan={10} className="text-center pt-4">
-                                <h1>Edelliset kymmenen peliä</h1>
-                            </th>
-                        </tr>
-                        <tr className="text-gray-300 border-b-2 border-gray-300">
-                            <th className="py-2">O</th>
-                            <th className="py-2">M</th>
-                            <th className="py-2">S</th>
-                            <th className="py-2">R</th>
-                            <th className="py-2">L</th>
-                            <th className="py-2">B</th>
-                            <th className="py-2">A</th>
-                            <th className="py-2">+/-</th>
-                            <th className="py-2">LPP</th>
-                            <th className="py-2">LPP/O</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr className="table-row">
-                            <td className="table-cell text-gray-400 py-2">{playerInstancesTen}</td>
-                            <td className="table-cell text-gray-400 py-2">{playersLastTen.goals}</td>
-                            <td className="table-cell text-gray-400 py-2">{playersLastTen.assists}</td>
-                            <td className="table-cell text-gray-400 py-2">{playersLastTen.penaltyminutes}</td>
-                            <td className="table-cell text-gray-400 py-2">{playersLastTen.shots}</td>
-                            <td className="table-cell text-gray-400 py-2">{playersLastTen.blocks}</td>
-                            <td className="table-cell text-gray-400 py-2">{playersLastTen.faceoffs}</td>
-                            <td className="table-cell text-gray-400 py-2">{playersLastTen.plusminus}</td>
-                            <td className="table-cell text-gray-400 py-2">{playersLastTen.LPP}</td>
-                            <td className="table-cell text-gray-400 py-2">{(playersLastTen.LPP / playerInstancesTen).toFixed(2)}</td>
-                        </tr>
-                    </tbody>
-                    <thead className="">
-                        <tr className="text-center">
-                            <th colSpan={10} className="text-center pt-4">
-                                <h1>Kausi tähän mennessä</h1>
-                            </th>
-                        </tr>
-                        <tr className="text-gray-300 border-b-2 border-gray-300">
-                            <th className="py-2">O</th>
-                            <th className="py-2">M</th>
-                            <th className="py-2">S</th>
-                            <th className="py-2">R</th>
-                            <th className="py-2">L</th>
-                            <th className="py-2">B</th>
-                            <th className="py-2">A</th>
-                            <th className="py-2">+/-</th>
-                            <th className="py-2">LPP</th>
-                            <th className="py-2">LPP/O</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr className="table-row">
-                            <td className="table-cell text-gray-400 py-2">{playerInstances.length}</td>
-                            <td className="table-cell text-gray-400 py-2">{playersYearly.goals}</td>
-                            <td className="table-cell text-gray-400 py-2">{playersYearly.assists}</td>
-                            <td className="table-cell text-gray-400 py-2">{playersYearly.penaltyminutes}</td>
-                            <td className="table-cell text-gray-400 py-2">{playersYearly.shots}</td>
-                            <td className="table-cell text-gray-400 py-2">{playersYearly.blocks}</td>
-                            <td className="table-cell text-gray-400 py-2">{playersYearly.faceoffs}</td>
-                            <td className="table-cell text-gray-400 py-2">{playersYearly.plusminus}</td>
-                            <td className="table-cell text-gray-400 py-2">{playersYearly.LPP}</td>
-                            <td className="table-cell text-gray-400 py-2">{(playersYearly.LPP / playerInstances.length).toFixed(2)}</td>
-                        </tr>
-                    </tbody>
+                    {player.position === "GOALIE" ? (
+                    <>
+                        <thead>
+                            <tr className="text-center">
+                                <th colSpan={7} className="text-center pt-4">
+                                    <h1>Edelliset kymmenen peliä</h1>
+                                </th>
+                            </tr>
+                            <tr className="text-gray-300 border-b-2 border-gray-300">
+                                <th className="py-2">O</th>
+                                <th className="py-2">M</th>
+                                <th className="py-2">S</th>
+                                <th className="py-2">R</th>
+                                <th className="py-2">T</th>
+                                <th className="py-2">PM</th>
+                                <th className="py-2"></th>
+                                <th className="py-2"></th>
+                                <th className="py-2">LPP</th>
+                                <th className="py-2">LPP/O</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr className="table-row">
+                                <td className="table-cell text-gray-400 py-2">{playerInstancesTen}</td>
+                                <td className="table-cell text-gray-400 py-2">{playersLastTen.goals}</td>
+                                <td className="table-cell text-gray-400 py-2">{playersLastTen.assists}</td>
+                                <td className="table-cell text-gray-400 py-2">{playersLastTen.penaltyminutes}</td>
+                                <td className="table-cell text-gray-400 py-2">{playersLastTen.saves}</td>
+                                <td className="table-cell text-gray-400 py-2">{playersLastTen.goalsallowed}</td>
+                                <td className="table-cell text-gray-400 py-2"></td>
+                                <td className="table-cell text-gray-400 py-2"></td>
+                                <td className="table-cell text-gray-400 py-2">{playersLastTen.LPP}</td>
+                                <td className="table-cell text-gray-400 py-2">{(playersLastTen.LPP / playerInstances.length).toFixed(2)}</td>
+                            </tr>
+                        </tbody>
+                        <thead>
+                            <tr className="text-center">
+                                <th colSpan={7} className="text-center pt-4">
+                                    <h1>Kausi tähän mennessä</h1>
+                                </th>
+                            </tr>
+                            <tr className="text-gray-300 border-b-2 border-gray-300">
+                                <th className="py-2">O</th>
+                                <th className="py-2">M</th>
+                                <th className="py-2">S</th>
+                                <th className="py-2">R</th>
+                                <th className="py-2">T</th>
+                                <th className="py-2">PM</th>
+                                <th className="py-2"></th>
+                                <th className="py-2"></th>
+                                <th className="py-2">LPP</th>
+                                <th className="py-2">LPP/O</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr className="table-row">
+                                <td className="table-cell text-gray-400 py-2">{playerInstances.length}</td>
+                                <td className="table-cell text-gray-400 py-2">{playersYearly.goals}</td>
+                                <td className="table-cell text-gray-400 py-2">{playersYearly.assists}</td>
+                                <td className="table-cell text-gray-400 py-2">{playersYearly.penaltyminutes}</td>
+                                <td className="table-cell text-gray-400 py-2">{playersYearly.saves}</td>
+                                <td className="table-cell text-gray-400 py-2">{playersYearly.goalsallowed}</td>
+                                <td className="table-cell text-gray-400 py-2"></td>
+                                <td className="table-cell text-gray-400 py-2"></td>
+                                <td className="table-cell text-gray-400 py-2">{playersYearly.LPP}</td>
+                                <td className="table-cell text-gray-400 py-2">{(playersYearly.LPP / playerInstances.length).toFixed(2)}</td>
+                            </tr>
+                        </tbody>
+                    </>
+                ) : (
+                    <>
+                        {
+                        <>
+                        <thead>
+                            <tr className="text-center">
+                                <th colSpan={10} className="text-center pt-4">
+                                    <h1>Edelliset kymmenen peliä</h1>
+                                </th>
+                            </tr>
+                            <tr className="text-gray-300 border-b-2 border-gray-300">
+                                <th className="py-2">O</th>
+                                <th className="py-2">M</th>
+                                <th className="py-2">S</th>
+                                <th className="py-2">R</th>
+                                <th className="py-2">L</th>
+                                <th className="py-2">B</th>
+                                <th className="py-2">A</th>
+                                <th className="py-2">+/-</th>
+                                <th className="py-2">LPP</th>
+                                <th className="py-2">LPP/O</th>
+                            </tr>
+                        </thead><tbody>
+                                <tr className="table-row">
+                                    <td className="table-cell text-gray-400 py-2">{playerInstancesTen}</td>
+                                    <td className="table-cell text-gray-400 py-2">{playersLastTen.goals}</td>
+                                    <td className="table-cell text-gray-400 py-2">{playersLastTen.assists}</td>
+                                    <td className="table-cell text-gray-400 py-2">{playersLastTen.penaltyminutes}</td>
+                                    <td className="table-cell text-gray-400 py-2">{playersLastTen.shots}</td>
+                                    <td className="table-cell text-gray-400 py-2">{playersLastTen.blocks}</td>
+                                    <td className="table-cell text-gray-400 py-2">{playersLastTen.faceoffs}</td>
+                                    <td className="table-cell text-gray-400 py-2">{playersLastTen.plusminus}</td>
+                                    <td className="table-cell text-gray-400 py-2">{playersLastTen.LPP}</td>
+                                    <td className="table-cell text-gray-400 py-2">{(playersLastTen.LPP / playerInstancesTen).toFixed(2)}</td>
+                                </tr>
+                            </tbody><thead className="">
+                                <tr className="text-center">
+                                    <th colSpan={10} className="text-center pt-4">
+                                        <h1>Kausi tähän mennessä</h1>
+                                    </th>
+                                </tr>
+                                <tr className="text-gray-300 border-b-2 border-gray-300">
+                                    <th className="py-2">O</th>
+                                    <th className="py-2">M</th>
+                                    <th className="py-2">S</th>
+                                    <th className="py-2">R</th>
+                                    <th className="py-2">L</th>
+                                    <th className="py-2">B</th>
+                                    <th className="py-2">A</th>
+                                    <th className="py-2">+/-</th>
+                                    <th className="py-2">LPP</th>
+                                    <th className="py-2">LPP/O</th>
+                                </tr>
+                            </thead><tbody>
+                                <tr className="table-row">
+                                    <td className="table-cell text-gray-400 py-2">{playerInstances.length}</td>
+                                    <td className="table-cell text-gray-400 py-2">{playersYearly.goals}</td>
+                                    <td className="table-cell text-gray-400 py-2">{playersYearly.assists}</td>
+                                    <td className="table-cell text-gray-400 py-2">{playersYearly.penaltyminutes}</td>
+                                    <td className="table-cell text-gray-400 py-2">{playersYearly.shots}</td>
+                                    <td className="table-cell text-gray-400 py-2">{playersYearly.blocks}</td>
+                                    <td className="table-cell text-gray-400 py-2">{playersYearly.faceoffs}</td>
+                                    <td className="table-cell text-gray-400 py-2">{playersYearly.plusminus}</td>
+                                    <td className="table-cell text-gray-400 py-2">{playersYearly.LPP}</td>
+                                    <td className="table-cell text-gray-400 py-2">{(playersYearly.LPP / playerInstances.length).toFixed(2)}</td>
+                                </tr>
+                            </tbody>
+                            </>
+                        }
+                    </>
+                )}
+                    
                 </table>
             </td>
         </tr>
