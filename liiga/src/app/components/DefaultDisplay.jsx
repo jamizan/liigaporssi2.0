@@ -72,16 +72,8 @@ export default function DefaultDisplay({team, name, LPP, value,
     return(
 
         <>
-        <div className="w-[100%] top-0 bg-stone-800 hover:bg-stone-800/50 cursor-pointer">
-            <button
-                title="Vaihda"
-                className="cursor-pointer"
-                onClick={ () => deleteSelected(value) }
-            >
-                Poista
-            </button>
-        </div>
-        <div id="player-name" className="text-zinc-900">
+
+        <div id="player-name" className="bg-stone-800 h-[24]">
             {name}
         </div>
         <div className="text-center flex items-center justify-center">
@@ -90,15 +82,27 @@ export default function DefaultDisplay({team, name, LPP, value,
         <div className="text-zinc-900" aria-placeholder="&#8203;">
             {LPP}
         </div>
-        <div className="w-[100%] bottom-0 inset-x-0 bg-stone-800 hover:bg-stone-800/50 cursor-pointer" id="player-captain">
-            <button
-                title="Kapteeni"
-                id="captain-button"
-                className="cursor-pointer w-full h-[24]"
-                onClick={ () => makeCaptain(value, LPP) }
-            >
-                Kapteeniksi
-            </button>
+        <div className="flex">
+            <div className="w-[100%] top-0 bg-stone-800 hover:bg-stone-800/50 cursor-pointer" 
+                onClick={ () => deleteSelected(value) }>
+                <button
+                    title="Vaihda"
+                    className="cursor-pointer"
+                >
+                    Poista
+                </button>
+            </div>
+            <div className="w-[100%] bottom-0 inset-x-0 bg-stone-800 hover:bg-stone-800/50 cursor-pointer" 
+                onClick={ () => makeCaptain(value, LPP) }>
+                <button
+                    title="Kapteeni"
+                    id="captain-button"
+                    className="cursor-pointer w-full h-[24]"
+                    
+                >
+                    Kapteeni
+                </button>
+            </div>
             
         </div>
         

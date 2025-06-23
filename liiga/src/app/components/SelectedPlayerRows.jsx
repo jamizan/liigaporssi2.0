@@ -26,16 +26,16 @@ export default function SelectedPlayerRows({value,
                 
                 break;
             case '3':
-                setImageSrc3({ ...imageSrc3, src: question, nam: '\u200B', p:'', LPP: '\u200B' })
+                setImageSrc3({ ...imageSrc3, src: question, nam: '\u200B', p:'', LPP: '\u200B', playerData: [] })
                 break;
             case '4':
-                setImageSrc4({ ...imageSrc4, src: question, nam: '\u200B', p:'', LPP: '\u200B' })                
+                setImageSrc4({ ...imageSrc4, src: question, nam: '\u200B', p:'', LPP: '\u200B', playerData: [] })
                 break;
             case '5':
-                setImageSrc5({ ...imageSrc5, src: question, nam: '\u200B', p:'', LPP: '\u200B' })
+                setImageSrc5({ ...imageSrc5, src: question, nam: '\u200B', p:'', LPP: '\u200B', playerData: [] })
                 break;
             case '6':
-                setImageSrc6({ ...imageSrc6, src: question, nam: '\u200B', p:'', LPP: '\u200B' })
+                setImageSrc6({ ...imageSrc6, src: question, nam: '\u200B', p:'', LPP: '\u200B', playerData: [] })
                 break;
         
             default:
@@ -74,7 +74,7 @@ export default function SelectedPlayerRows({value,
                     {imageSrc.playerData.shots || imageSrc.playerData.saves || 0}
                 </td>
                 <td className="table-cell px-4 py-2">
-                    {imageSrc.playerData.blocks || imageSrc.playerData.goalsallowed}
+                    {imageSrc.playerData.blocks || imageSrc.playerData.goalsallowed || 0}
                 </td>
                 <td className="table-cell px-4 py-2">
                     {imageSrc.playerData.faceoffs}

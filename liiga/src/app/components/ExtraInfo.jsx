@@ -100,7 +100,7 @@ useEffect(() => {
     return(
         <tr className="w-full border-b-2 border-stone-600">
             <td className="text-gray-400 w-auto">
-                <div className="ml-4 mr-4">
+                <div className="ml-4 mr-4 flex items-center justify-center">
                     <Image
                         className="w-auto h-50"
                         src={imageId}
@@ -120,7 +120,7 @@ useEffect(() => {
                                     <h1>Edelliset kymmenen peliä</h1>
                                 </th>
                             </tr>
-                            <tr className="text-gray-300 border-b-2 border-gray-300">
+                            <tr className="text-gray-300 border-b-2 border-gray-300 bg-gray-200/5">
                                 <th className="py-2">O</th>
                                 <th className="py-2">M</th>
                                 <th className="py-2">S</th>
@@ -153,7 +153,7 @@ useEffect(() => {
                                     <h1>Kausi tähän mennessä</h1>
                                 </th>
                             </tr>
-                            <tr className="text-gray-300 border-b-2 border-gray-300">
+                            <tr className="text-gray-300 border-b-2 border-gray-300 bg-gray-200/5">
                                 <th className="py-2">O</th>
                                 <th className="py-2">M</th>
                                 <th className="py-2">S</th>
@@ -191,7 +191,7 @@ useEffect(() => {
                                     <h1>Edelliset kymmenen peliä</h1>
                                 </th>
                             </tr>
-                            <tr className="text-gray-300 border-b-2 border-gray-300">
+                            <tr className="text-gray-300 border-b-2 border-gray-300 bg-gray-200/5">
                                 <th className="py-2">O</th>
                                 <th className="py-2">M</th>
                                 <th className="py-2">S</th>
@@ -222,7 +222,7 @@ useEffect(() => {
                                         <h1>Kausi tähän mennessä</h1>
                                     </th>
                                 </tr>
-                                <tr className="text-gray-300 border-b-2 border-gray-300">
+                                <tr className="text-gray-300 border-b-2 border-gray-300 bg-gray-200/5">
                                     <th className="py-2">O</th>
                                     <th className="py-2">M</th>
                                     <th className="py-2">S</th>

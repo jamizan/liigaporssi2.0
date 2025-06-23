@@ -17,8 +17,8 @@ export default function SelectedTable({
     
 
     return(
-        <><table className="text-center w-[100%] ">
-            <tbody>
+        <><table className="text-center w-[80%] content-center mx-auto my-4 border-separate border-spacing-1">
+            <tbody className=''>
                 <tr>
                     <td className="border-2 border-stone-600 w-[10%] relative bg-white" id="player-1">
                         <DefaultDisplay setImageSrc1={setImageSrc1} imageSrc1={imageSrc1} position={'Hyökkääjä'} team={imageSrc1.src} name={imageSrc1.nam} LPP={imageSrc1.LPP} value={'1'} />
@@ -39,16 +39,11 @@ export default function SelectedTable({
                         <DefaultDisplay setImageSrc6={setImageSrc6} imageSrc6={imageSrc6} position={'Maalivahti'} team={imageSrc6.src} name={imageSrc6.nam} LPP={imageSrc6.LPP} value={'6'} />
                     </td>
                 </tr>
-                <tr className="p-[50px]">
-                    <td colSpan={6} className="text-center bg-zinc-900">
-                        LPP: {imageSrc1.LPP + imageSrc2.LPP + imageSrc3.LPP + imageSrc4.LPP + imageSrc5.LPP + imageSrc6.LPP}
-                    </td>
-                </tr>
             </tbody>
         </table>
         <table className="w-[100%] w-full table-auto justify-center text-center">
             {[imageSrc1, imageSrc2, imageSrc3, imageSrc4, imageSrc5].some(src => src.nam !== '\u200B') && (
-            <thead className="text-gray-300 border-b-2 border-gray-300">
+            <thead className="text-gray-300 border-b-2 border-gray-300 bg-gray-200/5">
                 <tr>
                     <th className="py-2">Nimi</th>
                     <th className="py-2">Joukkue</th>
@@ -60,6 +55,7 @@ export default function SelectedTable({
                     <th className="py-2">A</th>
                     <th className="py-2">+/-</th>
                     <th className="py-2">LPP</th>
+                    <th></th>
                 </tr>
             </thead>
             )}
@@ -81,7 +77,7 @@ export default function SelectedTable({
                 )}
             </tbody>
             { [imageSrc6].some(src => src.nam !== '\u200B') && (
-            <thead className="text-gray-300 border-t-3 border-gray-300">
+            <thead className="text-gray-300 border-t-3 border-gray-300 bg-gray-200/5">
                 <tr>
                     <th className="py-2">Nimi</th>
                     <th className="py-2">Joukkue</th>
@@ -93,6 +89,7 @@ export default function SelectedTable({
                     <th></th>
                     <th></th>
                     <th className="py-2">LPP</th>
+                    <th></th>
                 </tr>
             </thead>
             )}
@@ -101,6 +98,20 @@ export default function SelectedTable({
                     <SelectedPlayerRows setImageSrc6={setImageSrc6} imageSrc6={imageSrc6} imageSrc={imageSrc6} openPlayerInfo={openPlayerInfo} setOpenPlayerInfo={setOpenPlayerInfo} value={'6'} />
                 )}
             </tbody>
+            <thead className="text-gray-300 border-t-3 border-gray-300">
+                <tr className=''>
+                    <th colSpan={8}></th>
+                    <th>Yhteensä:</th>
+                    <th>
+                    {(+imageSrc1.LPP || 0) +
+                    (+imageSrc2.LPP || 0) +
+                    (+imageSrc3.LPP || 0) +
+                    (+imageSrc4.LPP || 0) +
+                    (+imageSrc5.LPP || 0) +
+                    (+imageSrc6.LPP || 0)}
+                    </th>
+                </tr>
+            </thead>
             
         </table>
     </>

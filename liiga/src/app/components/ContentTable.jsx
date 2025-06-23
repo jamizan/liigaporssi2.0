@@ -22,7 +22,6 @@ import tps from "@/app/logos/tps.png"
 import assat from "@/app/logos/assat.png"
 
 import question from "@/app/logos/question.png"
-import arrow from "@/app/logos/down.png"
 
 export function TableVisibilty(position) {
   const attackerHeader = document.getElementById('attacker-header');
