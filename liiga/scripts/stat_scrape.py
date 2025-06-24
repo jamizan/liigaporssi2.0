@@ -6,9 +6,9 @@ import os
 # Reading data from JSON file created by playerParse.py
 def readJson():
     # Use absolute path based on this script's location
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    json_path = os.path.join(base_dir, 'liiga', 'public', 'playerData.json')
-    with open(json_path, 'r', encoding='utf-8') as file:
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    public_path = os.path.join(project_root, 'public', 'playerData.json')
+    with open(public_path, 'r', encoding='utf-8') as file:
         data = json.load(file)
     return data
 
@@ -432,9 +432,9 @@ def countLPP(playerStats, penaltyData, position, id):
 # Creating JSON file for player data
 def createJSON(mergedData):
     # Use absolute path based on this script's location
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    json_path = os.path.join(base_dir, 'liiga', 'public', 'playerStats.json')
-    with open(json_path, 'w', encoding='utf-8') as json_file:
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    public_path = os.path.join(project_root, 'public', 'playerData.json')
+    with open(public_path, 'w', encoding='utf-8') as json_file:
         json.dump(mergedData, json_file, ensure_ascii=False, indent=4)
     print('file created!')
 
@@ -450,7 +450,7 @@ def main():
     # Merging all data
     mergedData = mergeData(playerStats, goalieStats, JsonData, penaltyData)
     # Creating output JSON file
-    createJSON(mergedData)    
+    createJSON(mergedData)
 
 
 
