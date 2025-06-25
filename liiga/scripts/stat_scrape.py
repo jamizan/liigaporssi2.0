@@ -2,6 +2,7 @@ import requests
 import json
 from datetime import datetime
 import os
+import dbhelper
 
 # Reading data from JSON file created by playerParse.py
 def readJson():
@@ -24,7 +25,8 @@ def matchnumbers():
         gameData = []
 
         for game in data:
-            beginTime = game['start'].split('T')
+            beginTime = game['start'].split('T') if 'start' in game else ('', '')
+            endTime = game['end'].split('T') if 'end' in game else ('', '')
             
     # Compare game dates to todays date
             #dateNow = datetime.now()
@@ -37,15 +39,20 @@ def matchnumbers():
                 awayTeamId = game['awayTeam']['teamId']
                 homeTeamName = game['homeTeam']['teamName']
                 awayTeamName = game['awayTeam']['teamName']
+                season = beginTime[0].split('-')[0]
                 d = {
                     'gameId' : gameId,
                     'homeId' : homeTeamId,
                     'awayId' : awayTeamId,
                     'homeName' : homeTeamName,
-                    'awayName' : awayTeamName
+                    'awayName' : awayTeamName,
+                    'season' : season,
+                    'beginTime' : beginTime[1].rstrip('Z'),
+                    'endTime' : endTime[1].rstrip('Z')
                 }
                 gameData.append(d)
     # If matches today => return team data
+        dbhelper.insert_game_data(gameData)
     if gameData != '':
         return(gameData)
     else:
@@ -73,12 +80,12 @@ def parseGameData(gameData):
             homeTeam = data['homeTeam']
             awayTeam = data['awayTeam']
 
-            hStats = goalieStats(homeTeam)
-            aStats = goalieStats(awayTeam)
+            hStats = goalieStats(gameId, homeTeam)
+            aStats = goalieStats(gameId, awayTeam)
             allGStats.extend((hStats, aStats))
 
-            hPStats = playerStats(homeTeam)
-            aPStats = playerStats(awayTeam)
+            hPStats = playerStats(gameId, homeTeam)
+            aPStats = playerStats(gameId, awayTeam)
             allPStats.extend((hPStats, aPStats))
 
         else:
@@ -87,7 +94,7 @@ def parseGameData(gameData):
     return allGStats, allPStats
 
 # Formatting goalie stats
-def goalieStats(team):            
+def goalieStats(gameid, team):            
     data = {}
 
     i = 0
@@ -115,14 +122,14 @@ def goalieStats(team):
             faceoffsWon += scoreStats['faceoffsWon']
 
     # Format data to dictionary
-        data[playerId] = {'assists' : assists, 'goals' : goals, 'plus' : plus, 'minus' : minus, 'penaltyminutes' : penaltyminutes, 'voittomaali' : voittomaali, 'alivoimaMaali' : alivoimaMaali, 'alivoimaSyotto' : alivoimaSyotto, 'blocks' : blocks, 'saves' : saves, 'goalsAllowed' : goalsAllowed, 'faceoffsWon' : faceoffsWon, 'faceoffsTotal' : faceoffsTotal}
+        data[playerId] = {'gameid': gameid, 'assists' : assists, 'goals' : goals, 'plus' : plus, 'minus' : minus, 'penaltyminutes' : penaltyminutes, 'voittomaali' : voittomaali, 'alivoimaMaali' : alivoimaMaali, 'alivoimaSyotto' : alivoimaSyotto, 'blocks' : blocks, 'saves' : saves, 'goalsAllowed' : goalsAllowed, 'faceoffsWon' : faceoffsWon, 'faceoffsTotal' : faceoffsTotal}
 
         i += 1
 
     return data
 
 # Formatting player stats
-def playerStats(team):
+def playerStats(gameid, team):
     data = {}
     i = 0
     
@@ -149,7 +156,7 @@ def playerStats(team):
             faceoffsWon += scoreStats['faceoffsWon']
 
     # Format to dictionary
-        data[playerId] = {'assists' : assists, 'goals' : goals, 'plus' : plus, 'minus' : minus, 'penaltyminutes' : penaltyminutes, 'voittomaali' : voittomaali, 'alivoimaMaali' : alivoimaMaali, 'alivoimaSyotto' : alivoimaSyotto, 'blocks' : blocks, 'shots' : shots, 'faceoffsWon' : faceoffsWon, 'faceoffsTotal' : faceoffsTotal}
+        data[playerId] = {'gameid': gameid,'assists' : assists, 'goals' : goals, 'plus' : plus, 'minus' : minus, 'penaltyminutes' : penaltyminutes, 'voittomaali' : voittomaali, 'alivoimaMaali' : alivoimaMaali, 'alivoimaSyotto' : alivoimaSyotto, 'blocks' : blocks, 'shots' : shots, 'faceoffsWon' : faceoffsWon, 'faceoffsTotal' : faceoffsTotal}
 
         i += 1
 
@@ -194,47 +201,45 @@ def penaltyPlayerData(gameData):
     return penaltyData
 
 # Merging stats and penalties with player names using playerid
-def mergeData(playerStats, goalieStats, JsonData, penaltyData):
+def mergeData(playerStats, goalieStats, penaltyData):
     
-    data = []
-
-    jKeys = JsonData.keys()
+    returnData = {}
 
     # For every line in playerstats
     for i in playerStats:
         pKeys = i.keys()
         for id in pKeys:
-            if str(id) in jKeys:
-                position = JsonData[str(id)]['role']
-                firstname = JsonData[str(id)]['firstname']
-                lastname = JsonData[str(id)]['lastname']
-                team = JsonData[str(id)]['teamid']
-                personalData = {'position' : position, 'firstname' : firstname, 'lastname' : lastname, 'team' : team, 'id' : id}
-    # Count individual points
-                LPP = countLPP(i[id], penaltyData, position, id)
-                returnData = {'goals' : i[id]['goals'], 'assists' : i[id]['assists'], 'plusminus' : i[id]['plus'] - i[id]['minus'], 'penaltyminutes' : i[id]['penaltyminutes'], 'blocks' : i[id]['blocks'], 'shots' : i[id]['shots'], 'faceoffs' : i[id]['faceoffsTotal'] - i[id]['faceoffsWon'], 'LPP' : LPP}
-                personalData.update(returnData)
-
-                data.append(personalData)
+            position = dbhelper.get_player_position_by_id(id)
+# Count individual points
+            LPP = countLPP(i[id], penaltyData, position, id)
+            returnData[id] = {'gameid' : i[id]['gameid'],
+                              'goals' : i[id]['goals'], 
+                              'assists' : i[id]['assists'], 
+                              'plusminus' : i[id]['plus'] - i[id]['minus'], 
+                              'penaltyminutes' : i[id]['penaltyminutes'], 
+                              'blocks' : i[id]['blocks'], 
+                              'shots' : i[id]['shots'], 
+                              'faceoffs' : i[id]['faceoffsTotal'] - i[id]['faceoffsWon'], 
+                              'LPP' : LPP
+                              }
                 
     # For every line in goaliestats
     for x in goalieStats:
         gKeys = x.keys()
         for id in gKeys:
-            if str(id) in jKeys:
-                position = JsonData[str(id)]['role']
-                firstname = JsonData[str(id)]['firstname']
-                lastname = JsonData[str(id)]['lastname']
-                team = JsonData[str(id)]['teamid']
-                personalData = {'position' : position, 'firstname' : firstname, 'lastname' : lastname, 'team' : team, 'id' : id}
-    # Count individual points
-                LPP = countLPP(x[id], penaltyData, position, id)
-                returnData = {'goals' : x[id]['goals'], 'assists' : x[id]['assists'], 'penaltyminutes' : x[id]['penaltyminutes'], 'saves' : x[id]['saves'], 'goalsallowed' : x[id]['goalsAllowed'], 'LPP' : LPP}
-                personalData.update(returnData)
+            position = dbhelper.get_player_position_by_id(id)
+# Count individual points
+            LPP = countLPP(x[id], penaltyData, position, id)
+            returnData[id] = {'gameid' : x[id]['gameid'],
+                              'goals' : x[id]['goals'], 
+                              'assists' : x[id]['assists'], 
+                              'penaltyminutes' : x[id]['penaltyminutes'], 
+                              'saves' : x[id]['saves'],
+                              'goalsallowed' : x[id]['goalsAllowed'], 
+                              'LPP' : LPP
+                              }
 
-                data.append(personalData)
-
-    return data
+    return returnData
 
 # Counting individual player stats
 def countLPP(playerStats, penaltyData, position, id):
@@ -273,11 +278,12 @@ def countLPP(playerStats, penaltyData, position, id):
                     penalty -= 8
 
         Blocks = playerStats['blocks']
-        if playerStats['shots'] != 0:
-            if playerStats['shots'] % 2 == 0:
-                Shots = playerStats['shots'] / 2
+        shots = playerStats.get('shots', 0)  # Use .get() to avoid KeyError if 'shots' is not present
+        if shots != 0:
+            if shots % 2 == 0:
+                Shots = shots / 2
             else:
-                Shots = (playerStats['shots'] / 2) + 0.5
+                Shots = (shots / 2) + 0.5
         else:
             Shots = 0
 
@@ -377,8 +383,6 @@ def countLPP(playerStats, penaltyData, position, id):
 
     # Calculating points for goalies
     else:
-        pos = 'G'
-
         Goals = playerStats['goals'] * 25
         Assists = playerStats['assists'] * 10
 
@@ -425,8 +429,7 @@ def countLPP(playerStats, penaltyData, position, id):
         else:
             goalsAllowed = 0
 
-        LPP = Goals + Assists + LPPSaves + penalty - goalsAllowed
-        
+        LPP = Goals + Assists + LPPSaves + penalty - goalsAllowed     
     return LPP
 
 # Creating JSON file for player data
@@ -445,13 +448,10 @@ def main():
     goalieStats, playerStats = parseGameData(gameData)
     # Parsing penalty instances
     penaltyData = penaltyPlayerData(gameData)
-    # Reading data from json to get player names
-    JsonData = readJson()
     # Merging all data
-    mergedData = mergeData(playerStats, goalieStats, JsonData, penaltyData)
-    # Creating output JSON file
-    createJSON(mergedData)
+    mergedData = mergeData(playerStats, goalieStats, penaltyData)
 
+    dbhelper.insert_player_stats(mergedData)
 
 
 if __name__ == '__main__':
