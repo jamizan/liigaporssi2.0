@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^6.10.1",
     "db-migrate-pg": "^1.5.2",
     "dotenv": "^16.5.0",
     "next": "15.2.4",
@@ -25,6 +26,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.2.4",
+    "prisma": "^6.10.1",
     "tailwindcss": "^4.0.17",
     "typescript": "^5"
   }

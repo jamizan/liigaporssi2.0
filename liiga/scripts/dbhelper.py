@@ -55,8 +55,8 @@ def insert_game_data(games_dict):
         cur.execute(
             """
             INSERT INTO public.gamedata
-            (gameid, homeid, awayid, homename, awayname, season, starttime, endtime)
-            VALUES(%s, %s, %s, %s, %s, %s, %s, %s)
+            (gameid, homeid, awayid, homename, awayname, season, starttime, endtime, gamedate)
+            VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s)
             ON CONFLICT (gameid) DO UPDATE SET
                 homeid = EXCLUDED.homeid,
                 awayid = EXCLUDED.awayid,
@@ -64,7 +64,8 @@ def insert_game_data(games_dict):
                 awayname = EXCLUDED.awayname,
                 season = EXCLUDED.season,
                 starttime = EXCLUDED.starttime,
-                endtime = EXCLUDED.endtime
+                endtime = EXCLUDED.endtime,
+                gamedate = EXCLUDED.gamedate
             """,
             (
                 row['gameId'],
@@ -74,7 +75,8 @@ def insert_game_data(games_dict):
                 row['awayName'],
                 row['season'],
                 row['beginTime'],
-                row['endTime']
+                row['endTime'],
+                row['gamedate']
             )
         )
     conn.commit()
@@ -98,8 +100,20 @@ def insert_player_stats(stats_dict):
         cur.execute(
             """
             INSERT INTO public.playerstats
-            (playerid, goals, assists, plusminus, penaltyminutes, blocks, shots, faceoffs, lpp, gameid, saves, goalsallowed)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            (playerid, goals, assists, plusminus, penaltyminutes, blocks, shots, faceoffs, lpp, gameid, saves, goalsallowed, identifier)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (identifier) DO UPDATE SET
+                goals = EXCLUDED.goals,
+                assists = EXCLUDED.assists,
+                plusminus = EXCLUDED.plusminus,
+                penaltyminutes = EXCLUDED.penaltyminutes,
+                blocks = EXCLUDED.blocks,
+                shots = EXCLUDED.shots,
+                faceoffs = EXCLUDED.faceoffs,
+                lpp = EXCLUDED.lpp,
+                gameid = EXCLUDED.gameid,
+                saves = EXCLUDED.saves,
+                goalsallowed = EXCLUDED.goalsallowed
             """,
             (
                 playerid,
@@ -113,7 +127,8 @@ def insert_player_stats(stats_dict):
                 LPP,
                 gameid,
                 saves,
-                goalsallowed
+                goalsallowed,
+                f"{gameid}:{playerid}" if gameid else None
             )
         )
         conn.commit()

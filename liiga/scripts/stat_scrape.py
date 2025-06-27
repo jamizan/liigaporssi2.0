@@ -48,7 +48,8 @@ def matchnumbers(gamedate=None):
                     'awayName' : awayTeamName,
                     'season' : season,
                     'beginTime' : beginTime[1].rstrip('Z'),
-                    'endTime' : endTime[1].rstrip('Z')
+                    'endTime' : endTime[1].rstrip('Z'),
+                    'gamedate' : beginTime[0]
                 }
                 gameData.append(d)
     # If matches today => return team data

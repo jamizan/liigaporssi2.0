@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model gamedata {
+  gameid    Int       @id
+  homeid    Int
+  awayid    Int
+  homename  String?   @db.VarChar
+  awayname  String?   @db.VarChar
+  season    String?   @db.VarChar
+  starttime DateTime? @db.Time(6)
+  endtime   DateTime? @db.Time(6)
+  gamedate  DateTime  @db.Date
+
+  playerstats playerstats[] @relation("GameStatsToGameData")
+}
+
+model playerdata {
+  playerid  Int     @id
+  teamid    Int
+  teamname  String? @db.VarChar
+  firstname String? @db.VarChar
+  lastname  String? @db.VarChar
+  role      String? @db.VarChar
+  jersey    Int?
+
+  playerstats playerstats[] @relation("PlayerStatsToPlayerData")
+}
+
+model playerstats {
+  playerid       Int
+  goals          Int?
+  assists        Int?
+  plusminus      Int?
+  penaltyminutes Int?
+  blocks         Int?
+  shots          Int?
+  faceoffs       Int?
+  lpp            Int?
+  gameid         Int
+  saves          Int?
+  goalsallowed   Int?
+  identifier     String @id(map: "playerstats_pk") @db.VarChar
+
+  playerdata playerdata @relation("PlayerStatsToPlayerData", fields: [playerid], references: [playerid])
+  gamedata gamedata @relation("GameStatsToGameData", fields: [gameid], references: [gameid])
+}
+
