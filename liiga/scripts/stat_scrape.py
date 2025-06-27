@@ -14,7 +14,7 @@ def readJson():
     return data
 
 # Parsing matchnumbers from Liiga
-def matchnumbers():
+def matchnumbers(gamedate=None):
     url = 'https://www.liiga.fi/api/v2/games?tournament=playoffs&season=2025'
 
     response = requests.get(url)
@@ -31,10 +31,10 @@ def matchnumbers():
     # Compare game dates to todays date
             #dateNow = datetime.now()
             #dateNow = dateNow.strftime("%Y-%m-%d")
-            dateNow = '2025-04-11' # VAIN DEV KÄYTTÖÖN
     # If game date is today => save team data
-            if beginTime[0] == dateNow:
+            if gamedate == beginTime[0]:
                 gameId = game['id']
+                print(f'Game ID: {gameId}')
                 homeTeamId = game['homeTeam']['teamId']
                 awayTeamId = game['awayTeam']['teamId']
                 homeTeamName = game['homeTeam']['teamName']
@@ -207,38 +207,48 @@ def mergeData(playerStats, goalieStats, penaltyData):
 
     # For every line in playerstats
     for i in playerStats:
-        pKeys = i.keys()
-        for id in pKeys:
-            position = dbhelper.get_player_position_by_id(id)
-# Count individual points
-            LPP = countLPP(i[id], penaltyData, position, id)
-            returnData[id] = {'gameid' : i[id]['gameid'],
-                              'goals' : i[id]['goals'], 
-                              'assists' : i[id]['assists'], 
-                              'plusminus' : i[id]['plus'] - i[id]['minus'], 
-                              'penaltyminutes' : i[id]['penaltyminutes'], 
-                              'blocks' : i[id]['blocks'], 
-                              'shots' : i[id]['shots'], 
-                              'faceoffs' : i[id]['faceoffsTotal'] - i[id]['faceoffsWon'], 
-                              'LPP' : LPP
-                              }
+        try:
+
+            pKeys = i.keys()
+            for id in pKeys:
+                position = dbhelper.get_player_position_by_id(id)
+    # Count individual points
+                LPP = countLPP(i[id], penaltyData, position, id)
+                returnData[id] = {'gameid' : i[id].get('gameid'),
+                                'goals' : i[id].get('goals', 0), 
+                                'assists' : i[id].get('assists', 0), 
+                                'plusminus' : i[id].get('plus', 0) - i[id].get('minus', 0), 
+                                'penaltyminutes' : i[id].get('penaltyminutes', 0), 
+                                'blocks' : i[id].get('blocks', 0), 
+                                'shots' : i[id].get('shots', 0), 
+                                'faceoffs' : i[id].get('faceoffsTotal', 0) - i[id].get('faceoffsWon', 0), 
+                                'LPP' : LPP
+                                }
+        except KeyError as e:
+            print(f"KeyError: {e} in playerStats for player ID {id}. Skipping this player.")
                 
     # For every line in goaliestats
     for x in goalieStats:
-        gKeys = x.keys()
-        for id in gKeys:
-            position = dbhelper.get_player_position_by_id(id)
-# Count individual points
-            LPP = countLPP(x[id], penaltyData, position, id)
-            returnData[id] = {'gameid' : x[id]['gameid'],
-                              'goals' : x[id]['goals'], 
-                              'assists' : x[id]['assists'], 
-                              'penaltyminutes' : x[id]['penaltyminutes'], 
-                              'saves' : x[id]['saves'],
-                              'goalsallowed' : x[id]['goalsAllowed'], 
-                              'LPP' : LPP
-                              }
-
+        try:
+            gKeys = x.keys()
+            for id in gKeys:
+                position = dbhelper.get_player_position_by_id(id)
+    # Count individual points
+                LPP = countLPP(x[id], penaltyData, position, id)
+                returnData[id] = {'gameid' : x[id].get('gameid'),
+                                'goals' : x[id].get('goals', 0), 
+                                'assists' : x[id].get('assists', 0), 
+                                'penaltyminutes' : x[id].get('penaltyminutes', 0), 
+                                'saves' : x[id].get('saves', 0),
+                                'goalsallowed' : x[id].get('goalsAllowed', 0), 
+                                'blocks' : x[id].get('blocks', 0),
+                                'shots' : x[id].get('shots', 0),
+                                'faceoffs' : x[id].get('faceoffsTotal', 0) - x[id].get('faceoffsWon', 0),
+                                'plusminus' : x[id].get('plus', 0) - x[id].get('minus', 0),
+                                'LPP' : LPP
+                                }
+        except KeyError as e:
+            print(f"KeyError: {e} in goalieStats for player ID {id}. Skipping this player.")
     return returnData
 
 # Counting individual player stats
@@ -441,18 +451,22 @@ def createJSON(mergedData):
         json.dump(mergedData, json_file, ensure_ascii=False, indent=4)
     print('file created!')
 
-def main():
+def main(gamedate=None):
     # Parsing matchnumbers
-    gameData = matchnumbers()
+    gameData = matchnumbers(gamedate)
+    print('gamedata done')
     # Parsing individual player stats
     goalieStats, playerStats = parseGameData(gameData)
+    print('playerstats done')
     # Parsing penalty instances
     penaltyData = penaltyPlayerData(gameData)
+    print('penaltydata done')
     # Merging all data
     mergedData = mergeData(playerStats, goalieStats, penaltyData)
-
+    print('data merged')
+    # Insert to database
     dbhelper.insert_player_stats(mergedData)
-
+    print(f'Player stats inserted to database. {gamedate}')
 
 if __name__ == '__main__':
     main()

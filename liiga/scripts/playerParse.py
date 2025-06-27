@@ -4,7 +4,7 @@ import os
 import dbhelper
 
 #url = 'https://www.liiga.fi/api/v2/players/info?tournament=runkosarja&season=2025'
-url = 'https://www.liiga.fi/api/v2/players/info?tournament=runkosarja&fromSeason=2025&toSeason=2025'
+url = 'https://www.liiga.fi/api/v2/players/info?tournament=playoffs&fromSeason=2025&toSeason=2025'
 
 
 response = requests.get(url)
