@@ -3,8 +3,19 @@ import { PrismaClient } from '@/generated/prisma';
 
 const prisma = new PrismaClient();
 
-export async function getAllPlayers() {
-  return prisma.playerdata.findMany();
+export async function getPlayerStatsById(playerid) {
+  return prisma.playerdata.findUnique({
+    where: { playerid },
+    include: {
+      playerstats: {
+        orderBy: {
+          gamedata: {
+            gamedate: 'desc',
+          },
+        },
+      },
+    },
+  });
 }
 
 export async function getAllPlayersWithStats(date) {

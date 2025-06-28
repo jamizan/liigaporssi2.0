@@ -96,18 +96,16 @@ export default function ContentTable({
   const [openPlayerInfo, setOpenPlayerInfo] = useState(null);
 
 useEffect(() => {
-  fetch('/api/players')
+  fetch('/api/players?type=stats')
     .then((res) => res.json())
     .then((data) => {
-      // Only include players with stats, and flatten stats into player
       const playersWithStats = data
         .filter(player => player.playerstats.length > 0)
         .map(player => ({
           ...player,
-          ...player.playerstats[0], // merge first stats object into player
+          ...player.playerstats[0],
         }));
       setPlayers(playersWithStats);
-      console.log('Players fetched:', playersWithStats);
     })
     .catch((err) => {
       console.error('Error fetching players:', err);
@@ -116,7 +114,7 @@ useEffect(() => {
 
   const moveSelected = (player, team) => {
     // Handles player details for display
-    switch (team) {
+    switch (team.toUpperCase()) {
       case 'HIFK':
         var value = ifk;
         break;
@@ -204,37 +202,37 @@ useEffect(() => {
     if (imageSrc1.p == '' && playerPosition == 'ATTACKER' &&
       imageSrc1.nam != nameStr && imageSrc2.nam != nameStr && imageSrc3.nam != nameStr
     ) {
-      setImageSrc1({ ...imageSrc1, src: value, nam: nameStr, p:'t', LPP: player.LPP, playerData: player });
+      setImageSrc1({ ...imageSrc1, src: value, nam: nameStr, p:'t', LPP: player.lpp, playerData: player });
     }
     else{
       if (imageSrc2.p == '' && playerPosition == 'ATTACKER' &&
         imageSrc1.nam != nameStr && imageSrc2.nam != nameStr && imageSrc3.nam != nameStr
       ) {
-        setImageSrc2({ ...imageSrc2, src: value, nam: nameStr, p:'t', LPP: player.LPP, playerData: player });
+        setImageSrc2({ ...imageSrc2, src: value, nam: nameStr, p:'t', LPP: player.lpp, playerData: player });
       }
       else{
         if (imageSrc3.p == '' && playerPosition == 'ATTACKER' &&
           imageSrc1.nam != nameStr && imageSrc2.nam != nameStr && imageSrc3.nam != nameStr
         ) {
-          setImageSrc3({ ...imageSrc3, src: value, nam: nameStr, p:'t', LPP: player.LPP, playerData: player });
+          setImageSrc3({ ...imageSrc3, src: value, nam: nameStr, p:'t', LPP: player.lpp, playerData: player });
         }
         else{
           if (imageSrc4.p == '' && playerPosition == 'DEFENDER' &&
             imageSrc4.nam != nameStr && imageSrc5.nam != nameStr
           ) {
-            setImageSrc4({ ...imageSrc4, src: value, nam: nameStr, p:'t', LPP: player.LPP, playerData: player });
+            setImageSrc4({ ...imageSrc4, src: value, nam: nameStr, p:'t', LPP: player.lpp, playerData: player });
           }
           else{
             if (imageSrc5.p == '' && playerPosition == 'DEFENDER' &&
               imageSrc4.nam != nameStr && imageSrc5.nam != nameStr
             ) {
-              setImageSrc5({ ...imageSrc5, src: value, nam: nameStr, p:'t', LPP: player.LPP, playerData: player });
+              setImageSrc5({ ...imageSrc5, src: value, nam: nameStr, p:'t', LPP: player.lpp, playerData: player });
             }
             else{
               if (imageSrc6.p == '' && playerPosition == 'GOALIE' &&
                 imageSrc6 != nameStr
               ) {
-                setImageSrc6({ ...imageSrc6, src: value, nam: nameStr, p:'t', LPP: player.LPP, playerData: player });
+                setImageSrc6({ ...imageSrc6, src: value, nam: nameStr, p:'t', LPP: player.lpp, playerData: player });
               }
             }
           }
@@ -314,7 +312,7 @@ useEffect(() => {
                   </td>
                 </tr>
                 {openPlayerInfo === player.playerid && (
-                  <ExtraInfo player={player}/>
+                  <ExtraInfo playerid={player.playerid}/>
                 )}
               </React.Fragment>
             ))}
@@ -341,7 +339,7 @@ useEffect(() => {
         <tbody id="defender-body" className="text-s border-collapse text-center">
           {players
 
-            .filter(player => player.position == 'RIGHT_DEFENSEMAN' || player.position == 'LEFT_DEFENSEMAN')
+            .filter(player => player.role == 'RIGHT_DEFENSEMAN' || player.role == 'LEFT_DEFENSEMAN')
             .map((player, index) => (
               <React.Fragment key={player.teamname + '_' + player.lastname + '-' + player.firstname}>
                 <tr className="border-b-2 border-stone-600" id={player.teamname + '_' + player.lastname + '-' + player.firstname}>
@@ -362,12 +360,12 @@ useEffect(() => {
                   <td className="table-cell px-4 py-2">{player.blocks}</td>
                   <td className="table-cell px-4 py-2">{player.faceoffs}</td>
                   <td className="table-cell px-4 py-2">{player.plusminus}</td>
-                  <td className="table-cell px-4 py-2">{player.LPP}</td>
+                  <td className="table-cell px-4 py-2">{player.lpp}</td>
                   <td className="pt-2">
                     <button
                       title="Valitse"
                       className="group cursor-pointer outline-none hover:rotate-90 duration-300"
-                      onClick={() => moveSelected(player, player.team.split(':')[1].toUpperCase())}
+                      onClick={() => moveSelected(player, player.teamname)}
                       id="selectPlayer"
                       disabled={false}
                     >
@@ -388,7 +386,7 @@ useEffect(() => {
                     </button>
                   </td>
                 </tr>
-                {openPlayerInfo === player.id && (
+                {openPlayerInfo === player.playerid && (
                   <ExtraInfo player={player}/>
                 )}
               </React.Fragment>
@@ -414,33 +412,33 @@ useEffect(() => {
         </thead>
         <tbody id="goalie-body" className='text-s border-collapse text-center'>
           {players
-            .filter(player => player.position == 'GOALIE')
+            .filter(player => player.role == 'GOALIE')
             .map((player, index) => (
-              <React.Fragment key={player.team + '_' + player.lastname + '-' + player.firstname}>
-                <tr className='border-b-2 border-stone-600' id={player.team.split(':')[1] + '_' + player.lastname + '-' + player.firstname}>
+              <React.Fragment key={player.teamname + '_' + player.lastname + '-' + player.firstname}>
+                <tr className='border-b-2 border-stone-600' id={player.teamname + '_' + player.lastname + '-' + player.firstname}>
                   <td className="table-cell py-4">
                     <div className="text-left pl-3 gap-4 text-decoration-line: underline hover:text-gray-300/80">
                       <span
                         onClick={() =>
-                          setOpenPlayerInfo(openPlayerInfo === player.id ? null : player.id)
+                          setOpenPlayerInfo(openPlayerInfo === player.playerid ? null : player.playerid)
                         }
                       >{player.firstname} {player.lastname}</span>
                     </div>
                   </td>
-                  <td className="table-cell py-4">{player.team.split(':')[1].toUpperCase()}</td>
+                  <td className="table-cell py-4">{player.teamname}</td>
                   <td className="table-cell py-2">{player.goals}</td>
                   <td className="table-cell py-2">{player.assists}</td>
                   <td className="table-cell py-2">{player.penaltyminutes}</td>
                   <td className="table-cell py-2">{player.saves}</td>
                   <td className="table-cell py-2">{player.goalsallowed}</td>
-                  <td className="table-cell py-2">{player.LPP}</td>
+                  <td className="table-cell py-2">{player.lpp}</td>
                   <td></td>
                   <td></td>
                   <td className="pt-2">
                     <button
                       title="Valitse"
                       className="group cursor-pointer outline-none hover:rotate-90 duration-300"
-                      onClick={() => moveSelected(player, player.team.split(':')[1].toUpperCase())}
+                      onClick={() => moveSelected(player, player.teamname)}
                       id="selectPlayer"
                     >
                       <svg
@@ -460,7 +458,7 @@ useEffect(() => {
                     </button>
                   </td>
                 </tr>
-                {openPlayerInfo === player.id && (
+                {openPlayerInfo === player.playerid && (
                   <ExtraInfo player={player}/>
                 )}
               </React.Fragment>

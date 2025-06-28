@@ -59,7 +59,7 @@ export default function SelectedPlayerRows({value,
                     </div>
                 </td>
                 <td className="table-cell px-6 py-4">
-                    {imageSrc.playerData?.team?.split(':')[1].toUpperCase() || ""}
+                    {imageSrc.playerData?.teamname || ""}
                 </td>
                 <td className="table-cell px-4 py-2">
                     {imageSrc.playerData.goals}
@@ -83,7 +83,7 @@ export default function SelectedPlayerRows({value,
                     {imageSrc.playerData.plusminus}
                 </td>
                 <td className="table-cell px-4 py-2">
-                    {imageSrc.LPP}
+                    {imageSrc.lpp}
                 </td>
                 <td>
                     <button

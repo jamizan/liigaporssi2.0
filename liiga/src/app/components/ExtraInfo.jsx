@@ -1,101 +1,50 @@
 "use client"
 
-import React from "react";
+import React, { use } from "react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function ExtraInfo(
-    { player }
+    { playerid }
 ){
-
-    const [playersYearly, setPlayersYearly] = useState({});
-    const [playersLastTen, setPlayersLastTen] = useState({});
-    const [playerInstances, setPlayerInstances] = useState([]);
-    const [playerInstancesTen, setPlayerInstancesTen] = useState([]);
+    const [player, setPlayer] = useState({});
 
 useEffect(() => {
-    fetch('/yearlyPlayerData.json')
+    fetch(`/api/players?type=player&playerid=${playerid}`)
         .then((res) => res.json())
         .then((data) => {
-            const playerInstances = [];
-            var playerInstancesTen = 0;
-            const currentYear = {
-                goals: 0,
-                assists: 0,
-                plusminus: 0,
-                penaltyminutes: 0,
-                blocks: 0,
-                shots: 0,
-                faceoffs: 0,
-                LPP: 0,
-                saves: 0,
-                goalsallowed: 0
-            };
-            const lastTen = {
-                goals: 0,
-                assists: 0,
-                plusminus: 0,
-                penaltyminutes: 0,
-                blocks: 0,
-                shots: 0,
-                faceoffs: 0,
-                LPP: 0,
-                saves: 0,
-                goalsallowed: 0
-            };
+            setPlayer(data);
+    })
+}, [playerid]);
 
-            Object.keys(data).forEach((date) => {
-                if (Array.isArray(data[date])) {
-                    data[date].forEach((players) => {
-                        players.forEach((playerData) => {
-                            if (playerData.id === player.id) {
-                                playerInstances.push({ date, ...playerData });
+    const statsCount = player.playerstats ? player.playerstats.length : 0;
+    const keySums = player.playerstats
+    ? player.playerstats.reduce((acc, stat) => {
+        Object.entries(stat).forEach(([key, value]) => {
+            if (typeof value === "number") {
+            acc[key] = (acc[key] || 0) + value;
+            }
+        });
+        return acc;
+        }, {})
+    : {};
 
-                                currentYear.goals += playerData.goals || 0;
-                                currentYear.assists += playerData.assists || 0;
-                                currentYear.plusminus += playerData.plusminus || 0;
-                                currentYear.penaltyminutes += playerData.penaltyminutes || 0;
-                                currentYear.blocks += playerData.blocks || 0;
-                                currentYear.shots += playerData.shots || 0;
-                                currentYear.faceoffs += playerData.faceoffs || 0;
-                                currentYear.LPP += playerData.LPP || 0;
-                                currentYear.saves += playerData.saves || 0;
-                                currentYear.goalsallowed += playerData.goalsallowed || 0;
-                            }
-                        });
-                    });
+    const lastTenStats = player.playerstats
+    ? player.playerstats.slice(-10)
+    : [];
 
-                } else {
-                    console.error(`Expected an array for date ${date}, but got: `, typeof data[date]);
-                }
-            });
-
-            const lastTenGames = playerInstances.slice(-10);
-            lastTenGames.forEach((game) => {
-                playerInstancesTen += 1;
-
-                lastTen.goals += game.goals || 0;
-                lastTen.assists += game.assists || 0;
-                lastTen.plusminus += game.plusminus || 0;
-                lastTen.penaltyminutes += game.penaltyminutes || 0;
-                lastTen.blocks += game.blocks || 0;
-                lastTen.shots += game.shots || 0;
-                lastTen.faceoffs += game.faceoffs || 0;
-                lastTen.LPP += game.LPP || 0;
-                lastTen.saves += game.saves || 0;
-                lastTen.goalsallowed += game.goalsallowed || 0;
-            });
-            
-            setPlayersYearly(currentYear);
-            setPlayersLastTen(lastTen);
-            setPlayerInstances(playerInstances);
-            setPlayerInstancesTen(playerInstancesTen);
-        })
-        .catch((error) => console.error("Error fetching data: ", error));
-}, []);
+    // Sum values for each key in the last 10 stats
+    const keySumsLastTen = lastTenStats.reduce((acc, stat) => {
+    Object.entries(stat).forEach(([key, value]) => {
+        if (typeof value === "number") {
+        acc[key] = (acc[key] || 0) + value;
+        }
+    });
+    return acc;
+    }, {});
 
 
-    var imageId = 'https://liigaporssi.fi/LP/images/players/player_'+player.id+'.jpg';
+    var imageId = 'https://liigaporssi.fi/LP/images/players/player_'+player.playerid+'.jpg';
 
     return(
         <tr className="w-full border-b-2 border-stone-600">
@@ -135,16 +84,16 @@ useEffect(() => {
                         </thead>
                         <tbody>
                             <tr className="table-row">
-                                <td className="table-cell text-gray-400 py-2">{playerInstancesTen}</td>
-                                <td className="table-cell text-gray-400 py-2">{playersLastTen.goals}</td>
-                                <td className="table-cell text-gray-400 py-2">{playersLastTen.assists}</td>
-                                <td className="table-cell text-gray-400 py-2">{playersLastTen.penaltyminutes}</td>
-                                <td className="table-cell text-gray-400 py-2">{playersLastTen.saves}</td>
-                                <td className="table-cell text-gray-400 py-2">{playersLastTen.goalsallowed}</td>
+                                <td className="table-cell text-gray-400 py-2">{}</td>
+                                <td className="table-cell text-gray-400 py-2">{}</td>
+                                <td className="table-cell text-gray-400 py-2">{}</td>
+                                <td className="table-cell text-gray-400 py-2">{}</td>
+                                <td className="table-cell text-gray-400 py-2">{}</td>
+                                <td className="table-cell text-gray-400 py-2">{}</td>
                                 <td className="table-cell text-gray-400 py-2"></td>
                                 <td className="table-cell text-gray-400 py-2"></td>
-                                <td className="table-cell text-gray-400 py-2">{playersLastTen.LPP}</td>
-                                <td className="table-cell text-gray-400 py-2">{(playersLastTen.LPP / playerInstances.length).toFixed(2)}</td>
+                                <td className="table-cell text-gray-400 py-2">{}</td>
+                                <td className="table-cell text-gray-400 py-2">{}</td>
                             </tr>
                         </tbody>
                         <thead>
@@ -168,16 +117,16 @@ useEffect(() => {
                         </thead>
                         <tbody>
                             <tr className="table-row">
-                                <td className="table-cell text-gray-400 py-2">{playerInstances.length}</td>
-                                <td className="table-cell text-gray-400 py-2">{playersYearly.goals}</td>
-                                <td className="table-cell text-gray-400 py-2">{playersYearly.assists}</td>
-                                <td className="table-cell text-gray-400 py-2">{playersYearly.penaltyminutes}</td>
-                                <td className="table-cell text-gray-400 py-2">{playersYearly.saves}</td>
-                                <td className="table-cell text-gray-400 py-2">{playersYearly.goalsallowed}</td>
+                                <td className="table-cell text-gray-400 py-2">{}</td>
+                                <td className="table-cell text-gray-400 py-2">{}</td>
+                                <td className="table-cell text-gray-400 py-2">{}</td>
+                                <td className="table-cell text-gray-400 py-2">{}</td>
+                                <td className="table-cell text-gray-400 py-2">{}</td>
+                                <td className="table-cell text-gray-400 py-2">{}</td>
                                 <td className="table-cell text-gray-400 py-2"></td>
                                 <td className="table-cell text-gray-400 py-2"></td>
-                                <td className="table-cell text-gray-400 py-2">{playersYearly.LPP}</td>
-                                <td className="table-cell text-gray-400 py-2">{(playersYearly.LPP / playerInstances.length).toFixed(2)}</td>
+                                <td className="table-cell text-gray-400 py-2">{}</td>
+                                <td className="table-cell text-gray-400 py-2">{}</td>
                             </tr>
                         </tbody>
                     </>
@@ -205,16 +154,21 @@ useEffect(() => {
                             </tr>
                         </thead><tbody>
                                 <tr className="table-row">
-                                    <td className="table-cell text-gray-400 py-2">{playerInstancesTen}</td>
-                                    <td className="table-cell text-gray-400 py-2">{playersLastTen.goals}</td>
-                                    <td className="table-cell text-gray-400 py-2">{playersLastTen.assists}</td>
-                                    <td className="table-cell text-gray-400 py-2">{playersLastTen.penaltyminutes}</td>
-                                    <td className="table-cell text-gray-400 py-2">{playersLastTen.shots}</td>
-                                    <td className="table-cell text-gray-400 py-2">{playersLastTen.blocks}</td>
-                                    <td className="table-cell text-gray-400 py-2">{playersLastTen.faceoffs}</td>
-                                    <td className="table-cell text-gray-400 py-2">{playersLastTen.plusminus}</td>
-                                    <td className="table-cell text-gray-400 py-2">{playersLastTen.LPP}</td>
-                                    <td className="table-cell text-gray-400 py-2">{(playersLastTen.LPP / playerInstancesTen).toFixed(2)}</td>
+                                    <td className="table-cell text-gray-400 py-2">{lastTenStats.length}</td>
+                                    <td className="table-cell text-gray-400 py-2">{keySumsLastTen.goals}</td>
+                                    <td className="table-cell text-gray-400 py-2">{keySumsLastTen.assists}</td>
+                                    <td className="table-cell text-gray-400 py-2">{keySumsLastTen.penaltyminutes}</td>
+                                    <td className="table-cell text-gray-400 py-2">{keySumsLastTen.shots}</td>
+                                    <td className="table-cell text-gray-400 py-2">{keySumsLastTen.blocks}</td>
+                                    <td className="table-cell text-gray-400 py-2">{keySumsLastTen.faceoffs}</td>
+                                    <td className="table-cell text-gray-400 py-2">{keySumsLastTen.plusminus}</td>
+                                    <td className="table-cell text-gray-400 py-2">{keySumsLastTen.lpp}</td>
+                                    <td className="table-cell text-gray-400 py-2">
+                                          {
+                                            lastTenStats.length > 0 && keySumsLastTen.lpp !== undefined
+                                            ? (keySumsLastTen.lpp / lastTenStats.length).toFixed(2): 0
+                                          }
+                                        </td>
                                 </tr>
                             </tbody><thead className="">
                                 <tr className="text-center">
@@ -236,16 +190,21 @@ useEffect(() => {
                                 </tr>
                             </thead><tbody>
                                 <tr className="table-row">
-                                    <td className="table-cell text-gray-400 py-2">{playerInstances.length}</td>
-                                    <td className="table-cell text-gray-400 py-2">{playersYearly.goals}</td>
-                                    <td className="table-cell text-gray-400 py-2">{playersYearly.assists}</td>
-                                    <td className="table-cell text-gray-400 py-2">{playersYearly.penaltyminutes}</td>
-                                    <td className="table-cell text-gray-400 py-2">{playersYearly.shots}</td>
-                                    <td className="table-cell text-gray-400 py-2">{playersYearly.blocks}</td>
-                                    <td className="table-cell text-gray-400 py-2">{playersYearly.faceoffs}</td>
-                                    <td className="table-cell text-gray-400 py-2">{playersYearly.plusminus}</td>
-                                    <td className="table-cell text-gray-400 py-2">{playersYearly.LPP}</td>
-                                    <td className="table-cell text-gray-400 py-2">{(playersYearly.LPP / playerInstances.length).toFixed(2)}</td>
+                                    <td className="table-cell text-gray-400 py-2">{statsCount}</td>
+                                    <td className="table-cell text-gray-400 py-2">{keySums.goals}</td>
+                                    <td className="table-cell text-gray-400 py-2">{keySums.assists}</td>
+                                    <td className="table-cell text-gray-400 py-2">{keySums.penaltyminutes}</td>
+                                    <td className="table-cell text-gray-400 py-2">{keySums.shots}</td>
+                                    <td className="table-cell text-gray-400 py-2">{keySums.blocks}</td>
+                                    <td className="table-cell text-gray-400 py-2">{keySums.faceoffs}</td>
+                                    <td className="table-cell text-gray-400 py-2">{keySums.plusminus}</td>
+                                    <td className="table-cell text-gray-400 py-2">{keySums.lpp}</td>
+                                    <td className="table-cell text-gray-400 py-2">
+                                          {
+                                            statsCount > 0 && keySums.lpp !== undefined
+                                            ? (keySums.lpp / statsCount).toFixed(2): 0
+                                          }
+                                    </td>
                                 </tr>
                             </tbody>
                             </>
