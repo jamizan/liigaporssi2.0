@@ -17,7 +17,14 @@ export default function SelectedTable({
     
 
     return(
-        <><table className="text-center w-[80%] content-center mx-auto my-4 border-separate border-spacing-1">
+    <>{(imageSrc1.nam !== '\u200B'
+        || imageSrc2.nam !== '\u200B'
+        || imageSrc3.nam !== '\u200B'
+        || imageSrc4.nam !== '\u200B'
+        || imageSrc5.nam !== '\u200B'
+        || imageSrc6.nam !== '\u200B'
+    ) && ( 
+        <table className="text-center w-[80%] content-center mx-auto my-4 border-separate border-spacing-1">
             <tbody className=''>
                 <tr>
                     <td className="border-2 border-stone-600 w-[10%] relative bg-white" id="player-1">
@@ -32,6 +39,7 @@ export default function SelectedTable({
                     <td className="border-2 border-stone-600 w-[10%] relative bg-white" id="player-4">
                         <DefaultDisplay setImageSrc4={setImageSrc4} imageSrc4={imageSrc4} position={'Puolustaja'} team={imageSrc4.src} name={imageSrc4.nam} LPP={imageSrc4.LPP} value={'4'} />
                     </td>
+
                     <td className="border-2 border-stone-600 w-[10%] relative bg-white" id="player-5">
                         <DefaultDisplay setImageSrc5={setImageSrc5} imageSrc5={imageSrc5} position={'Puolustaja'} team={imageSrc5.src} name={imageSrc5.nam} LPP={imageSrc5.LPP} value={'5'} />
                     </td>
@@ -41,6 +49,7 @@ export default function SelectedTable({
                 </tr>
             </tbody>
         </table>
+    )}
         <table className="w-[100%] w-full table-auto justify-center text-center">
             {[imageSrc1, imageSrc2, imageSrc3, imageSrc4, imageSrc5].some(src => src.nam !== '\u200B') && (
             <thead className="text-gray-300 border-b-2 border-gray-300 bg-gray-200/5">
@@ -98,6 +107,14 @@ export default function SelectedTable({
                     <SelectedPlayerRows setImageSrc6={setImageSrc6} imageSrc6={imageSrc6} imageSrc={imageSrc6} openPlayerInfo={openPlayerInfo} setOpenPlayerInfo={setOpenPlayerInfo} value={'6'} />
                 )}
             </tbody>
+            {(
+                imageSrc1.nam !== '\u200B' || 
+                imageSrc2.nam !== '\u200B' || 
+                imageSrc3.nam !== '\u200B' || 
+                imageSrc4.nam !== '\u200B' || 
+                imageSrc5.nam !== '\u200B' || 
+                imageSrc6.nam !== '\u200B'
+            ) && (
             <thead className="text-gray-300 border-t-3 border-gray-300">
                 <tr className=''>
                     <th colSpan={8}></th>
@@ -112,7 +129,7 @@ export default function SelectedTable({
                     </th>
                 </tr>
             </thead>
-            
+            )}
         </table>
     </>
     );

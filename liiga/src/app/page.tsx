@@ -66,6 +66,7 @@ export default function Home() {
   });
 
   const [search, setSearch] = useState("")
+  const [players, setPlayers] = useState([])
 
   return (
   
@@ -97,6 +98,7 @@ export default function Home() {
         setImageSrc5={setImageSrc5} imageSrc5={imageSrc5}
         setImageSrc6={setImageSrc6} imageSrc6={imageSrc6}
         setSearch={setSearch} search={search}
+        setPlayers={setPlayers} players={players}
       />
     </div>
     <table id='content-table' className='table-auto w-[60%] ml-[20%] border-spacing-2'>
@@ -107,6 +109,7 @@ export default function Home() {
        setImageSrc4={setImageSrc4} imageSrc4={imageSrc4}
        setImageSrc5={setImageSrc5} imageSrc5={imageSrc5}
        setImageSrc6={setImageSrc6} imageSrc6={imageSrc6}
+       setPlayers={setPlayers} players={players}
        />
     </table>
 

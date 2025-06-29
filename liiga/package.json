@@ -12,6 +12,7 @@
     "@prisma/client": "^6.10.1",
     "db-migrate-pg": "^1.5.2",
     "dotenv": "^16.5.0",
+    "lodash.debounce": "^4.0.8",
     "next": "15.2.4",
     "pg": "^8.16.1",
     "postcss": "^8.5.3",
